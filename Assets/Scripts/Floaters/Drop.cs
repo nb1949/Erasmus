@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Deprecated!
 public abstract class Drop : MonoBehaviour {
 
 	[Range(0,10)]
@@ -32,4 +31,3 @@ public abstract class Drop : MonoBehaviour {
 		}
 	}
 }
-//msg test2
