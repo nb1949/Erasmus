@@ -30,4 +30,6 @@ public abstract class Drop : MonoBehaviour {
 			Object.Destroy (gameObject);
 		}
 	}
+
 }
+//msg test2
