@@ -54,7 +54,6 @@ public class WorldSimulator : MonoBehaviour {
 		statistics = creatures.GetComponent< CreaturesStatistics > ();
 		InvokeRepeating("InvokeSpawning", spawnInvokingRate, spawnInvokingRate) ;
 		InvokeRepeating ("LightCycle", 0, dayLength);
-		WindWeaver ();
 	}
 
 	private void InvokeSpawning() {
@@ -94,14 +93,6 @@ public class WorldSimulator : MonoBehaviour {
 			day = true;
 		else {
 			RenderSettings.ambientIntensity = day ? (0.5f - lightCount / dayDeltaNum) : (lightCount / dayDeltaNum - 0.5f);
-		}
-	}
-
-	private void WindWeaver() {
-		foreach (AreaEffector2D af in winds.GetComponentsInChildren<AreaEffector2D> ()) {
-			af.forceMagnitude = Random.Range (0.2f, 1);
-			af.forceAngle = Random.Range (0, 359);
-			af.forceVariation = Random.Range (0, 0.5f);
 		}
 	}
 }
