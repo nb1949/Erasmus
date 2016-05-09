@@ -32,3 +32,4 @@ public abstract class Drop : MonoBehaviour {
 		}
 	}
 }
+//msg test2
