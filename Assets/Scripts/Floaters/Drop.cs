@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Deprecated
+//Deprecated!
 public abstract class Drop : MonoBehaviour {
 
 	[Range(0,10)]
