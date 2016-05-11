@@ -3,33 +3,47 @@ using System.Collections;
 
 public class CreaturesStatistics : MonoBehaviour {
 
-	[Range(1,10)]
-	public int samplingRate;
 	public int count;
-	public float totalMass;
-	public Vector2 centerOfMass;
-
-
+	public Vector2 meanPosition;
+	public float groupRadius;
+	private float minXpos;
+	private float maxXpos;
+	private float minYpos;
+	private float maxYpos;
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("GetStatistics", 0, samplingRate);	
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		count = transform.childCount;
+		resetPositions ();
+		foreach (Transform creature in transform) {
+			Vector2 pos = (Vector2)creature.position;
+			meanPosition += pos;
+			if (pos.x < minXpos)
+				minXpos = pos.x;
+			if (pos.x > maxXpos)
+				maxXpos = pos.x;
+			if (pos.y < minYpos)
+				minYpos = pos.y;
+			if (pos.y < maxYpos)
+				maxYpos = pos.y;
+		}
+		meanPosition /= count;
+		groupRadius = Mathf.Max (new float[] { 
+			Mathf.Abs (meanPosition.x - minXpos), 
+			Mathf.Abs (meanPosition.x - maxXpos),
+			Mathf.Abs (meanPosition.y - minYpos),
+			Mathf.Abs (meanPosition.y - maxYpos)});
 	}
 
-	private void GetStatistics() {
-		count = transform.childCount;
-		totalMass = 0;
-		centerOfMass = Vector2.zero;
-		foreach (Transform creature in transform) {
-			int creatureFactor = creature.CompareTag ("Player") ? count : 1;
-			Rigidbody2D body = creature.gameObject.GetComponent<Rigidbody2D> ();
-			totalMass += creatureFactor * body.mass;
-			centerOfMass += body.worldCenterOfMass * creatureFactor *  body.mass;
-		}
-		centerOfMass /= totalMass;
+	private void resetPositions() {
+		minXpos = meanPosition.x;
+		maxXpos = meanPosition.x;
+		minYpos = meanPosition.y;
+		maxYpos = meanPosition.y;
+		meanPosition = Vector2.zero;
 	}
 }

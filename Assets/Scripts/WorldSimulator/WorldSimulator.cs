@@ -63,7 +63,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnField() {
 		if (floaters.childCount < maxFieldNum) {
-			Vector2 spawnPosition = statistics.centerOfMass + Random.insideUnitCircle * fieldSpawnOffset;
+			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * fieldSpawnOffset;
 			if (!Physics2D.OverlapCircle (spawnPosition, 10, LayerMask.GetMask (new string[] { "Blocks", "Fields" }))) {
 				Field newField = (Field)GameObject.Instantiate (this.fieldPrefabs [Random.Range (0, this.fieldPrefabs.Length - 1)],
 					                spawnPosition, Quaternion.identity);
@@ -77,7 +77,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnFloater() {
 		if (floaters.childCount < maxFloaterNum) {
-			Vector2 spawnPosition = statistics.centerOfMass + Random.insideUnitCircle * floaterSpawnOffset;
+			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
 			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length - 1)],
 				                    spawnPosition, Quaternion.identity);
 			newFloater.transform.SetParent (floaters);

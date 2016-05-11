@@ -54,7 +54,7 @@ public class CreatureMovement : MonoBehaviour {
 
 	void RandomizeTarget() {
 		if (!onTheMove) {
-			target = statistics.centerOfMass + Random.insideUnitCircle * offset;
+			target = statistics.meanPosition + Random.insideUnitCircle * offset;
 			onTheMove = true;
 		}
 	}
