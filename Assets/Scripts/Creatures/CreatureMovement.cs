@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class CreatureMovement : MonoBehaviour {
 
@@ -9,13 +10,12 @@ public class CreatureMovement : MonoBehaviour {
 	public float offset;
 	[Range(1,10)]
 	public int delta;
-	[Range(1,40)]
-	public int separationLevel;
 	[Range(1,10)]
 	private Collider2D col;
 	private CreatureGenome genome;
 	private CreaturesStatistics statistics;
 	private Vector2 target;
+	private Vector2 suggestedTarget;
 	private bool onTheMove;
 
 
@@ -24,12 +24,20 @@ public class CreatureMovement : MonoBehaviour {
 		genome = GetComponent<CreatureGenome> ();
 		statistics = GetComponentInParent<CreaturesStatistics> ();
 		onTheMove = false;
-		InvokeRepeating ("RandomizeTarget", 5, delta);
+		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
 	void Update () {
-		if (onTheMove && MoveToTarget ())
+		if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+			suggestedTarget = (Vector2)Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			onTheMove = false;
+			RandomizeTarget ();
+		}
+
+		if (onTheMove && MoveToTarget ()) {
 			stopMovement ();
+			onTheMove = false;
+		}
 		Debug.DrawLine (target - Vector2.up * 0.1f, target + Vector2.up * 0.1f, Color.blue);
 		Debug.DrawLine (target - Vector2.right * 0.1f, target + Vector2.right * 0.1f, Color.blue);
 	}
@@ -54,7 +62,13 @@ public class CreatureMovement : MonoBehaviour {
 
 	void RandomizeTarget() {
 		if (!onTheMove) {
-			target = statistics.meanPosition + Random.insideUnitCircle * offset;
+			if (Vector2.Distance (suggestedTarget, Vector2.zero) == 0)
+				target = statistics.meanPosition + Random.insideUnitCircle * offset;
+			else {
+				//Todo: Switch 0.7f with genome.obedience
+				target = Vector2.Lerp (statistics.meanPosition, suggestedTarget, 0.7f) + Random.insideUnitCircle * offset * (1 - 0.7f);
+				suggestedTarget = Vector2.zero;
+			}
 			onTheMove = true;
 		}
 	}
