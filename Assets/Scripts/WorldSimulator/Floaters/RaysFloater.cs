@@ -23,12 +23,13 @@ public class RaysFloater : Floater {
 	[Range(1, 20)]
 	public int raysDensity;
 	private HashSet<GameObject> hits;
-	private float spriteXExtent, xStep, waveX = 0;
+	private float spriteXExtent, spriteYExtent, xStep, waveX = 0;
 
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
 		spriteXExtent = GetComponent<SpriteRenderer> ().bounds.extents.x;
+		spriteYExtent = GetComponent<SpriteRenderer> ().bounds.extents.y;
 		hits = new HashSet<GameObject> ();
 		xStep = 2f * spriteXExtent / raysDensity;
 		InvokeRepeating ("Beam", 1, hitRate);
@@ -41,7 +42,8 @@ public class RaysFloater : Floater {
 		//Debug
 		for (int i = 1; i <= raysDensity; i++) {
 			Vector3 direction = Quaternion.AngleAxis(rayAngle, Vector3.forward) * -transform.up;
-			Vector3 position = new Vector3 (transform.localPosition.x - 1.2f * spriteXExtent + i * xStep, transform.localPosition.y, transform.localPosition.z);
+			Vector3 position = new Vector3 (transform.localPosition.x - 1.2f * spriteXExtent + i * xStep, 
+				transform.localPosition.y + spriteYExtent/2, transform.localPosition.z);
 			Debug.DrawRay(position, transform.up + direction * rayLength, Color.red);
 		}
 	}

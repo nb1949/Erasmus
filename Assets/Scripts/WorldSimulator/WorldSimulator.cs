@@ -11,6 +11,9 @@ public class WorldSimulator : MonoBehaviour {
 	private Transform floaters;
 	private Transform creatures;
 	private Transform winds;
+
+	[Range(1, 100), Space(10)]
+	public int spawnInvokingRate;
 	[Range(1, 1000), Header("Spawn offests from CoM")]
 	public int fieldSpawnOffset;
 	[Range(1, 1000)]
@@ -31,9 +34,6 @@ public class WorldSimulator : MonoBehaviour {
 	public Field[] fieldPrefabs;
 	[Header("Floater Types")]
 	public Floater[] floaterPrefabs;
-
-	[Range(1, 100)]
-	public int spawnInvokingRate;
 
 	[Range(1, 10), Header("Light Settings")] 
 	public int dayLength;
