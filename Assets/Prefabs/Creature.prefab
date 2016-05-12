@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11474684}
   - 114: {fileID: 11425042}
   - 114: {fileID: 11462116}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 450428}
   - 108: {fileID: 10876156}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - 4: {fileID: 401558}
   - 23: {fileID: 2370982}
   - 102: {fileID: 10251654}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101396}
   m_UseAutoMass: 0
-  m_Mass: 0.01
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   health: 100
   weakeningRate: 1
   moveSpeed: 3
-  rotateSpeed: 600
+  rotateSpeed: 100
   fat: 0
   height: 0
   eyes: 0
@@ -271,9 +271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca1fe33c090be94eab170bcbd4e40e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  epsilon: 0.6
+  epsilon: 1
   offset: 10
   delta: 1
+  maxSpeed: 5
 --- !u!114 &11493912
 MonoBehaviour:
   m_ObjectHideFlags: 1

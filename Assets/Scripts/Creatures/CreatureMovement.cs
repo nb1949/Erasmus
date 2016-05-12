@@ -11,6 +11,7 @@ public class CreatureMovement : MonoBehaviour {
 	[Range(1,10)]
 	public int delta;
 	[Range(1,10)]
+	public int maxSpeed;
 	private Collider2D col;
 	private CreatureGenome genome;
 	private CreaturesStatistics statistics;
@@ -43,7 +44,6 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	bool RotateToTarget(Vector2 heading) {
-		col.attachedRigidbody.velocity = Vector2.zero;
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, genome.properties["rotateSpeed"] * Time.deltaTime);
@@ -53,9 +53,10 @@ public class CreatureMovement : MonoBehaviour {
 	bool MoveToTarget() {
 		Vector2 position = transform.position;
 		Vector2 heading = target - position;
-		Debug.DrawLine ((Vector2)transform.position, (Vector2)transform.position + heading, Color.green);
-		if(RotateToTarget (heading))
-			col.attachedRigidbody.velocity = heading / heading.magnitude * genome.properties["moveSpeed"];
+		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
+		RotateToTarget (heading);
+		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
+			col.attachedRigidbody.AddForce (transform.up * genome.properties["moveSpeed"]);
 		return (heading.magnitude < epsilon);
 	}
 
