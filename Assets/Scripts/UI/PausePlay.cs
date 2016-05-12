@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 public class PausePlay : MonoBehaviour {
 
-	public GameObject textGameObject;
-	private Text textComp;
+	public Image image;
+	public Sprite pauseSprite;
+	public Sprite playSprite;
 
 	void Awake() {
-		textComp = textGameObject.GetComponent<Text> ();
 	}
 
 	public void TogglePausePlay() {
 		if (Time.timeScale == 0) {
 			Time.timeScale = 1;
-			textComp.text = "Pause";
+			image.overrideSprite = pauseSprite;
 		} else if (Time.timeScale == 1) {
 			Time.timeScale = 0;
-			textComp.text = "Play";
+			image.overrideSprite = playSprite;
 		}
 	}
 }
