@@ -15,6 +15,8 @@ public class CreatureMovement : MonoBehaviour {
 	public float delta;
 	[Range(1,10)]
 	public int maxSpeed;
+	[Range(0, 180)]
+	public int avoidObstacleRotation;
 	private Collider2D col;
 	private CreatureGenome genome;
 	private CreatureSight sight;
@@ -44,13 +46,12 @@ public class CreatureMovement : MonoBehaviour {
 			onTheMove = false;
 			RandomizeTarget ();
 		} else {
-			Transform seen = sight.Seen (avoid, sight.sightDistance);
-			if (seen) {
-				SetTarget (Quaternion.AngleAxis (Vector2.Angle (transform.up, seen.position - transform.position), Vector3.forward)
-				* transform.up * Random.Range (minOffset, maxOffset));
-			}
+		Transform seen = sight.Seen (avoid, sight.sightDistance);
+		if (seen) 
+				SetTarget (Quaternion.AngleAxis(Mathf.Sign (Vector2.Angle 
+					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
+					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 		}
-
 		if (onTheMove && MoveToTarget ()) 
 			onTheMove = false;
 		Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
@@ -94,12 +95,5 @@ public class CreatureMovement : MonoBehaviour {
 	public void SetTarget(Vector2 target) {
 		this.currentTarget = target;
 		onTheMove = true;
-	}
-
-	void stopMovement() {
-		if (onTheMove) {
-			col.attachedRigidbody.velocity = Vector2.zero;
-			onTheMove = false;
-		}
 	}
 }
