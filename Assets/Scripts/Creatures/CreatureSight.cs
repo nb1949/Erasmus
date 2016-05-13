@@ -30,25 +30,25 @@ public class CreatureSight : MonoBehaviour
 		for (int i = 0; i < sightDensity; i++) {
 			Vector3 direction = Quaternion.AngleAxis (-sightAngle + (i - 1) * angleStep, Vector3.forward) * transform.up;
 			RaycastHit2D hit = Physics2D.Raycast (transform.localPosition, direction, sightDistance, sightlayerMask);
-			if (hit != default(RaycastHit2D))
-				hits.Add (hit.transform);
+			if (hit != default(RaycastHit2D) && hit != null)
+				hits.Add (hit);
 			else
 				misses.Add (direction.normalized);
 			Debug.DrawRay (transform.localPosition, transform.up + direction * sightDistance, Color.red);
 		}
 	}
 
-	public Transform Seen (List<string> tags, float dist) {
-		foreach (Transform t in hits)
-			if (tags.Contains (t.tag))
-				return t;
+	public Transform Seen (List<string> tags, float maxDist) {
+		foreach (RaycastHit2D h in hits)
+			if (h.transform != null && h.distance < maxDist && tags.Contains (h.transform.tag))
+				return h.transform;
 		return null;
 	}
 
-	public Transform Seen (string tag, float dist) {
-		foreach (Transform t in hits)
-			if (t.CompareTag (tag))
-				return t;
+	public Transform Seen (string tag, float maxDist) {
+		foreach (RaycastHit2D h in hits)
+			if (h.transform != null && h.distance < maxDist && h.transform.CompareTag (tag))
+				return h.transform;
 		return null;
 	}
 

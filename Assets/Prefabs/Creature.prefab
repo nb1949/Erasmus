@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 101396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.24, y: -0.3, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 401558}
   - {fileID: 450428}
@@ -183,7 +183,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  weakeningRate: 1
-  moveSpeed: 3
+  weakeningRate: 10
+  moveSpeed: 2
   rotateSpeed: 100
   fat: 0
   height: 0
@@ -272,9 +272,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epsilon: 1
-  offset: 10
+  minOffset: 3
+  maxOffset: 9
   delta: 1
-  maxSpeed: 5
+  maxSpeed: 4
+  avoidObstacleRotation: 70
 --- !u!114 &11493912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,11 +289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightAngle: 30
-  sightDistance: 5
+  sightDistance: 8
   sightDensity: 10
   sightlayerMask:
     serializedVersion: 2
-    m_Bits: 6400
+    m_Bits: 7424
 --- !u!212 &21273728
 SpriteRenderer:
   m_ObjectHideFlags: 1

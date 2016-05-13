@@ -81,7 +81,7 @@ public class CreatureMovement : MonoBehaviour {
 			ArrayList misses = sight.GetMisses ();
 			if (misses.Count > 0 && suggestedTarget == Vector2.zero) {
 				Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
-				currentTarget = statistics.meanPosition + randomDirection * Random.Range (minOffset, maxOffset);
+				currentTarget = statistics.meanPosition + randomDirection * statistics.count * Random.Range (minOffset, maxOffset);
 			} else {
 				//Todo: Switch 0.7f with genome.obedience
 				currentTarget = Vector2.Lerp (statistics.meanPosition, suggestedTarget, 0.7f) +
