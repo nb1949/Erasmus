@@ -2,14 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using AssemblyCSharp;
 
 
 public static class Genetics {
 
-	//List of all properties
-	//TODO: make class Property(name, minVal, maxVal, DefaultVal).
-	public static readonly string[] PROPERTIES = {"health", "weakeningRate", "moveSpeed", "rotateSpeed"};
-	public static readonly string[] DNA_PROPERTIES = {"fat", "height", "eyes"};
+	public enum GeneType
+	{
+		FAT
+		,HEIGHT
+		,SIGHT
+		,FLIGHT
+		,WISDOM
+		,ARMOR
+		,SPEED
+		,CRAZINESS
+	}
+
+	public static readonly string[] PROPERTIES = {"health", "weakeningRate", "moveSpeed", "rotateSpeed"}; //TODO: deprecate this.
+	public static GeneType[] DNA_PROPERTIES = Enum.GetValues (typeof(GeneType)).Cast<GeneType> ().ToArray ();
+	private static bool initiated = false;
 
 	/* MORE is used to enhance propety when joining Genomes
 	 * Since all DNA attributes are in [-1,1], multiplying any value my MORE 
@@ -24,19 +37,21 @@ public static class Genetics {
 	public static readonly float JOIN_VARIANCE = 0.05f;
 	public static readonly float SPLIT_VARIANCE = 0.02f; //for mutation
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
-	private static Random r = new Random();
+	private static UnityEngine.Random r = new UnityEngine.Random();
 
 
-	public static CreatureGenome Join (CreatureGenome parent1, CreatureGenome parent2, ref CreatureGenome child){
+	public static Creature Join (Creature parent1, Creature parent2, ref Creature child){
+
+//		Debug.Log ("Parent 1:\n" + parent1.asTxt() + "\nParent 2:\n" + parent2.asTxt());
 		JoinProperties (parent1, parent2, ref child);
-		JoinDna (parent1, parent2, ref child);
+		JoinDna (parent1.genome, parent2.genome, ref child.genome);
 		return child;
 	}
 
 	/* Properties are "regular" qualities that will be averaged. 
 	 * TODO: do we really need any such qualities? I left this so not 
 	 * to hurt your code.*/
-	private static void JoinProperties(CreatureGenome parent1, CreatureGenome parent2, ref CreatureGenome child){
+	private static void JoinProperties(Creature parent1, Creature parent2, ref Creature child){
 		foreach (string p in PROPERTIES) {
 			
 			float p3; 
@@ -49,18 +64,18 @@ public static class Genetics {
 			} else {
 				continue;
 			}
-			child.set (p, p3);
+			child.setProp (p, p3);
 		}
 	}
 
 	/* For each quality: take the avg between parents, 
 	 * make it more extreme and choose from some normal distribution
 	 * around it. if it exceed max / min cut it. */
-	private static void JoinDna(CreatureGenome parent1, CreatureGenome parent2, ref CreatureGenome child){
+	private static void JoinDna(Genome parent1, Genome parent2, ref Genome child){
 
-		foreach (string q in DNA_PROPERTIES) {
-			float q1 = parent1.dna [q];
-			float q2 = parent2.dna [q];
+		foreach (Genetics.GeneType q in DNA_PROPERTIES) {
+			float q1 = parent1[q].Val;
+			float q2 = parent2[q].Val;
 
 			// Take avg, Enhance property
 			float avg = (q1 + q1)/2;
@@ -81,7 +96,7 @@ public static class Genetics {
 			extreme = Mathf.Min (MAX, extreme);	
 			extreme = Mathf.Max (MIN, extreme);
 
-			child.setDna (q, extreme);
+			child[q].Val = extreme;
 		}
 	}
 
@@ -95,8 +110,8 @@ public static class Genetics {
 
 		do
 		{
-			u = 2f * Random.value - 1f;
-			v = 2f * Random.value - 1f;
+			u = 2f * UnityEngine.Random.value - 1f;
+			v = 2f * UnityEngine.Random.value - 1f;
 			S = u * u + v * v;
 		}
 		while (S >= 1f);
@@ -105,13 +120,13 @@ public static class Genetics {
 		return u * fac;
 	}
 
-	public static void Mutate(ref CreatureGenome genome){
-		string[] dnaProps = Genetics.randomDnaProperties (Genetics.DNA_PROPS_TO_MUTATE);
-		string prop;
+	public static void Mutate(ref Genome genome){
+		Genetics.GeneType[] dnaProps = Genetics.randomDnaProperties (Genetics.DNA_PROPS_TO_MUTATE);
+		Genetics.GeneType prop;
 		float origVal;
 		for (int i = 0; i < dnaProps.Length; i++) {
 			prop = dnaProps [i];
-			origVal = genome.getDna (prop);
+			origVal = genome[prop].Val;
 			float mutation = NextGaussianDouble() * Mathf.Sqrt(SPLIT_VARIANCE); 
 			// Keep bounds
 			mutation = Mathf.Min (MAX, mutation);	
@@ -123,14 +138,13 @@ public static class Genetics {
 			if (mutation < -MAX_MUTATION)
 				mutation = -MAX_MUTATION;
 
-			genome.setDna (prop, origVal + mutation);
-			//Debug.Log ("Mutated " + prop + " from " + origVal.ToString() + " to " + (origVal + mutation).ToString());
+			genome[prop].Val =  (origVal + mutation);
 		}
 	}
 
 
 
-	private static string[] randomDnaProperties(int num){
+	private static Genetics.GeneType[] randomDnaProperties(int num){
 
 		if (num >= Genetics.DNA_PROPERTIES.Length) {
 			Debug.LogError ("asked for too many dna properties");
@@ -147,14 +161,14 @@ public static class Genetics {
 				Debug.LogError ("OVER 100 ITERATIONS! ABORT");
 				break;
 			}
-			int index = Random.Range(0, Genetics.DNA_PROPERTIES.Length);
+			int index = UnityEngine.Random.Range(0, Genetics.DNA_PROPERTIES.Length);
 			if (indices.Count == 0 || !indices.Contains(index))
 			{
 				indices.Add(index);
 			}
 		}
 
-		string[] dnaProps = new string[num];
+		Genetics.GeneType[] dnaProps = new Genetics.GeneType[num];
 		for (int i = 0; i < indices.Count; i++)
 		{
 			int randomIndex = indices[i];

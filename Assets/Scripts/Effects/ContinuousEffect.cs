@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using AssemblyCSharp;
 
 public class ContinuousEffect : TimedEffect {
 
@@ -8,13 +9,13 @@ public class ContinuousEffect : TimedEffect {
 	public float deltaTime;
 
 	public override void Apply (){
-		genome = GetComponent<CreatureGenome> ();
+		creature = GetComponent<Creature> ();
 		InvokeRepeating ("Buff", 0, this.deltaTime);
 		Invoke ("CancelBuff", this.terminationTime);
 	}
 
 	private void Buff() {
-		genome.properties [this.property] += this.value;
+		creature.properties [this.property] += this.value;
 	}
 
 	private void CancelBuff() {

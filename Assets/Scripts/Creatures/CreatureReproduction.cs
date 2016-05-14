@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
 
 public class CreatureReproduction : MonoBehaviour {
 
 	[Range(1, 10)]
 	public float repoductionPosOffset;
-	private CreatureGenome genome;
+	private Creature creature;
 	private CreaturesStatistics statistics;
 
 	void Start() {
-		genome = GetComponent<CreatureGenome> ();
+		creature = GetComponent<Creature> ();
 		statistics = GetComponentInParent <CreaturesStatistics> ();
 	}
 
@@ -23,19 +24,19 @@ public class CreatureReproduction : MonoBehaviour {
 					transform.position.z);
 			Transform copy = (Transform)GameObject.Instantiate (this.transform, position, transform.rotation);
 			copy.SetParent (this.gameObject.transform.parent);
-			CreatureGenome genome2 = copy.GetComponent <CreatureGenome> ();
-			Genetics.Mutate (ref genome);
-			Genetics.Mutate (ref genome2);
+			Creature creature2 = copy.GetComponent <Creature> ();
+			Genetics.Mutate (ref creature.genome);
+			Genetics.Mutate (ref creature2.genome);
 		}
 	}
 
 	public void Unite(GameObject parent2Creature) {
-		CreatureGenome parent2 = parent2Creature.GetComponent <CreatureGenome> ();
-		CreatureGenome parent1 =  new CreatureGenome (this.genome);
-		Genetics.Join (parent1, parent2, ref this.genome);
+		Creature parent2 = parent2Creature.GetComponent <Creature> ();
+		Creature parent1 =  new Creature (this.creature);
+		Genetics.Join (parent1, parent2, ref this.creature);
 		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 
-		Debug.Log ("3. new Genome: \n=====================\n" + genome.asTxt ()); 
+		Debug.Log ("3. new Genome: \n=====================\n" + creature.asTxt ()); 
 
 		Destroy(parent1);
 		Destroy (parent2Creature);

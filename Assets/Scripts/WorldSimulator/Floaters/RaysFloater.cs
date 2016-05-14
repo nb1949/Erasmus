@@ -67,11 +67,11 @@ public class RaysFloater : Floater {
 
 	private void Affect(GameObject hit) {
 		ConstantEffect effect = hit.AddComponent<ConstantEffect> ();
-		foreach (string prop in this.propsHigh) {
+		foreach (Genetics.GeneType prop in this.propsHigh) {
 			Effect.EffectSensitivity s = effect.strongAgainstHigh;
 			effect.setSensitivity (prop, s);
 		}
-		foreach (string prop in this.propsLow) {
+		foreach (Genetics.GeneType prop in this.propsLow) {
 			Effect.EffectSensitivity s = effect.strongAgainstLow;
 			effect.setSensitivity (prop, s);
 		}

@@ -17,7 +17,7 @@ public class CreatureGenome : MonoBehaviour {
 	[Range(100, 800)]
 	public float rotateSpeed;
 
-	public SortedList<string, float> dna;
+	public SortedList<Genetics.GeneType, float> dna;
 	[Range(-1,1)]
 	public float fat;
 	[Range(-1,1)]
@@ -29,7 +29,7 @@ public class CreatureGenome : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		properties = new SortedList<string, float> ();
-		dna = new SortedList<string, float> ();
+		dna = new SortedList<Genetics.GeneType, float> ();
 
 		//properties
 		properties.Add ("health", health);
@@ -37,22 +37,22 @@ public class CreatureGenome : MonoBehaviour {
 		properties.Add ("rotateSpeed", rotateSpeed);
 
 		//DNA
-		dna.Add ("fat", fat);
-		dna.Add ("height", height);
-		dna.Add ("eyes", eyes);
+		dna.Add (Genetics.GeneType.FAT, fat);
+		dna.Add (Genetics.GeneType.HEIGHT, height);
+		dna.Add (Genetics.GeneType.SIGHT, eyes);
 
 		InvokeRepeating ("Weaken", 0, weakeningRate);
 	}
 
-	public CreatureGenome() : base(){
+	public CreatureGenome() : base(){ 	
 		properties = new SortedList<string, float> ();
-		dna = new SortedList<string, float> ();
+		dna = new SortedList<Genetics.GeneType, float> ();
 	}
 
 	//copy c'tor
 	public CreatureGenome (CreatureGenome other) {
 		properties = new SortedList<string, float> ();
-		dna = new SortedList<string, float> ();
+		dna = new SortedList<Genetics.GeneType, float> ();
 
 		//properties
 		properties.Add ("health", other.get("health"));
@@ -60,9 +60,9 @@ public class CreatureGenome : MonoBehaviour {
 		properties.Add ("rotateSpeed", other.get("rotateSpeed"));
 
 		//DNA
-		dna.Add ("fat", other.getDna("fat"));
-		dna.Add ("height", other.getDna("height"));
-		dna.Add ("eyes", other.getDna("eyes"));
+		dna.Add (Genetics.GeneType.FAT, other.getDna(Genetics.GeneType.FAT));
+		dna.Add (Genetics.GeneType.HEIGHT, other.getDna(Genetics.GeneType.HEIGHT));
+		dna.Add (Genetics.GeneType.SIGHT, other.getDna(Genetics.GeneType.SIGHT));
 	}
 
 	public float get(string property) {
@@ -77,14 +77,14 @@ public class CreatureGenome : MonoBehaviour {
 	}
 
 
-	public float getDna(string property) {
+	public float getDna(Genetics.GeneType property) {
 		if (!Genetics.DNA_PROPERTIES.Contains (property)) {
 			Debug.LogError ("requested illegal dna property " + property);
 		}
 		return this.dna [property];
 	}
 
-	public bool setDna(string property, float value) {
+	public bool setDna(Genetics.GeneType property, float value) {
 		if (!Genetics.DNA_PROPERTIES.Contains (property)) {
 			Debug.LogError ("property " + property + " not in Genetics.Qualities");
 			return false;
@@ -108,9 +108,9 @@ public class CreatureGenome : MonoBehaviour {
 		health = (int)properties ["health"];
 		moveSpeed = properties ["moveSpeed"];
 		rotateSpeed = properties ["rotateSpeed"];
-		fat = dna ["fat"];
-		height = dna ["height"];
-		eyes = dna ["eyes"];
+		fat = dna [Genetics.GeneType.FAT];
+		height = dna [Genetics.GeneType.HEIGHT];
+		eyes = dna [Genetics.GeneType.SIGHT];
 	}
 
 	public string asTxt(){
@@ -120,8 +120,8 @@ public class CreatureGenome : MonoBehaviour {
 			res += ("\t" + kvp.Key + ": " + kvp.Value.ToString() + "\n");
 		}
 		res += "Dna: \n";
-		foreach (KeyValuePair<string, float> kvp in dna){
-			res += ("\t" + kvp.Key + ": " + kvp.Value.ToString() + "\n");
+		foreach (KeyValuePair<Genetics.GeneType, float> kvp in dna){
+			res += ("\t" + kvp.Key.ToString() + ": " + kvp.Value.ToString() + "\n");
 		}
 		return res;
 	}

@@ -2,15 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using AssemblyCSharp;
 
 public abstract class Effect : MonoBehaviour {
 
 	[Range(1,100)]
 	public float value;
 	public string property;
-	protected CreatureGenome genome;	
+	protected Creature creature;	
 	public delegate float EffectSensitivity(float val);
-	protected Dictionary<string, EffectSensitivity> sensitivities = new Dictionary<string, EffectSensitivity>();
+	protected Dictionary<Genetics.GeneType, EffectSensitivity> sensitivities = new Dictionary<Genetics.GeneType, EffectSensitivity>();
 
 
 	public abstract void Apply ();
@@ -30,7 +31,7 @@ public abstract class Effect : MonoBehaviour {
 
 	}
 
-	public bool setSensitivity(string prop, EffectSensitivity sensitivity){
+	public bool setSensitivity(Genetics.GeneType prop, EffectSensitivity sensitivity){
 		if (Array.IndexOf (Genetics.DNA_PROPERTIES, prop) == -1) {
 			Debug.LogError ("No such property in Genetics.DNA_PROPERTIES: " + prop);
 			return false;

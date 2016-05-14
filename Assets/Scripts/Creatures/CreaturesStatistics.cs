@@ -16,7 +16,7 @@ public class CreaturesStatistics : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		count = transform.childCount;
 		if (count > 0) {
 			resetPositions ();

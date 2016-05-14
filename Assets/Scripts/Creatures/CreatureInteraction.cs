@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using AssemblyCSharp;
 
 public class CreatureInteraction : MonoBehaviour {
 
@@ -8,12 +9,12 @@ public class CreatureInteraction : MonoBehaviour {
 	public bool selected;
 	private bool mouseDown = false;
 	private TextMesh stats;
-	private CreatureGenome genome;
+	private Creature creature;
 	private Quaternion fixedRotation;
 
 	void Awake () {
 		selected = false;
-		genome = GetComponent <CreatureGenome> ();
+		creature = GetComponent <Creature> ();
 		stats = transform.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
 		fixedRotation = Quaternion.identity;
@@ -24,10 +25,11 @@ public class CreatureInteraction : MonoBehaviour {
 	}
 
 	void OnMouseEnter() {
-		stats.text = "Health: " + genome.properties["health"];
-		stats.text += ("\nFat: " + genome.getDna ("fat"));
-		stats.text += ("\nHeight: " + genome.getDna ("height"));
-		stats.text += ("\nSight: " + genome.getDna ("eyes"));
+		stats.text = "Health: " + creature.getProp("health");
+
+		foreach (Genetics.GeneType gene in Genetics.DNA_PROPERTIES){
+			stats.text += ("\n" + gene.ToString () + ": " + creature.genome [gene].Val);
+		}
 	}
 
 	void OnMouseExit() {
