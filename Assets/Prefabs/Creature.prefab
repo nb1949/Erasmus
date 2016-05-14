@@ -16,7 +16,8 @@ GameObject:
   - 114: {fileID: 11405180}
   - 114: {fileID: 11474684}
   - 114: {fileID: 11425042}
-  - 114: {fileID: 11462116}
+  - 114: {fileID: 11488776}
+  - 114: {fileID: 11497510}
   m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
@@ -231,24 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repoductionPosOffset: 5
---- !u!114 &11462116
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbfa9e9ead1aec40bab7c136958f4a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  weakeningRate: 10
-  moveSpeed: 2
-  rotateSpeed: 100
-  fat: 0
-  height: 0
-  eyes: 0
 --- !u!114 &11470002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,6 +260,21 @@ MonoBehaviour:
   delta: 1
   maxSpeed: 4
   avoidObstacleRotation: 70
+--- !u!114 &11488776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e9705501c3b9248a5fb376073c885e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  weakeningRate: 10
+  moveSpeed: 2
+  rotateSpeed: 100
 --- !u!114 &11493912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,6 +292,24 @@ MonoBehaviour:
   sightlayerMask:
     serializedVersion: 2
     m_Bits: 7424
+--- !u!114 &11497510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbfa9e9ead1aec40bab7c136958f4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  weakeningRate: 10
+  moveSpeed: 2
+  rotateSpeed: 100
+  fat: 0
+  height: 0
+  eyes: 0
 --- !u!212 &21273728
 SpriteRenderer:
   m_ObjectHideFlags: 1
