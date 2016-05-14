@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using AssemblyCSharp;
 
 
 public static class Genetics {
@@ -38,7 +37,6 @@ public static class Genetics {
 	public static readonly float SPLIT_VARIANCE = 0.02f; //for mutation
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
 	private static UnityEngine.Random r = new UnityEngine.Random();
-
 
 	public static Creature Join (Creature parent1, Creature parent2, ref Creature child){
 

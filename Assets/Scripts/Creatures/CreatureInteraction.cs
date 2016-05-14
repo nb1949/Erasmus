@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using AssemblyCSharp;
 
 public class CreatureInteraction : MonoBehaviour {
 

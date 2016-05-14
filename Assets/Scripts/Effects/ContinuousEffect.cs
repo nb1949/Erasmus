@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using AssemblyCSharp;
 
 public class ContinuousEffect : TimedEffect {
 
@@ -21,15 +20,5 @@ public class ContinuousEffect : TimedEffect {
 	private void CancelBuff() {
 		CancelInvoke ("Buff");
 		Destroy (this);
-	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

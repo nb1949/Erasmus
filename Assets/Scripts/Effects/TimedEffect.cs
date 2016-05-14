@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using AssemblyCSharp;
 
 public class TimedEffect : Effect {
 

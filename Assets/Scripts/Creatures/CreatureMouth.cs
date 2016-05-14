@@ -15,9 +15,9 @@ public class CreatureMouth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit2D hit = sight.GetSeen ("Food", sight.sightDistance);
-		if (!RaycastHit2D.Equals (hit, default(RaycastHit2D)))
-			movement.setTarget ((Vector2)hit.transform.position);
+		Transform food = sight.Seen ("Food", sight.sightDistance);
+		if (food != null)
+			movement.SetTarget ((Vector2)food.position);
 	}
 		
 	void OnCollisionEnter2D(Collision2D other) {

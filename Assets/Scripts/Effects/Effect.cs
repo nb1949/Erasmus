@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using AssemblyCSharp;
 
 public abstract class Effect : MonoBehaviour {
 
@@ -19,16 +18,6 @@ public abstract class Effect : MonoBehaviour {
 	public void Set(String property, float value) {
 		this.property = property;
 		this.value = value;
-	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	public bool setSensitivity(Genetics.GeneType prop, EffectSensitivity sensitivity){
