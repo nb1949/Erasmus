@@ -34,7 +34,7 @@ GameObject:
   - 4: {fileID: 450428}
   - 108: {fileID: 10876156}
   m_Layer: 10
-  m_Name: Point light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
