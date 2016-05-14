@@ -100,8 +100,9 @@ public class CreatureGenome : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (properties["health"] == 0) {
+		if (properties["health"] <= 0) {
 			CancelInvoke ("Weaken");
+			Destroy (gameObject);
 		}
 		//DEBUG
 		health = (int)properties ["health"];

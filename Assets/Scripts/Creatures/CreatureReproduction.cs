@@ -13,6 +13,8 @@ public class CreatureReproduction : MonoBehaviour {
 		statistics = GetComponentInParent <CreaturesStatistics> ();
 	}
 
+	//@Yoel_Todo: Please try to avoid creating\instantiating new instances when rewriting this
+	// and instead do both the reproduction and the unification in-place as much as possible.
 	public void Reproduce() {
 		if (statistics.count <= 6) {
 			Vector3 position = 
@@ -21,10 +23,6 @@ public class CreatureReproduction : MonoBehaviour {
 					transform.position.z);
 			Transform copy = (Transform)GameObject.Instantiate (this.transform, position, transform.rotation);
 			copy.SetParent (this.gameObject.transform.parent);
-			copy.gameObject.GetComponent<PlayerMovement> ().enabled = false;
-			copy.gameObject.GetComponent<CreatureMovement> ().enabled = true;
-			copy.tag = "Creature";
-
 			CreatureGenome genome2 = copy.GetComponent <CreatureGenome> ();
 			Genetics.Mutate (ref genome);
 			Genetics.Mutate (ref genome2);
@@ -33,8 +31,7 @@ public class CreatureReproduction : MonoBehaviour {
 
 	public void Unite(GameObject parent2Creature) {
 		CreatureGenome parent2 = parent2Creature.GetComponent <CreatureGenome> ();
-
-		CreatureGenome parent1 = new CreatureGenome (this.genome);
+		CreatureGenome parent1 =  new CreatureGenome (this.genome);
 		Genetics.Join (parent1, parent2, ref this.genome);
 		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 

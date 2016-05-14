@@ -11,6 +11,9 @@ public class WorldSimulator : MonoBehaviour {
 	private Transform floaters;
 	private Transform creatures;
 	private Transform winds;
+
+	[Range(1, 100), Space(10)]
+	public int spawnInvokingRate;
 	[Range(1, 1000), Header("Spawn offests from CoM")]
 	public int fieldSpawnOffset;
 	[Range(1, 1000)]
@@ -32,9 +35,6 @@ public class WorldSimulator : MonoBehaviour {
 	[Header("Floater Types")]
 	public Floater[] floaterPrefabs;
 
-	[Range(1, 100)]
-	public int spawnInvokingRate;
-
 	[Range(1, 10), Header("Light Settings")] 
 	public int dayLength;
 	[Range(20, 120)]
@@ -54,7 +54,6 @@ public class WorldSimulator : MonoBehaviour {
 		statistics = creatures.GetComponent< CreaturesStatistics > ();
 		InvokeRepeating("InvokeSpawning", spawnInvokingRate, spawnInvokingRate) ;
 		InvokeRepeating ("LightCycle", 0, dayLength);
-		WindWeaver ();
 	}
 
 	private void InvokeSpawning() {
@@ -64,7 +63,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnField() {
 		if (floaters.childCount < maxFieldNum) {
-			Vector2 spawnPosition = statistics.centerOfMass + Random.insideUnitCircle * fieldSpawnOffset;
+			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * fieldSpawnOffset;
 			if (!Physics2D.OverlapCircle (spawnPosition, 10, LayerMask.GetMask (new string[] { "Blocks", "Fields" }))) {
 				Field newField = (Field)GameObject.Instantiate (this.fieldPrefabs [Random.Range (0, this.fieldPrefabs.Length - 1)],
 					                spawnPosition, Quaternion.identity);
@@ -78,7 +77,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnFloater() {
 		if (floaters.childCount < maxFloaterNum) {
-			Vector2 spawnPosition = statistics.centerOfMass + Random.insideUnitCircle * floaterSpawnOffset;
+			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
 			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length - 1)],
 				                    spawnPosition, Quaternion.identity);
 			newFloater.transform.SetParent (floaters);
@@ -94,14 +93,6 @@ public class WorldSimulator : MonoBehaviour {
 			day = true;
 		else {
 			RenderSettings.ambientIntensity = day ? (0.5f - lightCount / dayDeltaNum) : (lightCount / dayDeltaNum - 0.5f);
-		}
-	}
-
-	private void WindWeaver() {
-		foreach (AreaEffector2D af in winds.GetComponentsInChildren<AreaEffector2D> ()) {
-			af.forceMagnitude = Random.Range (0.2f, 1);
-			af.forceAngle = Random.Range (0, 359);
-			af.forceVariation = Random.Range (0, 0.5f);
 		}
 	}
 }
