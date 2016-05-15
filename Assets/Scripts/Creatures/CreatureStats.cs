@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class CreatureStats : MonoBehaviour
 {
 
 	public SortedList<string, float> properties;
@@ -18,13 +18,13 @@ public class Creature : MonoBehaviour
 	public Genome genome;
 
 	// C'tor
-	public Creature () : base()
+	public CreatureStats () : base()
 	{
 		properties = new SortedList<string, float> (); 
 	}
 
 	// Copy c'tor
-	public Creature (Creature other) : this()
+	public CreatureStats (CreatureStats other) : this()
 	{
 //			foreach (KeyValuePair<string, float> kvp in other.properties) {
 //				this.properties.Add (kvp.Key, kvp.Value);

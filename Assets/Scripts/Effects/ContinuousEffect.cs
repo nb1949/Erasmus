@@ -8,7 +8,7 @@ public class ContinuousEffect : TimedEffect {
 	public float deltaTime;
 
 	public override void Apply (){
-		creature = GetComponent<Creature> ();
+		creature = GetComponent<CreatureStats> ();
 		InvokeRepeating ("Buff", 0, this.deltaTime);
 		Invoke ("CancelBuff", this.terminationTime);
 	}

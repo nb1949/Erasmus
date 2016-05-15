@@ -6,7 +6,7 @@ public class ConstantEffect : Effect {
 
 	public override void Apply (){
 		if (gameObject != null) {
-			creature = GetComponent<Creature> ();
+			creature = GetComponent<CreatureStats> ();
 			creature.properties [this.property] += this.value;
 			Object.Destroy (this);
 		}

@@ -8,7 +8,7 @@ public abstract class Effect : MonoBehaviour {
 	[Range(1,100)]
 	public float value;
 	public string property;
-	protected Creature creature;	
+	protected CreatureStats creature;	
 	public delegate float EffectSensitivity(float val);
 	protected Dictionary<Genetics.GeneType, EffectSensitivity> sensitivities = new Dictionary<Genetics.GeneType, EffectSensitivity>();
 

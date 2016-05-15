@@ -24,6 +24,7 @@ public class CreatureMovement : MonoBehaviour {
 	private List<string> avoid;
 	private Vector2 currentTarget;
 	private bool onTheMove;
+	private float sightDistanceSquared;
 
 
 	void Start() {
@@ -69,8 +70,8 @@ public class CreatureMovement : MonoBehaviour {
 
 
 	void RandomizeTarget() {
-		if (!onTheMove) {
-			Vector2 position = (Vector2)transform.position;
+		Vector2 position = (Vector2)transform.position;
+		if (!onTheMove || (currentTarget - position).magnitude > sight.sightDistance) {
 			ArrayList misses = sight.GetMisses ();
 			if (misses.Count < 1)
 				SetTarget (-(Vector2)transform.up * minOffset);

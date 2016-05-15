@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epsilon: 1
-  minOffset: 3
-  maxOffset: 9
-  delta: 1
+  minOffset: 1
+  maxOffset: 5
+  delta: 3
   maxSpeed: 4
   avoidObstacleRotation: 70
 --- !u!114 &11488776
