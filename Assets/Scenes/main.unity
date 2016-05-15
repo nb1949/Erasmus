@@ -615,18 +615,6 @@ Prefab:
       propertyPath: m_Name
       value: One (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 179306, guid: 491a6662993c82249aa167839c40905e, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 192434, guid: 491a6662993c82249aa167839c40905e, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 101396, guid: 491a6662993c82249aa167839c40905e, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491a6662993c82249aa167839c40905e, type: 2}
   m_IsPrefabParent: 0
