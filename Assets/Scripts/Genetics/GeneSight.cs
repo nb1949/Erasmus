@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneSight : Gene
 {
-	public GeneSight (GameObject creature) : base(creature)
+	public GeneSight () : base()
 	{
 		this.type = Genetics.GeneType.SIGHT;
 	}

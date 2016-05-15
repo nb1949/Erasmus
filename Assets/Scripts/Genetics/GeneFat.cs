@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneFat : Gene
 {
-	public GeneFat (GameObject creature) : base(creature)
+	public GeneFat () : base()
 	{
 		this.type = Genetics.GeneType.FAT;
 	}

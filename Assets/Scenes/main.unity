@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.0212, g: 0.0227, b: 0.0259, a: 0.1}
+  m_AmbientSkyColor: {r: 0.07352942, g: 0.07352942, b: 0.07352942, a: 0.1}
   m_AmbientEquatorColor: {r: 0.0114, g: 0.0125, b: 0.013300001, a: 0.1}
   m_AmbientGroundColor: {r: 0.0047, g: 0.0043, b: 0.0035, a: 0.1}
-  m_AmbientIntensity: 0.1
+  m_AmbientIntensity: 8
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1121,6 +1121,7 @@ GameObject:
   - 224: {fileID: 1323825712}
   - 222: {fileID: 1323825714}
   - 114: {fileID: 1323825713}
+  - 114: {fileID: 1323825715}
   m_Layer: 5
   m_Name: Score
   m_TagString: EditorOnly
@@ -1184,6 +1185,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1323825711}
+--- !u!114 &1323825715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1323825711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd37c8746245f6140b63c23ae792faec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statistics: {fileID: 1123210384}
+  updateRate: 1
 --- !u!1001 &1372675950
 Prefab:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneCraziness : Gene
 {
-	public GeneCraziness (GameObject creature) : base(creature)
+	public GeneCraziness () : base()
 	{
 		this.type = Genetics.GeneType.CRAZINESS;
 	}

@@ -26,12 +26,11 @@ public abstract class Gene
 		}
 	}
 
-	protected GameObject creature;
+	public GameObject creature;
 
 	// Each Gene must know who it belongs to, so it can affect it onChange
-	public Gene (GameObject creature)
+	public Gene ()
 	{
-		this.creature = creature;
 		this.reset ();
 	}
 
@@ -48,12 +47,13 @@ public abstract class Gene
 	public static Genome instantiateGeneList(GameObject creature){
 		
 		Genome genes = new Genome();
-		object[] args = { creature };
+		object[] args = {};
 		foreach (Type gene in 
 			Assembly.GetAssembly(typeof(Gene)).GetTypes()
 			.Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Gene))))
 		{
 			Gene curr = (Gene)Activator.CreateInstance(gene, args);
+			curr.creature = creature;
 			Debug.Log ("Adding " + curr.type.ToString () + " To genome"); 
 			if (!genes.ContainsKey (curr.type))
 				genes.Add (curr.type, curr);
@@ -64,27 +64,39 @@ public abstract class Gene
 	}
 
 	public static Gene createGene(Genetics.GeneType type, GameObject creature){
+		Gene gene;
 		switch (type) {
 		case Genetics.GeneType.FAT:
-			return new GeneFat (creature);
+			gene = new GeneFat ();
+			break;
 		case Genetics.GeneType.HEIGHT:
-			return new GeneHeight (creature);
+			gene = new GeneHeight ();
+			break;
 		case Genetics.GeneType.SIGHT:
-			return new GeneSight (creature);
+			gene = new GeneSight ();
+			break;
 		case Genetics.GeneType.FLIGHT:
-			return new GeneFlight (creature);
+			gene = new GeneFlight ();
+			break;
 		case Genetics.GeneType.WISDOM:
-			return new GeneWisdom (creature);
+			gene = new GeneWisdom ();
+			break;
 		case Genetics.GeneType.ARMOR:
-			return new GeneArmor (creature);
+			gene = new GeneArmor ();
+			break;
 		case Genetics.GeneType.SPEED:
-			return new GeneSpeed (creature);
+			gene = new GeneSpeed ();
+			break;
 		case Genetics.GeneType.CRAZINESS:
-			return new GeneCraziness (creature);
+			gene = new GeneCraziness ();
+			break;
 		default:
 			Debug.LogError ("GENE " + type.ToString() + " NOT IN SWITCH CASE");
 			return null;
 		}
+
+		gene.creature = creature;
+		return gene;
 
 	}
 }

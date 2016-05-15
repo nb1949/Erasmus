@@ -24,15 +24,15 @@ public class CreatureStats : MonoBehaviour
 	}
 
 	// Copy c'tor
-	public CreatureStats (CreatureStats other) : this()
+	public CreatureStats (CreatureStats other, GameObject myGameObj) : this()
 	{
-//			foreach (KeyValuePair<string, float> kvp in other.properties) {
-//				this.properties.Add (kvp.Key, kvp.Value);
-//			}
-//			genome = Gene.instantiateGeneList (gameObject);
-//			foreach (KeyValuePair<Genetics.GeneType, Gene> kvp in other.genome) {
-//				this.genome [kvp.Key].Val = kvp.Value.Val;
-//			}
+			foreach (KeyValuePair<string, float> kvp in other.properties) {
+				this.properties.Add (kvp.Key, kvp.Value);
+			}
+			genome = Gene.instantiateGeneList (myGameObj);
+			foreach (KeyValuePair<Genetics.GeneType, Gene> kvp in other.genome) {
+				this.genome [kvp.Key].Val = kvp.Value.Val;
+			}
 	}
 
 	void Awake(){
@@ -97,7 +97,6 @@ public class CreatureStats : MonoBehaviour
 			txt += (kvp.Key.ToString () + ": " + kvp.Value.Val.ToString ());
 		}
 		return txt;
-
 	}
 
 

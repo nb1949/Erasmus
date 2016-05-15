@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneFlight : Gene
 {
-	public GeneFlight (GameObject creature) : base(creature)
+	public GeneFlight () : base()
 	{
 		this.type = Genetics.GeneType.FLIGHT;
 	}

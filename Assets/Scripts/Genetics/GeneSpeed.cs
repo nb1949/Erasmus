@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneSpeed : Gene
 {
-	public GeneSpeed (GameObject creature) : base(creature)
+	public GeneSpeed () : base()
 	{
 		this.type = Genetics.GeneType.SPEED;
 	}

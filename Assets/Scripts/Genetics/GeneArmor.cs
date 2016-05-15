@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneArmor : Gene
 {
-	public GeneArmor (GameObject creature) : base(creature)
+	public GeneArmor () : base()
 	{
 		this.type = Genetics.GeneType.ARMOR;
 	}

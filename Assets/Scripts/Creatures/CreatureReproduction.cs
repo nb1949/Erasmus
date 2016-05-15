@@ -31,7 +31,7 @@ public class CreatureReproduction : MonoBehaviour {
 
 	public void Unite(GameObject parent2Creature) {
 		CreatureStats parent2 = parent2Creature.GetComponent <CreatureStats> ();
-		CreatureStats parent1 =  new CreatureStats (this.creature);
+		CreatureStats parent1 =  new CreatureStats (this.creature, parent2Creature);
 		Genetics.Join (parent1, parent2, ref this.creature);
 		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 

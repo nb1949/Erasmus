@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeneHeight : Gene
 {
-	public GeneHeight (GameObject creature) : base(creature)
+	public GeneHeight () : base()
 	{
 		this.type = Genetics.GeneType.HEIGHT;
 	}
