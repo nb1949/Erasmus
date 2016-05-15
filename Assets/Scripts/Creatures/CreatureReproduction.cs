@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using AssemblyCSharp;
 
 public class CreatureReproduction : MonoBehaviour {
 
 	[Range(1, 10)]
 	public float repoductionPosOffset;
-	private Creature creature;
+	private CreatureStats creature;
 	private CreaturesStatistics statistics;
 
 	void Start() {
-		creature = GetComponent<Creature> ();
+		creature = GetComponent<CreatureStats> ();
 		statistics = GetComponentInParent <CreaturesStatistics> ();
 	}
 
@@ -24,15 +23,15 @@ public class CreatureReproduction : MonoBehaviour {
 					transform.position.z);
 			Transform copy = (Transform)GameObject.Instantiate (this.transform, position, transform.rotation);
 			copy.SetParent (this.gameObject.transform.parent);
-			Creature creature2 = copy.GetComponent <Creature> ();
+			CreatureStats creature2 = copy.GetComponent <CreatureStats> ();
 			Genetics.Mutate (ref creature.genome);
 			Genetics.Mutate (ref creature2.genome);
 		}
 	}
 
 	public void Unite(GameObject parent2Creature) {
-		Creature parent2 = parent2Creature.GetComponent <Creature> ();
-		Creature parent1 =  new Creature (this.creature);
+		CreatureStats parent2 = parent2Creature.GetComponent <CreatureStats> ();
+		CreatureStats parent1 =  new CreatureStats (this.creature);
 		Genetics.Join (parent1, parent2, ref this.creature);
 		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 

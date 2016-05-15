@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using AssemblyCSharp;
 
 public class CreatureInteraction : MonoBehaviour {
 
@@ -9,12 +8,12 @@ public class CreatureInteraction : MonoBehaviour {
 	public bool selected;
 	private bool mouseDown = false;
 	private TextMesh stats;
-	private Creature creature;
+	private CreatureStats creature;
 	private Quaternion fixedRotation;
 
 	void Awake () {
 		selected = false;
-		creature = GetComponent <Creature> ();
+		creature = GetComponent <CreatureStats> ();
 		stats = transform.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
 		fixedRotation = Quaternion.identity;

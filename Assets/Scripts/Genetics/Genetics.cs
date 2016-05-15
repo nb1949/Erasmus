@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using AssemblyCSharp;
 
 
 public static class Genetics {
@@ -39,8 +38,7 @@ public static class Genetics {
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
 	private static UnityEngine.Random r = new UnityEngine.Random();
 
-
-	public static Creature Join (Creature parent1, Creature parent2, ref Creature child){
+	public static CreatureStats Join (CreatureStats parent1, CreatureStats parent2, ref CreatureStats child){
 
 //		Debug.Log ("Parent 1:\n" + parent1.asTxt() + "\nParent 2:\n" + parent2.asTxt());
 		JoinProperties (parent1, parent2, ref child);
@@ -51,7 +49,7 @@ public static class Genetics {
 	/* Properties are "regular" qualities that will be averaged. 
 	 * TODO: do we really need any such qualities? I left this so not 
 	 * to hurt your code.*/
-	private static void JoinProperties(Creature parent1, Creature parent2, ref Creature child){
+	private static void JoinProperties(CreatureStats parent1, CreatureStats parent2, ref CreatureStats child){
 		foreach (string p in PROPERTIES) {
 			
 			float p3; 

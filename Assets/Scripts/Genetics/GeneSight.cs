@@ -1,17 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AssemblyCSharp
+public class GeneSight : Gene
 {
-	public class GeneSight : Gene
+	public GeneSight (GameObject creature) : base(creature)
 	{
-		public GeneSight (GameObject creature) : base(creature)
-		{
-			this.type = Genetics.GeneType.SIGHT;
-		}
+		this.type = Genetics.GeneType.SIGHT;
+	}
 
-		override protected void onValChange(float oldVal, float newVal){
-		}
+	override protected void onValChange(float oldVal, float newVal){
 	}
 }
 

@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using AssemblyCSharp;
 
 public abstract class Effect : MonoBehaviour {
 
 	[Range(1,100)]
 	public float value;
 	public string property;
-	protected Creature creature;	
+	protected CreatureStats creature;	
 	public delegate float EffectSensitivity(float val);
 	protected Dictionary<Genetics.GeneType, EffectSensitivity> sensitivities = new Dictionary<Genetics.GeneType, EffectSensitivity>();
 
@@ -19,16 +18,6 @@ public abstract class Effect : MonoBehaviour {
 	public void Set(String property, float value) {
 		this.property = property;
 		this.value = value;
-	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	public bool setSensitivity(Genetics.GeneType prop, EffectSensitivity sensitivity){

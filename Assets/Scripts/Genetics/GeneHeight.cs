@@ -1,17 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AssemblyCSharp
+public class GeneHeight : Gene
 {
-	public class GeneHeight : Gene
+	public GeneHeight (GameObject creature) : base(creature)
 	{
-		public GeneHeight (GameObject creature) : base(creature)
-		{
-			this.type = Genetics.GeneType.HEIGHT;
-		}
+		this.type = Genetics.GeneType.HEIGHT;
+	}
 
-		override protected void onValChange(float oldVal, float newVal){
-		}
+	override protected void onValChange(float oldVal, float newVal){
 	}
 }
 

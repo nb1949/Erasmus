@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using AssemblyCSharp;
 
 public class TimedEffect : Effect {
 
@@ -8,7 +7,7 @@ public class TimedEffect : Effect {
 	public float terminationTime;
 
 	public override void Apply (){
-		creature = GetComponent<Creature> ();
+		creature = GetComponent<CreatureStats> ();
 		creature.properties [this.property] += this.value;
 		Invoke ("Reverse", this.terminationTime);
 	}

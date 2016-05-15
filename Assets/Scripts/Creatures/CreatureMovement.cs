@@ -1,49 +1,57 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class CreatureMovement : MonoBehaviour {
 
 	[Range(0,1)]
 	public float epsilon;
 	[Range(1,20)]
-	public float offset;
+	public float minOffset;
+	[Range(1,20)]
+	public float maxOffset;
+	[Range(0.1f,10)]
+	public float delta;
 	[Range(1,10)]
-	public int delta;
-	[Range(1,10)]
+	public int maxSpeed;
+	[Range(0, 180)]
+	public int avoidObstacleRotation;
 	private Collider2D col;
 	private CreatureGenome genome;
+	private CreatureSight sight;
 	private CreaturesStatistics statistics;
-	private Vector2 target;
-	private Vector2 suggestedTarget;
+	private List<string> avoid;
+	private Vector2 currentTarget;
 	private bool onTheMove;
+	private float sightDistanceSquared;
 
 
 	void Start() {
 		col = GetComponent<Collider2D> ();
 		genome = GetComponent<CreatureGenome> ();
+		sight = GetComponent<CreatureSight> ();
 		statistics = GetComponentInParent<CreaturesStatistics> ();
+		avoid = new List<string> (2);
+		avoid.Add ("Creature");
+		avoid.Add ("Block");
 		onTheMove = false;
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
 	void Update () {
-		if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject ()) {
-			suggestedTarget = (Vector2)Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		Transform seen = sight.Seen (avoid, sight.sightDistance);
+		if (seen) 
+				SetTarget (Quaternion.AngleAxis(Mathf.Sign (Vector2.Angle 
+					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
+					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
+		if (onTheMove && MoveToTarget ()) 
 			onTheMove = false;
-			RandomizeTarget ();
-		}
-
-		if (onTheMove && MoveToTarget ()) {
-			stopMovement ();
-			onTheMove = false;
-		}
-		Debug.DrawLine (target - Vector2.up * 0.1f, target + Vector2.up * 0.1f, Color.blue);
-		Debug.DrawLine (target - Vector2.right * 0.1f, target + Vector2.right * 0.1f, Color.blue);
+		Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
+		Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
 	}
 
 	bool RotateToTarget(Vector2 heading) {
-		col.attachedRigidbody.velocity = Vector2.zero;
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, genome.properties["rotateSpeed"] * Time.deltaTime);
@@ -52,36 +60,38 @@ public class CreatureMovement : MonoBehaviour {
 
 	bool MoveToTarget() {
 		Vector2 position = transform.position;
-		Vector2 heading = target - position;
-		Debug.DrawLine ((Vector2)transform.position, (Vector2)transform.position + heading, Color.green);
-		if(RotateToTarget (heading))
-			col.attachedRigidbody.velocity = heading / heading.magnitude * genome.properties["moveSpeed"];
+		Vector2 heading = currentTarget - position;
+		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
+		RotateToTarget (heading);
+		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
+			col.attachedRigidbody.AddForce (transform.up * genome.properties["moveSpeed"]);
 		return (heading.magnitude < epsilon);
 	}
 
 
 	void RandomizeTarget() {
-		if (!onTheMove) {
-			if (Vector2.Distance (suggestedTarget, Vector2.zero) == 0)
-				target = statistics.meanPosition + Random.insideUnitCircle * offset;
-			else {
-				//Todo: Switch 0.7f with genome.obedience
-				target = Vector2.Lerp (statistics.meanPosition, suggestedTarget, 0.7f) + Random.insideUnitCircle * offset * (1 - 0.7f);
-				suggestedTarget = Vector2.zero;
+		Vector2 position = (Vector2)transform.position;
+		if (!onTheMove || (currentTarget - position).magnitude > sight.sightDistance) {
+			ArrayList misses = sight.GetMisses ();
+			if (misses.Count < 1)
+				SetTarget (-(Vector2)transform.up * minOffset);
+			else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * statistics.count) {
+				SetTarget (statistics.meanPosition + Random.insideUnitCircle * statistics.count *  maxOffset);
+			} else {
+				Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
+				SetTarget (position + randomDirection * statistics.count * Random.Range (minOffset, maxOffset));
 			}
 			onTheMove = true;
 		}
 	}
 
-	public void setTarget(Vector2 target) {
-		this.target = target;
+	public void SetTarget(Vector2 target) {
+		this.currentTarget = target;
 		onTheMove = true;
 	}
 
-	void stopMovement() {
-		if (onTheMove) {
-			col.attachedRigidbody.velocity = Vector2.zero;
-			onTheMove = false;
-		}
+	void OnCollisionEnter2D() {
+		onTheMove = false;
+		RandomizeTarget ();
 	}
 }
