@@ -8,12 +8,12 @@ public class CreatureInteraction : MonoBehaviour {
 	public bool selected;
 	private bool mouseDown = false;
 	private TextMesh stats;
-	private CreatureStats creature;
+	private Creature creature;
 	private Quaternion fixedRotation;
 
 	void Awake () {
 		selected = false;
-		creature = GetComponent <CreatureStats> ();
+		creature = GetComponent <Creature> ();
 		stats = transform.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
 		fixedRotation = Quaternion.identity;
@@ -24,10 +24,10 @@ public class CreatureInteraction : MonoBehaviour {
 	}
 
 	void OnMouseEnter() {
-		stats.text = "Health: " + creature.getProp("health");
+		stats.text = "Health: " + creature.stats.getProp("health");
 
 		foreach (Genetics.GeneType gene in Genetics.DNA_PROPERTIES){
-			stats.text += ("\n" + gene.ToString () + ": " + creature.genome [gene].Val);
+			stats.text += ("\n" + gene.ToString () + ": " + creature.stats.genome [gene].Val);
 		}
 	}
 

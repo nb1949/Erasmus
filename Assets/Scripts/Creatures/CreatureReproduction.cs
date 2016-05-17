@@ -5,11 +5,11 @@ public class CreatureReproduction : MonoBehaviour {
 
 	[Range(1, 10)]
 	public float repoductionPosOffset;
-	private CreatureStats creature;
+	private Creature creature;
 	private CreaturesStatistics statistics;
 
 	void Start() {
-		creature = GetComponent<CreatureStats> ();
+		creature = GetComponent<Creature> ();
 		statistics = GetComponentInParent <CreaturesStatistics> ();
 	}
 
@@ -24,18 +24,18 @@ public class CreatureReproduction : MonoBehaviour {
 			Transform copy = (Transform)GameObject.Instantiate (this.transform, position, transform.rotation);
 			copy.SetParent (this.gameObject.transform.parent);
 			CreatureStats creature2 = copy.GetComponent <CreatureStats> ();
-			Genetics.Mutate (ref creature.genome);
+			Genetics.Mutate (ref creature.stats.genome);
 			Genetics.Mutate (ref creature2.genome);
 		}
 	}
 
 	public void Unite(GameObject parent2Creature) {
 		CreatureStats parent2 = parent2Creature.GetComponent <CreatureStats> ();
-		CreatureStats parent1 =  new CreatureStats (this.creature, parent2Creature);
-		Genetics.Join (parent1, parent2, ref this.creature);
+		CreatureStats parent1 =  new CreatureStats (this.creature.stats, parent2Creature);
+		Genetics.Join (parent1, parent2, ref this.creature.stats);
 		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 
-		Debug.Log ("3. new Genome: \n=====================\n" + creature.asTxt ()); 
+		Debug.Log ("3. new Genome: \n=====================\n" + creature.stats.asTxt ()); 
 
 		Destroy(parent1);
 		Destroy (parent2Creature);
