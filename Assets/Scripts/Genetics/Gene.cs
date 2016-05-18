@@ -54,7 +54,6 @@ public abstract class Gene
 		{
 			Gene curr = (Gene)Activator.CreateInstance(gene, args);
 			curr.creature = creature;
-			Debug.Log ("Adding " + curr.type.ToString () + " To genome"); 
 			if (!genes.ContainsKey (curr.type))
 				genes.Add (curr.type, curr);
 			else

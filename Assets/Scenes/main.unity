@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statistics: {fileID: 1123210384}
-  updateRate: 1
+  updateRate: 9
 --- !u!1001 &1372675950
 Prefab:
   m_ObjectHideFlags: 0
