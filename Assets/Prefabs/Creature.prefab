@@ -18,6 +18,7 @@ GameObject:
   - 114: {fileID: 11425042}
   - 114: {fileID: 11488776}
   - 114: {fileID: 11497510}
+  - 114: {fileID: 11490764}
   m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
@@ -275,6 +276,24 @@ MonoBehaviour:
   weakeningRate: 10
   moveSpeed: 2
   rotateSpeed: 100
+--- !u!114 &11490764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d554c9f478d7cb45bd7c69e9190f1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sight: {fileID: 11493912}
+  mouth: {fileID: 11470002}
+  interaction: {fileID: 11405180}
+  movement: {fileID: 11474684}
+  reproduction: {fileID: 0}
+  stats: {fileID: 0}
+  genome: {fileID: 0}
 --- !u!114 &11493912
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,20 +4,18 @@ using System;
 
 public class CreatureMouth : MonoBehaviour {
 
-	private CreatureSight sight;
-	private CreatureMovement movement;
+	private Creature creature;
 
 	// Use this for initialization
 	void Start () {
-		sight = GetComponent<CreatureSight> ();
-		movement = GetComponent<CreatureMovement> ();
+		creature = GetComponent<Creature> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Transform food = sight.Seen ("Food", sight.sightDistance);
+		Transform food = creature.sight.Seen ("Food", creature.sight.sightDistance);
 		if (food != null)
-			movement.SetTarget ((Vector2)food.position);
+			creature.movement.SetTarget ((Vector2)food.position);
 	}
 		
 	void OnCollisionEnter2D(Collision2D other) {

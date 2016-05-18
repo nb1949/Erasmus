@@ -18,8 +18,7 @@ public class CreatureMovement : MonoBehaviour {
 	[Range(0, 180)]
 	public int avoidObstacleRotation;
 	private Collider2D col;
-	private CreatureGenome genome;
-	private CreatureSight sight;
+	private Creature creature;
 	private CreaturesStatistics statistics;
 	private List<string> avoid;
 	private Vector2 currentTarget;
@@ -29,8 +28,7 @@ public class CreatureMovement : MonoBehaviour {
 
 	void Start() {
 		col = GetComponent<Collider2D> ();
-		genome = GetComponent<CreatureGenome> ();
-		sight = GetComponent<CreatureSight> ();
+		creature = GetComponent<Creature> ();
 		statistics = GetComponentInParent<CreaturesStatistics> ();
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
@@ -40,7 +38,7 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	void Update () {
-		Transform seen = sight.Seen (avoid, sight.sightDistance);
+		Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
 		if (seen) 
 				SetTarget (Quaternion.AngleAxis(Mathf.Sign (Vector2.Angle 
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
@@ -54,7 +52,7 @@ public class CreatureMovement : MonoBehaviour {
 	bool RotateToTarget(Vector2 heading) {
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, genome.properties["rotateSpeed"] * Time.deltaTime);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, creature.genome.properties["rotateSpeed"] * Time.deltaTime);
 		return (Quaternion.Angle(transform.rotation, qTo) < epsilon);
 	}
 
@@ -64,15 +62,15 @@ public class CreatureMovement : MonoBehaviour {
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
-			col.attachedRigidbody.AddForce (transform.up * genome.properties["moveSpeed"]);
+			col.attachedRigidbody.AddForce (transform.up * creature.genome.properties["moveSpeed"]);
 		return (heading.magnitude < epsilon);
 	}
 
 
 	void RandomizeTarget() {
 		Vector2 position = (Vector2)transform.position;
-		if (!onTheMove || (currentTarget - position).magnitude > sight.sightDistance) {
-			ArrayList misses = sight.GetMisses ();
+		if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
+			ArrayList misses = creature.sight.GetMisses ();
 			if (misses.Count < 1)
 				SetTarget (-(Vector2)transform.up * minOffset);
 			else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * statistics.count) {
