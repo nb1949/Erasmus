@@ -9,7 +9,6 @@ public class Creature : MonoBehaviour {
 	public CreatureMovement movement;
 	public CreatureReproduction reproduction;
 	public CreatureStats stats;
-	public CreatureGenome genome;
 
 	void Awake() {
 		sight = GetComponent<CreatureSight> ();
@@ -18,7 +17,6 @@ public class Creature : MonoBehaviour {
 		movement = GetComponent<CreatureMovement> ();
 		reproduction = GetComponent<CreatureReproduction> ();
 		stats = GetComponent<CreatureStats> ();
-		genome = GetComponent<CreatureGenome> ();
 	}
 
 

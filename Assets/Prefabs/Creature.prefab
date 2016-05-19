@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   epsilon: 1
   minOffset: 1
-  maxOffset: 5
+  maxOffset: 2.7
   delta: 3
   maxSpeed: 4
   avoidObstacleRotation: 70
@@ -293,7 +293,6 @@ MonoBehaviour:
   movement: {fileID: 11474684}
   reproduction: {fileID: 0}
   stats: {fileID: 0}
-  genome: {fileID: 0}
 --- !u!114 &11493912
 MonoBehaviour:
   m_ObjectHideFlags: 1

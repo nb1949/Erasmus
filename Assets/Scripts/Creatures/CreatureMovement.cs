@@ -52,7 +52,7 @@ public class CreatureMovement : MonoBehaviour {
 	bool RotateToTarget(Vector2 heading) {
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, creature.genome.properties["rotateSpeed"] * Time.deltaTime);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, creature.stats.properties["rotateSpeed"] * Time.deltaTime);
 		return (Quaternion.Angle(transform.rotation, qTo) < epsilon);
 	}
 
@@ -62,7 +62,7 @@ public class CreatureMovement : MonoBehaviour {
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
-			col.attachedRigidbody.AddForce (transform.up * creature.genome.properties["moveSpeed"]);
+			col.attachedRigidbody.AddForce (transform.up * creature.stats.properties["moveSpeed"]);
 		return (heading.magnitude < epsilon);
 	}
 

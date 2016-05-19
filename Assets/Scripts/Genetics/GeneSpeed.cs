@@ -9,6 +9,8 @@ public class GeneSpeed : Gene
 	}
 
 	override protected void onValChange(float oldVal, float newVal){
+//		CreatureStats stats = this.creature.GetComponent<CreatureStats> ();
+//		stats.moveSpeed = Utils.Remap (newVal, this.minVal, this.maxVal, 0.5f, 9f);
 	}
 }
 

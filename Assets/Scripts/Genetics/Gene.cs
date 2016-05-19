@@ -45,7 +45,6 @@ public abstract class Gene
 	// Create list of all inheriting genes
 	// http://stackoverflow.com/questions/5411694/get-all-inherited-classes-of-an-abstract-class#answer-6944605
 	public static Genome instantiateGeneList(GameObject creature){
-		
 		Genome genes = new Genome();
 		object[] args = {};
 		foreach (Type gene in 
@@ -54,6 +53,7 @@ public abstract class Gene
 		{
 			Gene curr = (Gene)Activator.CreateInstance(gene, args);
 			curr.creature = creature;
+
 			if (!genes.ContainsKey (curr.type))
 				genes.Add (curr.type, curr);
 			else
