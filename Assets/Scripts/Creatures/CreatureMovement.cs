@@ -39,7 +39,7 @@ public class CreatureMovement : MonoBehaviour {
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if (Time.timeScale > 0) {
 			Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
 			if (seen)

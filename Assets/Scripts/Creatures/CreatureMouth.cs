@@ -12,7 +12,7 @@ public class CreatureMouth : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Transform food = creature.sight.Seen ("Food", creature.sight.sightDistance);
 		if (food != null)
 			creature.movement.SetTarget ((Vector2)food.position);
