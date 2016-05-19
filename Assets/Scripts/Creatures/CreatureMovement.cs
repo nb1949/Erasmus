@@ -7,6 +7,8 @@ public class CreatureMovement : MonoBehaviour {
 
 	[Range(0,1)]
 	public float epsilon;
+	[Range(0,1)]
+	public float breatherProb;
 	[Range(1,20)]
 	public float minOffset;
 	[Range(1,20)]
@@ -37,16 +39,18 @@ public class CreatureMovement : MonoBehaviour {
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
-	void Update () {
-		Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
-		if (seen) 
-				SetTarget (Quaternion.AngleAxis(Mathf.Sign (Vector2.Angle 
+	void FixedUpdate () {
+		if (Time.timeScale > 0) {
+			Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
+			if (seen)
+				SetTarget (Quaternion.AngleAxis (Mathf.Sign (Vector2.Angle 
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
-		if (onTheMove && MoveToTarget ()) 
-			onTheMove = false;
-		Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
-		Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
+			if (onTheMove && MoveToTarget ()) 
+				onTheMove = false;
+			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
+			Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
+		}
 	}
 
 	bool RotateToTarget(Vector2 heading) {
@@ -68,18 +72,21 @@ public class CreatureMovement : MonoBehaviour {
 
 
 	void RandomizeTarget() {
-		Vector2 position = (Vector2)transform.position;
-		if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
-			ArrayList misses = creature.sight.GetMisses ();
-			if (misses.Count < 1)
-				SetTarget (-(Vector2)transform.up * minOffset);
-			else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * statistics.count) {
-				SetTarget (statistics.meanPosition + Random.insideUnitCircle * statistics.count *  maxOffset);
-			} else {
-				Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
-				SetTarget (position + randomDirection * statistics.count * Random.Range (minOffset, maxOffset));
+		if (Random.value > breatherProb) {
+			Vector2 position = (Vector2)transform.position;
+			if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
+				int groupFactor = Mathf.CeilToInt(statistics.count / 3);
+				ArrayList misses = creature.sight.GetMisses ();
+				if (misses.Count < 1)
+					SetTarget (-(Vector2)transform.up * minOffset);
+				else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
+					SetTarget (statistics.meanPosition + Random.insideUnitCircle * maxOffset * groupFactor);
+				} else {
+					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
+					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
+				}
+				onTheMove = true;
 			}
-			onTheMove = true;
 		}
 	}
 
