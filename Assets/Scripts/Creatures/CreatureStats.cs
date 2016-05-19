@@ -30,6 +30,7 @@ public class CreatureStats : MonoBehaviour
 				this.properties.Add (kvp.Key, kvp.Value);
 			}
 			genome = Gene.instantiateGeneList (myGameObj);
+			genome.setCreature (myGameObj);
 			foreach (KeyValuePair<Genetics.GeneType, Gene> kvp in other.genome) {
 				this.genome [kvp.Key].Val = kvp.Value.Val;
 			}
@@ -40,7 +41,8 @@ public class CreatureStats : MonoBehaviour
 		Debug.Log ("in Awake");
 
 		// Get Gene list.
-		genome = Gene.instantiateGeneList (gameObject);
+		this.genome = Gene.instantiateGeneList (gameObject);
+		Debug.Log (this.genome [Genetics.GeneType.CRAZINESS].creature);
 
 		//properties
 		properties = new SortedList<string, float> ();

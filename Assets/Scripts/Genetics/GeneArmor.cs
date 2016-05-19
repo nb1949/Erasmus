@@ -9,6 +9,7 @@ public class GeneArmor : Gene
 	}
 
 	override protected void onValChange(float oldVal, float newVal){
+		
 	}
 }
 

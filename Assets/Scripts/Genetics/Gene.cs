@@ -4,7 +4,15 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-public class Genome : SortedList<Genetics.GeneType, Gene>{}
+public class Genome : SortedList<Genetics.GeneType, Gene>{
+
+	public void setCreature (GameObject creature){
+		foreach(KeyValuePair<Genetics.GeneType, Gene> kvp in this){
+			this [kvp.Key].creature = creature;
+		}
+	}
+
+}
 
 public abstract class Gene
 {
@@ -14,7 +22,7 @@ public abstract class Gene
 	protected float minVal = -1f;
 	protected float maxVal = 1f;
 	protected float defaultVal = 0f;
-	private float val;
+	private float val = 0f;
 	public float Val {
 		get{ return val;}
 		set{ 
@@ -31,7 +39,7 @@ public abstract class Gene
 	// Each Gene must know who it belongs to, so it can affect it onChange
 	public Gene ()
 	{
-		this.reset ();
+		//this.reset ();
 	}
 
 	public void reset(){
