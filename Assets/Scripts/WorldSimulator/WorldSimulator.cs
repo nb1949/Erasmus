@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Tizen;
-using System.Net.Sockets;
 
 public class WorldSimulator : MonoBehaviour {
 
-	private CreaturesStatistics statistics;
-	private Transform fields;
-	private Transform floaters;
-	private Transform creatures;
+	public Creatures creatures;
+	public Transform fields;
+	public Transform floaters;
 
+	[Range(1, 6), Space(10)]
+	public int startingCreatures;
 	[Range(1, 100), Space(10)]
 	public int spawnInvokingRate;
 	[Range(1, 1000), Header("Spawn offests from CoM")]
@@ -41,13 +40,14 @@ public class WorldSimulator : MonoBehaviour {
 	private float lightCount;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		day = true;
 		lightCount = 1;
-		fields = transform.FindChild ("Fields");
-		floaters = transform.FindChild ("Floaters");
-		creatures = transform.FindChild ("Creatures");
-		statistics = creatures.GetComponent< CreaturesStatistics > ();
+		CreaturesPool pool = creatures.GetComponent<CreaturesPool> ();
+		for (int i = 0; i < startingCreatures; i++) {
+			Creature creature = pool.Borrow ().GetComponent<Creature> ();
+			creature.gameObject.SetActive (true);
+		}
 		InvokeRepeating("InvokeSpawning", spawnInvokingRate, spawnInvokingRate) ;
 		InvokeRepeating ("LightCycle", 0, dayLength);
 	}
@@ -59,7 +59,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnField() {
 		if (floaters.childCount < maxFieldNum) {
-			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * fieldSpawnOffset;
+			Vector2 spawnPosition = creatures.statistics.meanPosition + Random.insideUnitCircle * fieldSpawnOffset;
 			if (!Physics2D.OverlapCircle (spawnPosition, 10, LayerMask.GetMask (new string[] { "Blocks", "Fields" }))) {
 				Field newField = (Field)GameObject.Instantiate (this.fieldPrefabs [Random.Range (0, this.fieldPrefabs.Length - 1)],
 					                spawnPosition, Quaternion.identity);
@@ -73,7 +73,7 @@ public class WorldSimulator : MonoBehaviour {
 
 	private void SpawnFloater() {
 		if (floaters.childCount < maxFloaterNum) {
-			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
+			Vector2 spawnPosition = creatures.statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
 			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length - 1)],
 				                    spawnPosition, Quaternion.identity);
 			newFloater.transform.SetParent (floaters);

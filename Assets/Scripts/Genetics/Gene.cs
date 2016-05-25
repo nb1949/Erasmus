@@ -4,16 +4,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-public class Genome : SortedList<Genetics.GeneType, Gene>{
-
-	public void setCreature (GameObject creature){
-		foreach(KeyValuePair<Genetics.GeneType, Gene> kvp in this){
-			this [kvp.Key].creature = creature;
-		}
-	}
-
-}
-
 public abstract class Gene
 {
 	public Genetics.GeneType type;
@@ -35,12 +25,6 @@ public abstract class Gene
 	}
 
 	public GameObject creature;
-
-	// Each Gene must know who it belongs to, so it can affect it onChange
-	public Gene ()
-	{
-		//this.reset ();
-	}
 
 	public void reset(){
 		Val = defaultVal;
@@ -101,7 +85,6 @@ public abstract class Gene
 			Debug.LogError ("GENE " + type.ToString() + " NOT IN SWITCH CASE");
 			return null;
 		}
-
 		gene.creature = creature;
 		return gene;
 

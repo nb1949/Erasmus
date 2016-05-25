@@ -16,10 +16,11 @@ public class CreatureSight : MonoBehaviour
 	private ArrayList hits;
 	private ArrayList misses;
 	private float angleStep;
+	private Creature creature;
 
-	void Awake ()
-	{
-		selfLight = transform.FindChild ("Light").GetComponent<Light> ();
+	void Start () {
+		creature = GetComponent<Creature> ();
+		selfLight = creature.body.FindChild ("Light").GetComponent<Light> ();
 		hits = new ArrayList(sightDensity);
 		misses = new ArrayList(sightDensity);
 		angleStep = 2f * sightAngle / sightDensity;

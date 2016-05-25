@@ -23,16 +23,16 @@ public class CreatureReproduction : MonoBehaviour {
 					transform.position.z);
 			Transform copy = (Transform)GameObject.Instantiate (this.transform, position, transform.rotation);
 			copy.SetParent (this.gameObject.transform.parent);
-			CreatureStats creature2 = copy.GetComponent <CreatureStats> ();
-			Genetics.Mutate (ref creature.stats.genome);
+			CreatureGenome creature2 = copy.GetComponent <CreatureGenome> ();
+			Genetics.Mutate (ref creature.genome.genome);
 			Genetics.Mutate (ref creature2.genome);
 		}
 	}
 
 	public void Unite(GameObject parent2Creature) {
-		CreatureStats parent2 = parent2Creature.GetComponent <CreatureStats> ();
-		CreatureStats parent1 =  new CreatureStats (this.creature.stats, parent2Creature);
-		Genetics.Join (parent1, parent2, ref this.creature.stats);
+		CreatureGenome parent2 = parent2Creature.GetComponent <CreatureGenome> ();
+		CreatureGenome parent1 =  new CreatureGenome (this.creature.genome, parent2Creature);
+		Genetics.Join (parent1, parent2, ref this.creature.genome);
 		//Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
 		//Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 
 		//Debug.Log ("3. new Genome: \n=====================\n" + creature.stats.asTxt ()); 

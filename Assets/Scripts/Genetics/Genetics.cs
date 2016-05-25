@@ -17,6 +17,7 @@ public static class Genetics {
 		,ARMOR
 		,SPEED
 		,CRAZINESS
+		,LIFE
 	}
 
 	public static readonly string[] PROPERTIES = {"health", "weakeningRate", "moveSpeed", "rotateSpeed"}; //TODO: deprecate this.
@@ -36,7 +37,7 @@ public static class Genetics {
 	public static readonly float SPLIT_VARIANCE = 0.02f; //for mutation
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
 
-	public static CreatureStats Join (CreatureStats parent1, CreatureStats parent2, ref CreatureStats child){
+	public static CreatureGenome Join (CreatureGenome parent1, CreatureGenome parent2, ref CreatureGenome child){
 
 //		Debug.Log ("Parent 1:\n" + parent1.asTxt() + "\nParent 2:\n" + parent2.asTxt());
 		JoinProperties (parent1, parent2, ref child);
@@ -47,7 +48,7 @@ public static class Genetics {
 	/* Properties are "regular" qualities that will be averaged. 
 	 * TODO: do we really need any such qualities? I left this so not 
 	 * to hurt your code.*/
-	private static void JoinProperties(CreatureStats parent1, CreatureStats parent2, ref CreatureStats child){
+	private static void JoinProperties(CreatureGenome parent1, CreatureGenome parent2, ref CreatureGenome child){
 		foreach (string p in PROPERTIES) {
 			
 			float p3; 

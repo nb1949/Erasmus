@@ -8,11 +8,11 @@ public abstract class Effect : MonoBehaviour {
 	[Range(1,100)]
 	public float value;
 	public string property;
-	protected CreatureStats creature;	
+	protected CreatureGenome creature;	
 
 	public void Apply (){
 		if (gameObject != null) {
-			creature = GetComponent<CreatureStats> ();
+			creature = GetComponent<CreatureGenome> ();
 			this.ApplyEffect ();
 		} else {
 			Debug.LogError ("Trying to effect null gameobject! Did you forget to attach an effect to a creature?");

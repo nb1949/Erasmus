@@ -6,31 +6,35 @@ public class CreaturesStatistics : MonoBehaviour {
 	public int count;
 	public Vector2 meanPosition;
 	public float groupRadius;
+	private Creatures creatures;
 	private float minXpos;
 	private float maxXpos;
 	private float minYpos;
 	private float maxYpos;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		creatures = GetComponent<Creatures> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		count = transform.childCount;
+		count = creatures.pool.activeCount;
 		if (count > 0) {
 			resetPositions ();
 			foreach (Transform creature in transform) {
-				Vector2 pos = (Vector2)creature.position;
-				meanPosition += pos;
-				if (pos.x < minXpos)
-					minXpos = pos.x;
-				if (pos.x > maxXpos)
-					maxXpos = pos.x;
-				if (pos.y < minYpos)
-					minYpos = pos.y;
-				if (pos.y < maxYpos)
-					maxYpos = pos.y;
+				if (creature.gameObject.activeInHierarchy) {
+					Vector2 pos = (Vector2)creature.position;
+					meanPosition += pos;
+					if (pos.x < minXpos)
+						minXpos = pos.x;
+					if (pos.x > maxXpos)
+						maxXpos = pos.x;
+					if (pos.y < minYpos)
+						minYpos = pos.y;
+					if (pos.y < maxYpos)
+						maxYpos = pos.y;
+				}
 			}
 			meanPosition /= count;
 			groupRadius = Mathf.Max (new float[] { 

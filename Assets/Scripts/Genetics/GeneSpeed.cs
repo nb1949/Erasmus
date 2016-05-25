@@ -10,7 +10,7 @@ public class GeneSpeed : Gene
 
 	override protected void onValChange(float oldVal, float newVal){
 		Debug.Log ("speed changed!");
-		CreatureStats stats = this.creature.GetComponent<CreatureStats> ();
+		CreatureGenome stats = this.creature.GetComponent<CreatureGenome> ();
 		stats.setProp("moveSpeed", Utils.Remap (newVal, this.minVal, this.maxVal, 0.5f, 9f));
 	}
 }

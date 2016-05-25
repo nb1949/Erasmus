@@ -4,29 +4,24 @@ using UnityEngine.EventSystems;
 
 public class CreatureInteraction : MonoBehaviour {
 
-	public CreaturesController controller;
 	public bool selected;
+	private CreaturesController controller;
 	private TextMesh stats;
 	private Creature creature;
-	private Quaternion fixedRotation;
 
-	void Awake () {
+	void Start () {
 		selected = false;
 		creature = GetComponent <Creature> ();
-		stats = transform.FindChild ("Stats").GetComponent<TextMesh> ();
+		controller = transform.parent.GetComponent<Creatures> ().controller;
+		stats = creature.body.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
-		fixedRotation = Quaternion.identity;
-	}
-
-	void Update() {
-		stats.transform.rotation = fixedRotation;
 	}
 
 	void OnMouseEnter() {
-		stats.text = "Health: " + creature.stats.getProp("health");
+		stats.text = "Health: " + creature.genome.getProp("health");
 
 		foreach (Genetics.GeneType gene in Genetics.DNA_PROPERTIES){
-			stats.text += ("\n" + gene.ToString () + ": " + creature.stats.genome [gene].Val);
+			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);
 		}
 	}
 
