@@ -486,7 +486,7 @@ MonoBehaviour:
   minOffset: 3
   maxOffset: 5
   delta: 3
-  maxSpeed: 3
+  acceleration: 4
   avoidObstacleRotation: 70
 --- !u!114 &11452200
 MonoBehaviour:
