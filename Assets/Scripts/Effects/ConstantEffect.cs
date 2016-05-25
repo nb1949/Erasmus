@@ -4,12 +4,8 @@ using System.Collections.Generic;
 
 public class ConstantEffect : Effect {
 
-	public override void Apply (){
-		if (gameObject != null) {
-			creature = GetComponent<CreatureStats> ();
-			creature.properties [this.property] += this.value;
-			Object.Destroy (this);
-		}
+	protected override void ApplyEffect (){
+		creature.properties [this.property] -= this.value;
 	}
 
 	// Use this for initialization

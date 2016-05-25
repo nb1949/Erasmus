@@ -805,6 +805,14 @@ Prefab:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1123210385}
+    - target: {fileID: 21211338, guid: 491a6662993c82249aa167839c40905e, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -2109054291
+      objectReference: {fileID: 0}
+    - target: {fileID: 21285570, guid: 491a6662993c82249aa167839c40905e, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -2109054291
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 491a6662993c82249aa167839c40905e, type: 2}
   m_IsPrefabParent: 0

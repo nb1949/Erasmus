@@ -33,9 +33,9 @@ public class CreatureReproduction : MonoBehaviour {
 		CreatureStats parent2 = parent2Creature.GetComponent <CreatureStats> ();
 		CreatureStats parent1 =  new CreatureStats (this.creature.stats, parent2Creature);
 		Genetics.Join (parent1, parent2, ref this.creature.stats);
-		Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
-		Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 
-		Debug.Log ("3. new Genome: \n=====================\n" + creature.stats.asTxt ()); 
+		//Debug.Log ("1. Orig Genome: \n=====================\n" + parent1.asTxt ()); 
+		//Debug.Log ("2. Mate Genome: \n=====================\n" + parent2.asTxt ()); 
+		//Debug.Log ("3. new Genome: \n=====================\n" + creature.stats.asTxt ()); 
 
 		Destroy(parent1);
 		Destroy (parent2Creature);

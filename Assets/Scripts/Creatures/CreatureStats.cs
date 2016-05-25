@@ -38,11 +38,10 @@ public class CreatureStats : MonoBehaviour
 
 	void Awake(){
 
-		Debug.Log ("in Awake");
+		//Debug.Log ("in Awake");
 
 		// Get Gene list.
 		this.genome = Gene.instantiateGeneList (gameObject);
-		Debug.Log (this.genome [Genetics.GeneType.CRAZINESS].creature);
 
 		//properties
 		properties = new SortedList<string, float> ();
@@ -51,7 +50,7 @@ public class CreatureStats : MonoBehaviour
 		properties.Add ("rotateSpeed", rotateSpeed);
 
 		// Print on start
-		Debug.Log(this.asTxt());
+		//Debug.Log(this.asTxt());
 	
 		// Start dying bitch
 		InvokeRepeating ("Weaken", 0, weakeningRate);

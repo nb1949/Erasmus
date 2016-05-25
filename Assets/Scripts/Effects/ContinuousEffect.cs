@@ -2,23 +2,27 @@
 using System.Collections;
 using System;
 
+
+/*
+ * This will keep hurting target until
+ * canceled.
+ */
 public class ContinuousEffect : TimedEffect {
 
 	[Range(1,100)]
 	public float deltaTime;
 
-	public override void Apply (){
-		creature = GetComponent<CreatureStats> ();
-		InvokeRepeating ("Buff", 0, this.deltaTime);
-		Invoke ("CancelBuff", this.terminationTime);
+	protected override void ApplyEffect (){
+		InvokeRepeating ("SingleApply", 0, this.deltaTime);
+		Invoke ("Cancel", this.terminationTime);
 	}
 
-	private void Buff() {
-		creature.properties [this.property] += this.value;
+	private void SingleApply() {
+		creature.properties [this.property] -= this.value;
 	}
 
-	private void CancelBuff() {
-		CancelInvoke ("Buff");
+	private void Cancel() {
+		CancelInvoke ("SingleApply");
 		Destroy (this);
 	}
 }

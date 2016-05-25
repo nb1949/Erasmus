@@ -19,9 +19,9 @@ public abstract class Gene
 	public Genetics.GeneType type;
 
 	// Defaults. can be overriden in inheriting gene classes' c'tors.
-	protected float minVal = -1f;
-	protected float maxVal = 1f;
-	protected float defaultVal = 0f;
+	public float minVal = -1f;
+	public float maxVal = 1f;
+	public float defaultVal = 0f;
 	private float val = 0f;
 	public float Val {
 		get{ return val;}

@@ -24,10 +24,15 @@ public class RaysFloater : Floater {
 	public int raysDensity;
 	private HashSet<GameObject> hits;
 	private float spriteXExtent, spriteYExtent, xStep, waveX = 0;
+	private Affector affector;
 
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake ();
+
+		affector = GetComponent<Affector> ();
+		affector.type = AffectorType.SINGLE_HIT;
+
 		spriteXExtent = GetComponent<SpriteRenderer> ().bounds.extents.x;
 		spriteYExtent = GetComponent<SpriteRenderer> ().bounds.extents.y;
 		hits = new HashSet<GameObject> ();
@@ -56,27 +61,13 @@ public class RaysFloater : Floater {
 			if(!RaycastHit2D.Equals (rayHit, default(RaycastHit2D))) {
 				GameObject hit = rayHit.transform.gameObject;
 				if (!hits.Contains (hit)) {
-					Affect (hit);
+					affector.Affect (hit);
 					hits.Add (hit);
 				}
 			}
 			Debug.DrawRay(position, transform.up + direction * rayLength, Color.red);
 		}
 		hits.Clear ();
-	}
-
-	private void Affect(GameObject hit) {
-		ConstantEffect effect = hit.AddComponent<ConstantEffect> ();
-		foreach (Genetics.GeneType prop in this.propsHigh) {
-			Effect.EffectSensitivity s = effect.strongAgainstHigh;
-			effect.setSensitivity (prop, s);
-		}
-		foreach (Genetics.GeneType prop in this.propsLow) {
-			Effect.EffectSensitivity s = effect.strongAgainstLow;
-			effect.setSensitivity (prop, s);
-		}
-		effect.Set ("health", baseValue);
-		effect.Apply ();
 	}
 
 	private void Wave() {

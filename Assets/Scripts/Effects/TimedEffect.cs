@@ -2,18 +2,17 @@
 using System.Collections;
 
 public class TimedEffect : Effect {
-
+		
 	[Range(1, 1000)]
 	public float terminationTime;
 
-	public override void Apply (){
-		creature = GetComponent<CreatureStats> ();
-		creature.properties [this.property] += this.value;
+	protected override void ApplyEffect (){
+		creature.properties [this.property] -= this.value;
 		Invoke ("Reverse", this.terminationTime);
 	}
 
 	private void Reverse() {
-		creature.properties [this.property] -= this.value;
+		creature.properties [this.property] += this.value;
 		CancelInvoke ("Reverse");
 		Destroy (this);
 	}
