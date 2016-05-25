@@ -16,7 +16,7 @@ public class CreatureMovement : MonoBehaviour {
 	[Range(0.1f,10)]
 	public float delta;
 	[Range(1,10)]
-	public int maxSpeed;
+	public float acceleration;
 	[Range(0, 180)]
 	public int avoidObstacleRotation;
 	private Collider2D col;
@@ -68,8 +68,8 @@ public class CreatureMovement : MonoBehaviour {
 		Vector2 heading = currentTarget - position;
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
-		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
-			col.attachedRigidbody.AddForce (transform.up * creature.props.Get("moveSpeed"));
+		if(col.attachedRigidbody.velocity.magnitude < creature.props.Get("moveSpeed"))
+			col.attachedRigidbody.AddForce (transform.up * acceleration);
 		return (heading.magnitude < epsilon);
 	}
 

@@ -51,7 +51,6 @@ public class CreatureProperties : MonoBehaviour{
 	}
 
 	public void Set(string property, float value) {
-		Debug.Log (properties);
 		if (!properties.ContainsKey (property))
 			this.properties.Add (property, value);
 		else
