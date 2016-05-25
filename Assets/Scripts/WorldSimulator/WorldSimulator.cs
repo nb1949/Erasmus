@@ -6,11 +6,9 @@ using System.Net.Sockets;
 public class WorldSimulator : MonoBehaviour {
 
 	private CreaturesStatistics statistics;
-	private Transform blocks;
 	private Transform fields;
 	private Transform floaters;
 	private Transform creatures;
-	private Transform winds;
 
 	[Range(1, 100), Space(10)]
 	public int spawnInvokingRate;
@@ -46,11 +44,9 @@ public class WorldSimulator : MonoBehaviour {
 	void Awake () {
 		day = true;
 		lightCount = 1;
-		blocks = transform.FindChild ("Blocks");
 		fields = transform.FindChild ("Fields");
 		floaters = transform.FindChild ("Floaters");
 		creatures = transform.FindChild ("Creatures");
-		winds = transform.FindChild ("Winds");
 		statistics = creatures.GetComponent< CreaturesStatistics > ();
 		InvokeRepeating("InvokeSpawning", spawnInvokingRate, spawnInvokingRate) ;
 		InvokeRepeating ("LightCycle", 0, dayLength);

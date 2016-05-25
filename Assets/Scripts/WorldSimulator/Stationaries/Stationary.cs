@@ -6,7 +6,7 @@ public class Stationary : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Affector affector = this.GetComponent<Affector> ();
+		affector = this.GetComponent<Affector> ();
 		affector.type = AffectorType.WHILE_IN_RANGE;
 	}
 	

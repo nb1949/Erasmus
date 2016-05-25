@@ -75,7 +75,7 @@ public class CreatureMovement : MonoBehaviour {
 		if (Random.value > breatherProb) {
 			Vector2 position = (Vector2)transform.position;
 			if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
-				int groupFactor = Mathf.CeilToInt(statistics.count / 3);
+				int groupFactor = 1 + statistics.count / 3;
 				ArrayList misses = creature.sight.GetMisses ();
 				if (misses.Count < 1)
 					SetTarget (-(Vector2)transform.up * minOffset);

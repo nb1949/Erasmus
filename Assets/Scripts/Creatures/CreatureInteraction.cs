@@ -6,7 +6,6 @@ public class CreatureInteraction : MonoBehaviour {
 
 	public CreaturesController controller;
 	public bool selected;
-	private bool mouseDown = false;
 	private TextMesh stats;
 	private Creature creature;
 	private Quaternion fixedRotation;
@@ -37,11 +36,9 @@ public class CreatureInteraction : MonoBehaviour {
 
 
 	void OnMouseDown() {
-		mouseDown = true;
 	}
 
 	void OnMouseUp(){
-		mouseDown = false;
 		if (controller.splitMode)
 			controller.Split (gameObject);
 		else if (controller.joinMode) {

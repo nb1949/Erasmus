@@ -12,14 +12,14 @@ public class CreatureSight : MonoBehaviour
 	[Range (0, 30)]
 	public int sightDensity;
 	public LayerMask sightlayerMask;
-	private Light light;
+	private Light selfLight;
 	private ArrayList hits;
 	private ArrayList misses;
 	private float angleStep;
 
 	void Awake ()
 	{
-		light = transform.FindChild ("Light").GetComponent<Light> ();
+		selfLight = transform.FindChild ("Light").GetComponent<Light> ();
 		hits = new ArrayList(sightDensity);
 		misses = new ArrayList(sightDensity);
 		angleStep = 2f * sightAngle / sightDensity;
@@ -29,11 +29,11 @@ public class CreatureSight : MonoBehaviour
 	{
 		hits.Clear ();
 		misses.Clear ();
-		float sightEffectiveDistance = (RenderSettings.ambientIntensity + light.intensity) * sightDistance;
+		float sightEffectiveDistance = (RenderSettings.ambientIntensity + selfLight.intensity) * sightDistance;
 		for (int i = 0; i < sightDensity; i++) {
 			Vector3 direction = Quaternion.AngleAxis (-sightAngle + (i - 1) * angleStep, Vector3.forward) * transform.up;
 			RaycastHit2D hit = Physics2D.Raycast (transform.localPosition, direction, sightEffectiveDistance, sightlayerMask);
-			if (hit != default(RaycastHit2D) && hit != null)
+			if (hit != default(RaycastHit2D))
 				hits.Add (hit);
 			else
 				misses.Add (direction.normalized);

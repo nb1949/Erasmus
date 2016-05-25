@@ -21,7 +21,6 @@ public static class Genetics {
 
 	public static readonly string[] PROPERTIES = {"health", "weakeningRate", "moveSpeed", "rotateSpeed"}; //TODO: deprecate this.
 	public static GeneType[] DNA_PROPERTIES = Enum.GetValues (typeof(GeneType)).Cast<GeneType> ().ToArray ();
-	private static bool initiated = false;
 
 	/* MORE is used to enhance propety when joining Genomes
 	 * Since all DNA attributes are in [-1,1], multiplying any value my MORE 
@@ -36,7 +35,6 @@ public static class Genetics {
 	public static readonly float JOIN_VARIANCE = 0.05f;
 	public static readonly float SPLIT_VARIANCE = 0.02f; //for mutation
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
-	private static UnityEngine.Random r = new UnityEngine.Random();
 
 	public static CreatureStats Join (CreatureStats parent1, CreatureStats parent2, ref CreatureStats child){
 
@@ -73,7 +71,6 @@ public static class Genetics {
 
 		foreach (Genetics.GeneType q in DNA_PROPERTIES) {
 			float q1 = parent1[q].Val;
-			float q2 = parent2[q].Val;
 
 			// Take avg, Enhance property
 			float avg = (q1 + q1)/2;
