@@ -8,6 +8,8 @@ public class Creature : MonoBehaviour {
 	public CreatureInteraction interaction;
 	public CreatureMovement movement;
 	public CreatureReproduction reproduction;
+	public CreatureProperties props;
 	public CreatureGenome genome;
 	public Transform body;
 }
+

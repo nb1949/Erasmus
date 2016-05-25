@@ -8,7 +8,7 @@ public class GeneSight : Gene
 		this.type = Genetics.GeneType.SIGHT;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 		Light l = this.creature.GetComponentInChildren<Light> ();
 		l.intensity = Utils.Remap (newVal, minVal, maxVal, 0f, 5f);
 	}

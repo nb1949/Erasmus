@@ -26,7 +26,6 @@ public class GameObjectPool : MonoBehaviour{
 	public GameObject Borrow() {
 		for (int i = 0; i < capacity; i++)
 			if (!pool [i].activeInHierarchy) {
-				pool [i].transform.SetParent (transform);
 				pool [i].SetActive (true);
 				activeCount++;
 				return pool [i];
@@ -47,7 +46,6 @@ public class GameObjectPool : MonoBehaviour{
 	public void Return(GameObject obj) {
 		obj.SetActive (false);
 		activeCount--;
-		obj.transform.SetParent (transform);
 	}
 }
 

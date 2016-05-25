@@ -8,6 +8,6 @@ public class GeneLife : Gene {
 		this.type = Genetics.GeneType.LIFE;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 	}
 }

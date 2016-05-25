@@ -12,15 +12,15 @@ public class CreatureInteraction : MonoBehaviour {
 	void Start () {
 		selected = false;
 		creature = GetComponent <Creature> ();
-		controller = transform.parent.GetComponent<Creatures> ().controller;
+		controller = GetComponentInParent <Creatures> ().controller;
 		stats = creature.body.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
 	}
 
 	void OnMouseEnter() {
-		stats.text = "Health: " + creature.genome.getProp("health");
+		stats.text = "Health: " + creature.props.Get("health");
 
-		foreach (Genetics.GeneType gene in Genetics.DNA_PROPERTIES){
+		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
 			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);
 		}
 	}

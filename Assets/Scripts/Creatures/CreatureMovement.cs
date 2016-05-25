@@ -31,7 +31,7 @@ public class CreatureMovement : MonoBehaviour {
 	void Start() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
-		statistics = transform.parent.GetComponent<Creatures> ().statistics;
+		statistics = GetComponentInParent<Creatures> ().statistics;
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
@@ -57,9 +57,9 @@ public class CreatureMovement : MonoBehaviour {
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo,
-			creature.genome.properties["rotateSpeed"] * Time.deltaTime);
+			creature.props.Get("rotateSpeed") * Time.deltaTime);
 		creature.body.localRotation = Quaternion.RotateTowards(creature.body.localRotation, Quaternion.Inverse (transform.rotation),
-			creature.genome.properties["rotateSpeed"] * Time.deltaTime);
+			creature.props.Get("rotateSpeed") * Time.deltaTime);
 		return (Quaternion.Angle(transform.rotation, qTo) < epsilon);
 	}
 
@@ -69,7 +69,7 @@ public class CreatureMovement : MonoBehaviour {
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
-			col.attachedRigidbody.AddForce (transform.up * creature.genome.properties["moveSpeed"]);
+			col.attachedRigidbody.AddForce (transform.up * creature.props.Get("moveSpeed"));
 		return (heading.magnitude < epsilon);
 	}
 

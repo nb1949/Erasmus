@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11441216}
   - 114: {fileID: 11470002}
   - 114: {fileID: 11425042}
+  - 114: {fileID: 11452200}
   - 114: {fileID: 11429894}
   m_Layer: 10
   m_Name: Creature
@@ -469,10 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc39083f58d9704c98f2fc682ca6a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  weakeningRate: 1
-  moveSpeed: 5
-  rotateSpeed: 100
 --- !u!114 &11441216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,7 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca1fe33c090be94eab170bcbd4e40e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 426564}
   epsilon: 1
   breatherProb: 0.3
   minOffset: 3
@@ -492,6 +488,21 @@ MonoBehaviour:
   delta: 3
   maxSpeed: 3
   avoidObstacleRotation: 70
+--- !u!114 &11452200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29091c76f028bac45bf2b3e1fc8cb4fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  weakeningRate: 1
+  moveSpeed: 3
+  rotateSpeed: 100
 --- !u!114 &11470002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,6 +530,7 @@ MonoBehaviour:
   interaction: {fileID: 11405180}
   movement: {fileID: 11441216}
   reproduction: {fileID: 11425042}
+  props: {fileID: 11452200}
   genome: {fileID: 11429894}
   body: {fileID: 426564}
 --- !u!114 &11493912

@@ -8,7 +8,7 @@ public class GeneWisdom : Gene
 		this.type = Genetics.GeneType.WISDOM;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 	}
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 public abstract class Gene
 {
 	public Genetics.GeneType type;
+	public Creature creature;
 
 	// Defaults. can be overriden in inheriting gene classes' c'tors.
 	public float minVal = -1f;
@@ -20,23 +21,21 @@ public abstract class Gene
 			value = (value > maxVal) ? maxVal : value;
 			float oldVal = val;
 			val = value;
-			onValChange (oldVal, val);
+			OnValChange (oldVal, val);
 		}
 	}
 
-	public GameObject creature;
-
-	public void reset(){
+	public void Reset(){
 		Val = defaultVal;
 	}
 
 	//This method runs whenever value is changed (see "Val" setter func).
-	protected abstract void onValChange(float oldVal, float newVal);
+	protected abstract void OnValChange(float oldVal, float newVal);
 
 
 	// Create list of all inheriting genes
 	// http://stackoverflow.com/questions/5411694/get-all-inherited-classes-of-an-abstract-class#answer-6944605
-	public static Genome instantiateGeneList(GameObject creature){
+	public static Genome InstantiateGeneList(Creature creature){
 		Genome genes = new Genome();
 		object[] args = {};
 		foreach (Type gene in 
@@ -54,7 +53,7 @@ public abstract class Gene
 		return genes;
 	}
 
-	public static Gene createGene(Genetics.GeneType type, GameObject creature){
+	public static Gene CreateGene(Genetics.GeneType type, Creature creature){
 		Gene gene;
 		switch (type) {
 		case Genetics.GeneType.FAT:
