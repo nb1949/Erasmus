@@ -8,7 +8,7 @@ public class GeneHeight : Gene
 		this.type = Genetics.GeneType.HEIGHT;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 	}
 }
 

@@ -16,7 +16,7 @@ public class CreatureMovement : MonoBehaviour {
 	[Range(0.1f,10)]
 	public float delta;
 	[Range(1,10)]
-	public int maxSpeed;
+	public float acceleration;
 	[Range(0, 180)]
 	public int avoidObstacleRotation;
 	private Collider2D col;
@@ -31,7 +31,7 @@ public class CreatureMovement : MonoBehaviour {
 	void Start() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
-		statistics = GetComponentInParent<CreaturesStatistics> ();
+		statistics = GetComponentInParent<Creatures> ().statistics;
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
@@ -56,7 +56,10 @@ public class CreatureMovement : MonoBehaviour {
 	bool RotateToTarget(Vector2 heading) {
 		float angle = (Mathf.Atan2(heading.y,heading.x) - Mathf.PI/2) * Mathf.Rad2Deg;
 		Quaternion qTo = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, creature.stats.properties["rotateSpeed"] * Time.deltaTime);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo,
+			creature.props.Get("rotateSpeed") * Time.deltaTime);
+		creature.body.localRotation = Quaternion.RotateTowards(creature.body.localRotation, Quaternion.Inverse (transform.rotation),
+			creature.props.Get("rotateSpeed") * Time.deltaTime);
 		return (Quaternion.Angle(transform.rotation, qTo) < epsilon);
 	}
 
@@ -65,8 +68,8 @@ public class CreatureMovement : MonoBehaviour {
 		Vector2 heading = currentTarget - position;
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
-		if(col.attachedRigidbody.velocity.magnitude < maxSpeed)
-			col.attachedRigidbody.AddForce (transform.up * creature.stats.properties["moveSpeed"]);
+		if(col.attachedRigidbody.velocity.magnitude < creature.props.Get("moveSpeed"))
+			col.attachedRigidbody.AddForce (transform.up * acceleration);
 		return (heading.magnitude < epsilon);
 	}
 
@@ -75,7 +78,7 @@ public class CreatureMovement : MonoBehaviour {
 		if (Random.value > breatherProb) {
 			Vector2 position = (Vector2)transform.position;
 			if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
-				int groupFactor = Mathf.CeilToInt(statistics.count / 3);
+				int groupFactor = 1 + statistics.count / 3;
 				ArrayList misses = creature.sight.GetMisses ();
 				if (misses.Count < 1)
 					SetTarget (-(Vector2)transform.up * minOffset);

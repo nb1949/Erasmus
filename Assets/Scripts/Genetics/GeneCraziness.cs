@@ -8,7 +8,7 @@ public class GeneCraziness : Gene
 		this.type = Genetics.GeneType.CRAZINESS;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 	}
 }
 

@@ -16,7 +16,7 @@ public class ConditionalEffect : ContinuousEffect {
 
 	private void singleApply() {
 		if (condition.Evaluate ())
-			creature.properties [this.property] -= this.value;
+			creature.props.Set(this.property, creature.props.Get (this.property) - this.value);
 		else {
 			CancelInvoke ();
 			Destroy (condition);

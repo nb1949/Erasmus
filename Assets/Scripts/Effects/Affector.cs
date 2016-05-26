@@ -21,7 +21,7 @@ public enum AffectorType
 
 	public void Affect (GameObject creature){
 
-		Genome creatureGenome = creature.GetComponent<CreatureStats> ().genome;
+		Genome creatureGenome = creature.GetComponent<CreatureGenome> ().genome;
 		float damage = CalculateDamage (creatureGenome);
 		Effect creatureEffect;
 		switch (type) {

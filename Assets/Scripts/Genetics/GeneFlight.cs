@@ -8,7 +8,7 @@ public class GeneFlight : Gene
 		this.type = Genetics.GeneType.FLIGHT;
 	}
 
-	override protected void onValChange(float oldVal, float newVal){
+	override protected void OnValChange(float oldVal, float newVal){
 	}
 }
 

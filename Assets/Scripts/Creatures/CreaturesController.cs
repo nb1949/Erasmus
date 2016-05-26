@@ -31,7 +31,7 @@ public class CreaturesController : MonoBehaviour {
 	}
 
 	public void Split(GameObject creature) {
-		creature.GetComponent<CreatureReproduction> ().Reproduce ();
+		creature.GetComponent<CreatureReproduction> ().Split ();
 		Time.timeScale = 1;
 		splitMode = false;
 	}
@@ -59,7 +59,7 @@ public class CreaturesController : MonoBehaviour {
 			firstToJoin = creature;
 			firstToJoin.GetComponent<CreatureInteraction> ().selected = true;
 	} else {
-			firstToJoin.GetComponent<CreatureReproduction> ().Unite (creature);
+			firstToJoin.GetComponent<CreatureReproduction> ().Mate (creature);
 			firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
 			creature.GetComponent<CreatureInteraction> ().selected = false;
 			firstToJoin = null;

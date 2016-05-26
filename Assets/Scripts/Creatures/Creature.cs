@@ -8,16 +8,8 @@ public class Creature : MonoBehaviour {
 	public CreatureInteraction interaction;
 	public CreatureMovement movement;
 	public CreatureReproduction reproduction;
-	public CreatureStats stats;
-
-	void Awake() {
-		sight = GetComponent<CreatureSight> ();
-		mouth = GetComponent<CreatureMouth> ();
-		interaction = GetComponent<CreatureInteraction> ();
-		movement = GetComponent<CreatureMovement> ();
-		reproduction = GetComponent<CreatureReproduction> ();
-		stats = GetComponent<CreatureStats> ();
-	}
-
-
+	public CreatureProperties props;
+	public CreatureGenome genome;
+	public Transform body;
 }
+
