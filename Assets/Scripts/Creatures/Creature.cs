@@ -11,5 +11,6 @@ public class Creature : MonoBehaviour {
 	public CreatureProperties props;
 	public CreatureGenome genome;
 	public Transform body;
+
 }
 

@@ -358,8 +358,8 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101396}
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 2
+  m_Mass: 1.5
+  m_LinearDrag: 1.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -380,7 +380,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!102 &10251654
 TextMesh:
   serializedVersion: 3
@@ -500,7 +500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  weakeningRate: 1
+  e_life: 60
+  agingRate: 1
+  healingRate: 0
   moveSpeed: 3
   rotateSpeed: 100
 --- !u!114 &11470002

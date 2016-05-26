@@ -7,7 +7,7 @@ public class CreatureMouth : MonoBehaviour {
 	private Creature creature;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		creature = GetComponent<Creature> ();
 	}
 	

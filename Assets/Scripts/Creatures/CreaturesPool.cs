@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CreaturesPool : GameObjectPool
-{
+public class CreaturesPool : GameObjectPool{
 }
 

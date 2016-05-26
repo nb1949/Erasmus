@@ -32,8 +32,8 @@ public static class Genetics {
 	public static readonly float MIN = -1f;
 	public static readonly float MAX_MUTATION = 0.15f;
 	public static readonly float MAX_TTL_ABS = 2f;
-	public static readonly float JOIN_VARIANCE = 0.05f;
-	public static readonly float SPLIT_VARIANCE = 0.02f; //for mutation
+	public static readonly float JOIN_VARIANCE = 0.01f;
+	public static readonly float SPLIT_VARIANCE = 0.03f; //for mutation
 	public static readonly int DNA_PROPS_TO_MUTATE = 2;
 
 
@@ -45,9 +45,8 @@ public static class Genetics {
 			prop = dnaProps [i];
 			origVal = genome[prop].Val;
 			float mutation = _NextGaussianDouble() * Mathf.Sqrt(SPLIT_VARIANCE); 
-			// Keep bounds
-			mutation = Mathf.Min (MAX, mutation);	
-			mutation = Mathf.Max (MIN, mutation);
+			// Keep bounds 
+			mutation = Mathf.Clamp(mutation, MIN, MAX);	
 
 			// Dont change too much :)
 			if (mutation > MAX_MUTATION)
@@ -90,8 +89,7 @@ public static class Genetics {
 			extreme += add;
 
 			// Keep bounds
-			extreme = Mathf.Min (MAX, extreme);	
-			extreme = Mathf.Max (MIN, extreme);
+			extreme = Mathf.Clamp(extreme, MIN, MAX);	
 
 			child[g].Val = extreme;
 		}
@@ -100,13 +98,11 @@ public static class Genetics {
 
 	// From http://stackoverflow.com/questions/5817490/implementing-box-mueller-random-number-generator-in-c-sharp
 	// Std normal distribution
-	// TODO: test this function.
 	private static float _NextGaussianDouble()
 	{
 		float u, v, S;
 
-		do
-		{
+		do{
 			u = 2f * UnityEngine.Random.value - 1f;
 			v = 2f * UnityEngine.Random.value - 1f;
 			S = u * u + v * v;

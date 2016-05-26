@@ -27,14 +27,16 @@ public class CreatureMovement : MonoBehaviour {
 	private bool onTheMove;
 	private float sightDistanceSquared;
 
-
-	void Start() {
+	void Awake() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
-		statistics = GetComponentInParent<Creatures> ().statistics;
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
+	}
+
+	void Start() {
+		statistics = GetComponentInParent<Creatures> ().statistics;
 		onTheMove = false;
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
