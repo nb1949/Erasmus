@@ -16,7 +16,7 @@ public enum AffectorType
 
 	// Defaults. can be changed.
 	public List<Sensitivity> sensitivities;
-	public AffectorType type = AffectorType.WHILE_IN_RANGE;
+	public AffectorType type = AffectorType.SINGLE_HIT;
 
 
 	public void Affect (GameObject creature){
