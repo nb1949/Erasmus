@@ -78,7 +78,7 @@ public class WorldSimulator : MonoBehaviour {
 	private void SpawnFloater() {
 		if (floaters.childCount < maxFloaterNum) {
 			Vector2 spawnPosition = statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
-			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length - 1)],
+			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length)],
 				                    spawnPosition, Quaternion.identity);
 			newFloater.transform.SetParent (floaters);
 		}
