@@ -9,8 +9,8 @@ public class GeneSight : Gene
 	}
 
 	override protected void OnValChange(float oldVal, float newVal){
-		Light l = this.creature.GetComponentInChildren<Light> ();
-		l.intensity = Utils.Remap (newVal, minVal, maxVal, 0f, 5f);
+		Light selfLight = this.creature.body.GetComponentInChildren<Light> ();
+		selfLight.intensity = Utils.Remap (newVal, minVal, maxVal, 0f, 3f);
 	}
 }
 

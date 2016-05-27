@@ -9,16 +9,20 @@ public class CreatureInteraction : MonoBehaviour {
 	private TextMesh stats;
 	private Creature creature;
 
-	void Start () {
-		selected = false;
+	void Awake() {
 		creature = GetComponent <Creature> ();
-		controller = GetComponentInParent <Creatures> ().controller;
 		stats = creature.body.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
 	}
 
+	void Start () {
+		selected = false;
+		controller = GetComponentInParent <Creatures> ().controller;
+	}
+
 	void OnMouseEnter() {
 		stats.text = "Health: " + creature.props.Get("health");
+		stats.text += "\nAge: " + creature.props.Get("age");
 
 		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
 			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);

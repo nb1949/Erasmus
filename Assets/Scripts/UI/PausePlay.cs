@@ -8,9 +8,6 @@ public class PausePlay : MonoBehaviour {
 	public Sprite pauseSprite;
 	public Sprite playSprite;
 
-	void Awake() {
-	}
-
 	public void TogglePausePlay() {
 		if (Time.timeScale == 0) {
 			Time.timeScale = 1;

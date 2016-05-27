@@ -9,9 +9,9 @@ public class GameObjectPool : MonoBehaviour{
 	public bool increase;
 	public int activeCount;
 
-	List<GameObject> pool;
+	public List<GameObject> pool;
 
-	void Start() {
+	void Awake() {
 		pool = new List<GameObject> ();
 		for (int i = 0; i < capacity; i++) {
 			GameObject obj = (GameObject)Instantiate (pooledObjectPrefab);
@@ -24,15 +24,16 @@ public class GameObjectPool : MonoBehaviour{
 	}
 
 	public GameObject Borrow() {
-		for (int i = 0; i < capacity; i++)
-			if (!pool [i].activeInHierarchy) {
-				pool [i].SetActive (true);
+		foreach (GameObject obj in pool) {
+			if (!obj.activeInHierarchy) {
+				obj.SetActive (true);
 				activeCount++;
-				return pool [i];
+				return obj;
 			}
+		}
 
 		if(increase) {
-			GameObject obj = (GameObject)Instantiate (pooledObjectPrefab);
+			GameObject obj = (GameObject)Instantiate(pooledObjectPrefab);
 			obj.name = pooledObjectPrefab.name + capacity;
 			obj.transform.SetParent (transform);
 			pool.Add (obj);

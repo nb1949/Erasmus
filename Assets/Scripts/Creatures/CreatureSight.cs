@@ -18,7 +18,7 @@ public class CreatureSight : MonoBehaviour
 	private float angleStep;
 	private Creature creature;
 
-	void Start () {
+	void Awake() {
 		creature = GetComponent<Creature> ();
 		selfLight = creature.body.FindChild ("Light").GetComponent<Light> ();
 		hits = new ArrayList(sightDensity);

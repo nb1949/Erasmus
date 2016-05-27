@@ -7,7 +7,7 @@ public class CreatureMouth : MonoBehaviour {
 	private Creature creature;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		creature = GetComponent<Creature> ();
 	}
 	
@@ -21,7 +21,15 @@ public class CreatureMouth : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.CompareTag ("Food")) {
 			other.gameObject.GetComponent<FoodItem> ().Consume (gameObject);
+			StartCoroutine (Eating ());
 			Destroy (other.gameObject);
 		}
 	}
+
+	private IEnumerator Eating() {
+		creature.movement.Pause ();
+		yield return new WaitForSeconds (2);
+		creature.movement.Play ();
+	}
+
 }

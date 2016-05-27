@@ -25,26 +25,28 @@ public class CreatureMovement : MonoBehaviour {
 	private List<string> avoid;
 	private Vector2 currentTarget;
 	private bool onTheMove;
+	public bool pause;
 	private float sightDistanceSquared;
 	private Animator animator;
 
-
-	void Start() {
+	void Awake() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
-		statistics = GetComponentInParent<Creatures> ().statistics;
 		animator = GetComponentInChildren<Animator> ();
-		Debug.Log ("*************************************");
-		Debug.Log (animator);
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
+	}
+
+	void Start() {
+		statistics = GetComponentInParent<Creatures> ().statistics;
+		pause = false;
 		this._SetOnTheMove (false);
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
 	void FixedUpdate () {
-		if (Time.timeScale > 0) {
+		if (Time.timeScale > 0 && !pause) {
 			Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
 			if (seen)
 				SetTarget (Quaternion.AngleAxis (Mathf.Sign (Vector2.Angle 
@@ -100,6 +102,14 @@ public class CreatureMovement : MonoBehaviour {
 	public void SetTarget(Vector2 target) {
 		this.currentTarget = target;
 		this._SetOnTheMove (true);
+	}
+
+	public void Pause() {
+		this.pause = true;
+	}
+
+	public void Play() {
+		this.pause = false;
 	}
 
 	void OnCollisionEnter2D() {
