@@ -26,16 +26,20 @@ public class CreatureMovement : MonoBehaviour {
 	private Vector2 currentTarget;
 	private bool onTheMove;
 	private float sightDistanceSquared;
+	private Animator animator;
 
 
 	void Start() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
 		statistics = GetComponentInParent<Creatures> ().statistics;
+		animator = GetComponentInChildren<Animator> ();
+		Debug.Log ("*************************************");
+		Debug.Log (animator);
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
-		onTheMove = false;
+		this._SetOnTheMove (false);
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
@@ -47,7 +51,7 @@ public class CreatureMovement : MonoBehaviour {
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 			if (onTheMove && MoveToTarget ()) 
-				onTheMove = false;
+				this._SetOnTheMove (false);
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
 			Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
 		}
@@ -88,18 +92,24 @@ public class CreatureMovement : MonoBehaviour {
 					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
 					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
 				}
-				onTheMove = true;
+				this._SetOnTheMove (true);
 			}
 		}
 	}
 
 	public void SetTarget(Vector2 target) {
 		this.currentTarget = target;
-		onTheMove = true;
+		this._SetOnTheMove (true);
 	}
 
 	void OnCollisionEnter2D() {
-		onTheMove = false;
+		this._SetOnTheMove (false);
 		RandomizeTarget ();
 	}
+
+	private void _SetOnTheMove(bool val){
+		onTheMove = val;
+		animator.SetBool ("isWalking", val);
+	}
+
 }

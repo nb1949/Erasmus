@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: 87eae04c0ec2ec44c862ce196dd81764
+timeCreated: 1464300029
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: sheet_Body_0
+    21300002: sheet_Body_1
+    21300004: sheet_Body_2
+    21300006: sheet_Body_3
+    21300008: sheet_Body_4
+    21300010: sheet_Body_5
+    21300012: sheet_Body_6
+    21300014: sheet_Body_7
+    21300016: sheet_Body_8
+    21300018: sheet_Body_9
+    21300020: sheet_Body_10
+    21300022: sheet_Body_11
+    21300024: sheet_Body_12
+    21300026: sheet_Body_13
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 800
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: sheet_Body_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 95
+        width: 336
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53.835632, y: 54.908047}
+        - {x: -98.83563, y: 42.908047}
+        - {x: -98.83563, y: -29.091953}
+        - {x: -47.835632, y: -53.091953}
+        - {x: 82.16437, y: -53.091953}
+        - {x: 100.16437, y: -39.091953}
+        - {x: 100.16437, y: 44.908047}
+        - {x: 55.164368, y: 54.908047}
+    - name: sheet_Body_3
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 95
+        width: 339
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 65.013794, y: 54.908047}
+        - {x: -59.986206, y: 54.908047}
+        - {x: -99.986206, y: 48.908047}
+        - {x: -99.986206, y: -35.091953}
+        - {x: -45.986206, y: -53.091953}
+        - {x: 67.013794, y: -53.091953}
+        - {x: 86.013794, y: -39.091953}
+        - {x: 100.013794, y: -15.091953}
+        - {x: 100.013794, y: 32.908047}
+        - {x: 99.013794, y: 36.908047}
+    - name: sheet_Body_4
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 97
+        width: 325
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -73.64136, y: 53.085056}
+        - {x: -95.64136, y: 40.085056}
+        - {x: -95.64136, y: -15.914944}
+        - {x: -56.641357, y: -52.914944}
+        - {x: 80.35864, y: -52.914944}
+        - {x: 96.35864, y: -31.914944}
+        - {x: 96.35864, y: 25.085056}
+        - {x: 85.35864, y: 53.085056}
+    - name: sheet_Body_5
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 108
+        width: 323
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67.20343, y: 50.55862}
+        - {x: -95.20343, y: 30.55862}
+        - {x: -95.20343, y: -14.44138}
+        - {x: -91.20343, y: -23.44138}
+        - {x: -49.20343, y: -49.44138}
+        - {x: 69.79657, y: -49.44138}
+        - {x: 95.79657, y: -29.44138}
+        - {x: 95.79657, y: 31.55862}
+        - {x: 85.79657, y: 50.55862}
+    - name: sheet_Body_6
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 108
+        width: 325
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.234497, y: 50.55862}
+        - {x: -50.765503, y: 50.55862}
+        - {x: -91.7655, y: 42.55862}
+        - {x: -95.7655, y: 29.55862}
+        - {x: -95.7655, y: -23.44138}
+        - {x: -87.7655, y: -35.44138}
+        - {x: -45.765503, y: -49.44138}
+        - {x: 87.2345, y: -49.44138}
+        - {x: 96.2345, y: -44.44138}
+        - {x: 96.2345, y: 24.55862}
+        - {x: 86.2345, y: 43.55862}
+    - name: sheet_Body_7
+      rect:
+        serializedVersion: 2
+        x: 2161
+        y: 108
+        width: 324
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67.239136, y: 52.05862}
+        - {x: -95.239136, y: 26.05862}
+        - {x: -95.239136, y: -12.94138}
+        - {x: -89.239136, y: -25.94138}
+        - {x: -65.239136, y: -39.94138}
+        - {x: -41.239136, y: -50.94138}
+        - {x: 96.760864, y: -50.94138}
+        - {x: 96.760864, y: 41.05862}
+        - {x: 66.760864, y: 52.05862}
+    - name: sheet_Body_8
+      rect:
+        serializedVersion: 2
+        x: 2605
+        y: 108
+        width: 347
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -76.442505, y: 53.05862}
+        - {x: -102.442505, y: 40.05862}
+        - {x: -102.442505, y: -25.94138}
+        - {x: -50.442505, y: -51.94138}
+        - {x: 76.557495, y: -51.94138}
+        - {x: 82.557495, y: -50.94138}
+        - {x: 102.557495, y: -12.94138}
+        - {x: 102.557495, y: 49.05862}
+        - {x: 58.557495, y: 53.05862}
+    - name: sheet_Body_9
+      rect:
+        serializedVersion: 2
+        x: 3007
+        y: 108
+        width: 404
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 119.13672, y: 63.55862}
+        - {x: -105.86328, y: 63.55862}
+        - {x: -118.86328, y: 40.55862}
+        - {x: -118.86328, y: -39.44138}
+        - {x: -46.86328, y: -62.44138}
+        - {x: 79.13672, y: -62.44138}
+        - {x: 88.13672, y: -56.44138}
+        - {x: 120.13672, y: -17.44138}
+        - {x: 120.13672, y: 55.55862}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
