@@ -4,7 +4,7 @@ using System.Collections;
 
 /*
  * This will keep hurting target until
- * condition no longe applies.
+ * condition no longer applies.
  */
 public class ConditionalEffect : ContinuousEffect {
 
@@ -19,7 +19,6 @@ public class ConditionalEffect : ContinuousEffect {
 			creature.props.Set(this.property, creature.props.Get (this.property) - this.value);
 		else {
 			CancelInvoke ();
-			Destroy (condition);
 			Destroy (this);
 		}
 	}

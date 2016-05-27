@@ -25,6 +25,7 @@ public class CreatureMovement : MonoBehaviour {
 	private List<string> avoid;
 	private Vector2 currentTarget;
 	private bool onTheMove;
+	public bool pause;
 	private float sightDistanceSquared;
 
 	void Awake() {
@@ -37,12 +38,13 @@ public class CreatureMovement : MonoBehaviour {
 
 	void Start() {
 		statistics = GetComponentInParent<Creatures> ().statistics;
+		pause = false;
 		onTheMove = false;
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
 	void FixedUpdate () {
-		if (Time.timeScale > 0) {
+		if (Time.timeScale > 0 && !pause) {
 			Transform seen = creature.sight.Seen (avoid, creature.sight.sightDistance);
 			if (seen)
 				SetTarget (Quaternion.AngleAxis (Mathf.Sign (Vector2.Angle 
@@ -98,6 +100,14 @@ public class CreatureMovement : MonoBehaviour {
 	public void SetTarget(Vector2 target) {
 		this.currentTarget = target;
 		onTheMove = true;
+	}
+
+	public void Pause() {
+		this.pause = true;
+	}
+
+	public void Play() {
+		this.pause = false;
 	}
 
 	void OnCollisionEnter2D() {

@@ -10,6 +10,7 @@ public class Creature : MonoBehaviour {
 	public CreatureReproduction reproduction;
 	public CreatureProperties props;
 	public CreatureGenome genome;
+	public CreatureEvents events;
 	public Transform body;
 
 }

@@ -11,13 +11,4 @@ public class FoodItem : Collectible {
 		effect.Set (property, value);
 		effect.Apply ();
 	}
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

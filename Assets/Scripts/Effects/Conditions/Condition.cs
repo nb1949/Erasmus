@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Condition: MonoBehaviour{
+public abstract class Condition{
 
 	public abstract bool Evaluate ();
 

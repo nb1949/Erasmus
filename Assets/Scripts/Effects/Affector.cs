@@ -2,76 +2,49 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public abstract class Affector : MonoBehaviour {
 
-public enum AffectorType
-{
-	WHILE_IN_RANGE,
-	SINGLE_HIT
-
-}
-
-	public class Affector : MonoBehaviour
-	{
-
-
-	// Defaults. can be changed.
+	[Range(0, 100)]
+	public float baseValue;
+	public float currentValue;
+	public bool fluctuate;
+	[Range(1, 10)]
+	public float valueFluctuationFreq;
 	public List<Sensitivity> sensitivities;
-	public AffectorType type = AffectorType.WHILE_IN_RANGE;
+	public string affectedProperty;
+	public abstract void Affect (GameObject creature);
+	private float flucX = 0;
 
-
-	public void Affect (GameObject creature){
-
-		Genome creatureGenome = creature.GetComponent<CreatureGenome> ().genome;
-		float damage = CalculateDamage (creatureGenome);
-		Effect creatureEffect;
-		switch (type) {
-		case AffectorType.WHILE_IN_RANGE:
-			creatureEffect = creature.AddComponent<ConditionalEffect> ();
-			CollidesCondition collidesCond = creature.AddComponent<CollidesCondition> ();
-			collidesCond.one = GetComponent<Collider2D> ();
-			collidesCond.other = creature.GetComponent<Collider2D> ();
-			((ConditionalEffect)creatureEffect).condition = collidesCond;
-			((ConditionalEffect)creatureEffect).deltaTime = 4;
-			((ConditionalEffect)creatureEffect).terminationTime = 10;
-			break;
-
-		case AffectorType.SINGLE_HIT:
-			creatureEffect = creature.AddComponent<ConstantEffect> ();
-			break;
-		
-		default:
-			Debug.LogError ("You did not specifiy which type of effect you want. Affector will use ConstantEffect as default.");
-			creatureEffect = creature.AddComponent<ConstantEffect> ();
-			break;
-		}
-
-		creatureEffect.Set ("health", damage);
-		creatureEffect.Apply ();
+	void Awake() {
+		if (fluctuate)
+			InvokeRepeating ("Fluctuate", valueFluctuationFreq, valueFluctuationFreq);
 	}
 
-	private float CalculateDamage( Genome creatureGenome){
+	private void Fluctuate() {
+		flucX += 0.01f;
+		this.currentValue = baseValue * Mathf.Abs(Mathf.Sin(0.6f * flucX) + Mathf.Cos (0.4f * flucX)) * 0.5f;
+	}
+
+	protected int CalculateEffect(Genome creatureGenome, float value){
 		int sensitivitiesNum = sensitivities.Count;
 		if (sensitivitiesNum < 1) {
 			Debug.LogError ("This Affector has no sensitivities! it cannot hurt anyone.");
-			return 0f;
+			return 0;
 		}
-		float val = 0f;
-		foreach (Sensitivity s in sensitivities) {
-			Genetics.GeneType gene = s.to;
+		float effect = 0;
+		foreach (Sensitivity sens in sensitivities) {
+			Genetics.GeneType gene = sens.to;
 			Gene currGene = creatureGenome [gene];
 			float creatureVal;
-			if (s.hitHigh) {
+			if (sens.hitHigh) 
 				creatureVal = currGene.Val;
-			} else {
+			 else 
 				creatureVal = currGene.maxVal - currGene.Val;
-			}
-			float calculatedVal = Utils.Remap (creatureVal, currGene.minVal, currGene.maxVal, s.min, s.max);
-			val += calculatedVal;
+			effect += Utils.Remap (creatureVal, currGene.minVal, currGene.maxVal, sens.min, sens.max);
 		}
-		val /= sensitivitiesNum;
-		return val;
+		effect /= sensitivitiesNum + value;
+		return Mathf.FloorToInt (effect);
 	}
-
-	}
+}
 
 

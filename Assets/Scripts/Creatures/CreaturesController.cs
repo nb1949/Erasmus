@@ -13,36 +13,27 @@ public class CreaturesController : MonoBehaviour {
 		splitMode = false;
 		joinMode = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	public void ControlSplit(float slowdown) {
+	public void ControlSplit() {
 		if (splitMode || joinMode) {
-			Time.timeScale = 1;
 			splitMode = false;	
 			joinMode = false;
 		} else if(!joinMode)  {
-			Time.timeScale = slowdown;
 			splitMode = true;
 		}
 	}
 
 	public void Split(GameObject creature) {
-		creature.GetComponent<CreatureReproduction> ().Split ();
-		Time.timeScale = 1;
-		splitMode = false;
+		if (creature.GetComponent<CreatureReproduction> ().Split ()) {
+		} else 
+			Debug.Log ("Creature is a bit too weak, too young or too old to split");
 	}
 
-	public void ControlJoin(float slowdown) {
+	public void ControlJoin() {
 		if (joinMode || splitMode) {
-			Time.timeScale = 1;
 			joinMode = false;	
 			splitMode = false;
 		} else if(transform.childCount > 1 && !splitMode) {
-			Time.timeScale = slowdown;
 			joinMode = true;
 		}
 	}
@@ -50,7 +41,6 @@ public class CreaturesController : MonoBehaviour {
 	public void Unjoin() {
 		firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
 		firstToJoin = null;
-		Time.timeScale = 1;
 		joinMode = false;
 	}
 
@@ -59,12 +49,12 @@ public class CreaturesController : MonoBehaviour {
 			firstToJoin = creature;
 			firstToJoin.GetComponent<CreatureInteraction> ().selected = true;
 	} else {
-			firstToJoin.GetComponent<CreatureReproduction> ().Mate (creature);
-			firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
-			creature.GetComponent<CreatureInteraction> ().selected = false;
-			firstToJoin = null;
-			Time.timeScale = 1;
-			joinMode = false;
+			if (firstToJoin.GetComponent<CreatureReproduction> ().Mate (creature.GetComponent<Creature> ())) {
+				firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
+				creature.GetComponent<CreatureInteraction> ().selected = false;
+				firstToJoin = null;
+			} else
+				Debug.Log ("Creature is a bit too weak, too young or too old to split");
 		}
 	}
 }

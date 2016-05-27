@@ -61,7 +61,7 @@ public class WorldSimulator : MonoBehaviour {
 		if (floaters.childCount < maxFieldNum) {
 			Vector2 spawnPosition = creatures.statistics.meanPosition + Random.insideUnitCircle * fieldSpawnOffset;
 			if (!Physics2D.OverlapCircle (spawnPosition, 10, LayerMask.GetMask (new string[] { "Blocks", "Fields" }))) {
-				Field newField = (Field)GameObject.Instantiate (this.fieldPrefabs [Random.Range (0, this.fieldPrefabs.Length - 1)],
+				Field newField = (Field)GameObject.Instantiate (this.fieldPrefabs [Random.Range (0, this.fieldPrefabs.Length)],
 					                spawnPosition, Quaternion.identity);
 				newField.set (Random.Range (3, 10), Random.Range (10, 20), Random.Range (3, 20), 100, 20, Random.Range (50, 75),
 					Random.Range (75, 100), Random.Range (1, 5), Random.Range (5, 10));
@@ -74,7 +74,7 @@ public class WorldSimulator : MonoBehaviour {
 	private void SpawnFloater() {
 		if (floaters.childCount < maxFloaterNum) {
 			Vector2 spawnPosition = creatures.statistics.meanPosition + Random.insideUnitCircle * floaterSpawnOffset;
-			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length - 1)],
+			Floater newFloater = (Floater)GameObject.Instantiate (this.floaterPrefabs [Random.Range (0, this.floaterPrefabs.Length)],
 				                    spawnPosition, Quaternion.identity);
 			newFloater.transform.SetParent (floaters);
 		}

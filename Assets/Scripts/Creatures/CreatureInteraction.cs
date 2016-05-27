@@ -22,7 +22,7 @@ public class CreatureInteraction : MonoBehaviour {
 
 	void OnMouseEnter() {
 		stats.text = "Health: " + creature.props.Get("health");
-		stats.text += "\nlife: " + creature.props.Get("e_life");
+		stats.text += "\nAge: " + creature.props.Get("age");
 
 		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
 			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);

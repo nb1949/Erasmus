@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class CreatureProperties : MonoBehaviour{
 
 	public SortedList<string, float> properties;
+	private Creature creature;
 	private CreaturesPool pool;
 
 	[Range(0,100)]
 	public float health;
-	[Range(0,100)]
 	public float e_life;
 	[Range(0,10)]
 	public float agingRate;
@@ -20,12 +20,12 @@ public class CreatureProperties : MonoBehaviour{
 	[Range(100, 800)]
 	public float rotateSpeed;
 
+	private bool active;
+
 	void Awake() {
 		properties = new SortedList<string, float> ();
-		properties.Add ("health", health);
-		properties.Add ("e_life", e_life);
-		properties.Add ("moveSpeed", moveSpeed);
-		properties.Add ("rotateSpeed", rotateSpeed);
+		creature = GetComponent<Creature> ();
+		Reset ();
 	}
 
 	// Use this for initialization
@@ -38,17 +38,21 @@ public class CreatureProperties : MonoBehaviour{
 	
 	// Update is called once per frame
 	void Update (){
-		if (properties["e_life"] <= 0 || properties["health"] <= 0) {
-			Reset ();
-			CancelInvoke ("Age");
-			CancelInvoke ("Heal");
-			pool.Return (gameObject);
+		if (active) {
+			if (properties ["age"] > e_life || properties ["health"] <= 0) {
+				creature.events.CreatureDied (creature);
+				CancelInvoke ("Age");
+				CancelInvoke ("Heal");
+				active = false;
+				pool.Return (gameObject);
+			}
 		}
 	}
 
 	public void Reset() {
+		active = true;
 		Set("health", health);
-		Set("e_life", e_life);
+		Set("age", 0f);
 		Set("moveSpeed", moveSpeed);
 		Set("rotateSpeed", rotateSpeed);
 	}
@@ -69,8 +73,14 @@ public class CreatureProperties : MonoBehaviour{
 		return this.properties [property];
 	}
 
+	public bool isFertile() {
+		return (properties ["health"] > (0.85f * health) &&
+			properties["age"] < (0.8f * e_life) &&
+			(0.1f * e_life) < properties["age"]);
+	}
+
 	private void Age (){
-		properties ["e_life"] -= 1f;
+		properties ["age"] += 1f;
 	}
 
 	private void Heal (){

@@ -7,11 +7,6 @@ public class RaysFloater : Floater {
 
 	[Range(0, 10)]
 	public float hitRate;
-	[Range(-100, 0)]
-	public float baseValue;
-	public float currentValue;
-	[Range(0, 1)]
-	public float valueWaveFreq;
 	[Range (0, 100)]
 	public int decayRate;
 	[Range (0, 100)]
@@ -23,7 +18,7 @@ public class RaysFloater : Floater {
 	[Range(1, 20)]
 	public int raysDensity;
 	private HashSet<GameObject> hits;
-	private float spriteXExtent, spriteYExtent, xStep, waveX = 0;
+	private float spriteXExtent, spriteYExtent, xStep;
 	private Affector affector;
 
 	// Use this for initialization
@@ -31,14 +26,11 @@ public class RaysFloater : Floater {
 		base.Awake ();
 
 		affector = GetComponent<Affector> ();
-		affector.type = AffectorType.SINGLE_HIT;
-
 		spriteXExtent = GetComponent<SpriteRenderer> ().bounds.extents.x;
 		spriteYExtent = GetComponent<SpriteRenderer> ().bounds.extents.y;
 		hits = new HashSet<GameObject> ();
 		xStep = 2f * spriteXExtent / raysDensity;
 		InvokeRepeating ("Beam", 1, hitRate);
-		InvokeRepeating ("Wave", 0, valueWaveFreq);
 		InvokeRepeating ("Decay", decayRate, decayRate);
 	}
 	
@@ -70,13 +62,10 @@ public class RaysFloater : Floater {
 		hits.Clear ();
 	}
 
-	private void Wave() {
-		waveX += 0.1f;
-		this.currentValue = baseValue * Mathf.Abs(Mathf.Sin(0.6f * waveX) + Mathf.Cos (0.4f * waveX)) * 0.5f;
-	}
+
 
 	private void Decay (){
-		if (--this.halfLife < 0 && this.currentValue < 0.1f * baseValue)
+		if (--this.halfLife < 0 && !GetComponent<Renderer> ().isVisible)
 			Destroy (this.gameObject);
 	}
 
