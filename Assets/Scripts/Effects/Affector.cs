@@ -46,5 +46,3 @@ public abstract class Affector : MonoBehaviour {
 		return Mathf.FloorToInt (effect);
 	}
 }
-
-

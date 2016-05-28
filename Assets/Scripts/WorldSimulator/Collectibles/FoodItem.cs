@@ -10,5 +10,7 @@ public class FoodItem : Collectible {
 		ConstantEffect effect = collector.AddComponent<ConstantEffect> ();
 		effect.Set (property, value);
 		effect.Apply ();
+		CancelInvoke ();
+		gameObject.SetActive (false);
 	}
 }

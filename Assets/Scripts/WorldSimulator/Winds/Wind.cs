@@ -5,6 +5,10 @@ using UnityEngine.SocialPlatforms;
 public class Wind : MonoBehaviour {
 
 	private AreaEffector2D af;
+	[Range(0, 100)]
+	public float forceMinValue;
+	[Range(0, 100)]
+	public float forceMaxValue;
 	[Range(60, 600)]
 	public float changeIntervalMin;
 	[Range(60, 600)]
@@ -21,9 +25,9 @@ public class Wind : MonoBehaviour {
 	}
 
 	void WindShift() {
-		af.forceMagnitude = Random.Range (0.2f, 1);
+		af.forceMagnitude = Random.Range (forceMinValue, forceMaxValue);
 		af.forceAngle = Random.Range (0, 359);
-		af.forceVariation = Random.Range (0, 0.5f);
+		af.forceVariation = Random.Range (0, 1f) * forceMinValue;
 		Invoke ("WindShift", Random.Range (changeIntervalMin, changeIntervalMax));
 	}
 }

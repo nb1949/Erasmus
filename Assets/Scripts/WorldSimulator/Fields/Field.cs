@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public abstract class Field : MonoBehaviour
@@ -18,33 +19,41 @@ public abstract class Field : MonoBehaviour
 	public int minHalfLifeForSpawn;
 	[Range (1, 100)]
 	public int halfLifeMin, halfLifeMax, valueMin, valueMax;
-	public int count;
+	public List<Collectible> crop;
 	private bool spawning;
 	private float spread;
 
 	// Use this for initialization
-	protected virtual void Awake ()
-	{
+	protected virtual void Awake () {
 		spawning = false;
 		Bounds bounds = GetComponent<SpriteRenderer> ().bounds;
 		spread = Mathf.Min (bounds.extents.x, bounds.extents.y);
+		crop = new List<Collectible> ();
+		for (int i = 0; i < capacity; i++) {
+			Vector3 position = 
+				new Vector3 (transform.position.x + Random.Range (-spread, spread),
+					transform.position.y + Random.Range (-spread, spread), transform.position.z);	
+			Collectible item = (Collectible)Instantiate (collectible, position, Quaternion.identity);
+			item.Set (Random.Range (halfLifeMin, halfLifeMax), Random.Range (valueMin, valueMax));
+			item.transform.SetParent (gameObject.transform);
+			item.gameObject.SetActive (false);
+			crop.Add (item);
+		}
 		InvokeRepeating ("Decay", decayRate, decayRate);
 	}
 	
 	// Update is called once per frame
-	protected virtual void Update ()
-	{
-		count = transform.childCount;
-		if (halfLife > minHalfLifeForSpawn && !spawning && count <= capacity / 3) {
+	protected virtual void Update () {
+		if (halfLife > minHalfLifeForSpawn && !spawning) {
 			this.spawning = true;
 			InvokeRepeating ("Spawn", 0, spawnRate);
-		} else if (halfLife < minHalfLifeForSpawn || (spawning && count >= capacity)) {
+		} else if (halfLife < minHalfLifeForSpawn) {
 			CancelInvoke ("Spawn");
 			this.spawning = false;
 		}
 	}
 
-	public void set (float spawnRate, int capacity, int decayRate, int halfLife, int minHalfLifeForSpawn,
+	public void Set (float spawnRate, int capacity, int decayRate, int halfLife, int minHalfLifeForSpawn,
 		int halfLifeMin, int halfLifeMax, int valueMin, int valueMax) {
 		this.spawnRate = spawnRate;
 		this.capacity = capacity;
@@ -58,20 +67,20 @@ public abstract class Field : MonoBehaviour
 	}
 
 	protected void Decay (){
-		if (--this.halfLife < 0 && count == 0)
+		if (--this.halfLife < 0 && !GetComponent<Renderer> ().isVisible)
 			Object.Destroy (this.gameObject);
 		else if(this.halfLife < minHalfLifeForSpawn)
 			this.spawning = false;
 	}
 
 	protected void Spawn (){
-		if (this.spawning) {
-			Vector3 position = 
-				new Vector3 (transform.position.x + Random.Range (-spread, spread),
-					transform.position.y + Random.Range (-spread, spread), transform.position.z);	
-			Collectible item = (Collectible)Instantiate (collectible, position, Quaternion.identity);
-			item.Set (Random.Range (halfLifeMin, halfLifeMax), Random.Range (valueMin, valueMax));
-			item.transform.SetParent (gameObject.transform);
-		}
+		if (this.spawning)
+			foreach (Collectible collect in this.crop) {
+				if (!collect.gameObject.activeInHierarchy) {
+					collect.gameObject.SetActive (true);
+					collect.Set (Random.Range (halfLifeMin, halfLifeMax), Random.Range (valueMin, valueMax));
+					break;
+				}
+			}
 	}
 }

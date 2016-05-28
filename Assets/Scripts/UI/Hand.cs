@@ -9,6 +9,14 @@ public class Hand : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		#if DEBUG
+		if(Input.GetMouseButtonDown (0))
+			fingers[0].SetActive (true);
+		else if(Input.GetMouseButtonUp (0))
+			fingers[0].SetActive (false);
+		if(fingers[0].activeInHierarchy)
+			fingers[0].GetComponent<Finger> ().UpdatePosition (Input.mousePosition);
+		#else
 		ClearHand ();
 		Touch[] touches = Input.touches;
 		for(int i = 0; i < Input.touchCount; i++) {
@@ -23,6 +31,7 @@ public class Hand : MonoBehaviour {
 			} else 
 				fingers [id].SetActive (false);
 		}
+		#endif
 	}
 
 	private void ClearHand() {

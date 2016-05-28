@@ -27,6 +27,8 @@ public class CreatureReproduction : MonoBehaviour {
 			copyObj2.transform.position = _GetRandomPosition ();
 			Creature copy1 = copyObj1.GetComponent<Creature> ();
 			Creature copy2 = copyObj2.GetComponent<Creature> ();
+			copy1.props.Reset ();
+			copy2.props.Reset ();
 			copy1.genome.Copy (creature.genome);
 			copy2.genome.Copy (creature.genome);
 			Genetics.Mutate (copy1.GetComponent<CreatureGenome> ().genome);
