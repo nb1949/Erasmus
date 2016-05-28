@@ -40,7 +40,7 @@ public class CreatureProperties : MonoBehaviour{
 	void Update (){
 		if (active) {
 			if (properties ["age"] > e_life || properties ["health"] <= 0) {
-				creature.events.CreatureDied (creature);
+					creature.events.CreatureDied (creature);
 				CancelInvoke ("Age");
 				CancelInvoke ("Heal");
 				active = false;

@@ -9,6 +9,8 @@ public class GeneCraziness : Gene
 	}
 
 	override protected void OnValChange(float oldVal, float newVal){
+		Animator animator = this.creature.GetComponentInChildren<Animator> ();
+		animator.SetFloat ("hair", newVal);
 	}
 }
 
