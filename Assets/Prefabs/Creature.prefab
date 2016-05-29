@@ -1079,6 +1079,7 @@ MonoBehaviour:
   props: {fileID: 11452200}
   genome: {fileID: 11429894}
   events: {fileID: 11464878}
+  animator: {fileID: 9558508}
   body: {fileID: 426564}
 --- !u!114 &11493912
 MonoBehaviour:
