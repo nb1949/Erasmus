@@ -114,7 +114,7 @@ public class CreatureMovement : MonoBehaviour {
 
 	void OnCollisionEnter2D() {
 		this._SetOnTheMove (false);
-		RandomizeTarget ();
+		SetTarget (transform.position);
 	}
 
 	private void _SetOnTheMove(bool val){
