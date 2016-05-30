@@ -25,9 +25,12 @@ public class CreatureMovement : MonoBehaviour {
 	private List<string> avoid;
 	private Vector2 currentTarget;
 	private bool onTheMove;
+	private readonly int RIGHT = 1, LEFT = 2, UP = 3, DOWN = 4;
+	private int direction = 0;
 	public bool pause;
 	private float sightDistanceSquared;
 	private Animator animator;
+
 
 	void Awake() {
 		col = GetComponent<Collider2D> ();
@@ -52,6 +55,7 @@ public class CreatureMovement : MonoBehaviour {
 				SetTarget (Quaternion.AngleAxis (Mathf.Sign (Vector2.Angle 
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
+			this._SetDirection ();
 			if (onTheMove && MoveToTarget ()) 
 				this._SetOnTheMove (false);
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
@@ -120,6 +124,20 @@ public class CreatureMovement : MonoBehaviour {
 	private void _SetOnTheMove(bool val){
 		onTheMove = val;
 		animator.SetBool ("isWalking", val);
+	}
+
+	private void _SetDirection(){
+		if (col.attachedRigidbody.velocity.x > 0) {
+			Debug.Log ("MOVING RIGHT");
+			direction = RIGHT;
+		}
+		if (col.attachedRigidbody.velocity.x < 0) {
+			Debug.Log ("MOVING LEFT");
+			direction = LEFT;
+		}
+		if (onTheMove) {
+			animator.SetInteger ("walkDirection", direction);
+		}
 	}
 
 }

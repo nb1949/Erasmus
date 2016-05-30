@@ -1,0 +1,332 @@
+fileFormatVersion: 2
+guid: dbe3135cacc513843a66eb593cada8ea
+timeCreated: 1464583033
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: sheet_Foot00_0
+    21300002: sheet_Foot00_1
+    21300004: sheet_Foot00_2
+    21300006: sheet_Foot00_3
+    21300008: sheet_Foot00_4
+    21300010: sheet_Foot00_5
+    21300012: sheet_Foot00_6
+    21300014: sheet_Foot00_7
+    21300016: sheet_Foot00_8
+    21300018: sheet_Foot00_9
+    21300020: sheet_Foot00_10
+    21300022: sheet_Foot00_11
+    21300024: sheet_Foot00_12
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 500
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: sheet_Foot00_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 198
+        height: 266
+      alignment: 9
+      pivot: {x: 0.9432589, y: 0.57552963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.7472687, y: 61.396713}
+        - {x: -61.74727, y: 61.396713}
+        - {x: -99.74727, y: 43.396713}
+        - {x: -99.74727, y: -69.60329}
+        - {x: -89.74727, y: -81.60329}
+        - {x: -69.74727, y: -81.60329}
+        - {x: -57.74727, y: -78.60329}
+        - {x: 6.2527313, y: -14.603287}
+        - {x: 6.2527313, y: 40.396713}
+    - name: sheet_Foot00_1
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 5
+        width: 195
+        height: 275
+      alignment: 9
+      pivot: {x: 0.93923324, y: 0.553832}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66.600464, y: 66.77811}
+        - {x: -97.600464, y: 31.778107}
+        - {x: -97.600464, y: -69.22189}
+        - {x: -96.600464, y: -73.22189}
+        - {x: -89.600464, y: -81.22189}
+        - {x: -52.600464, y: -81.22189}
+        - {x: 7.399536, y: -66.22189}
+        - {x: 7.399536, y: 66.77811}
+    - name: sheet_Foot00_2
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 31
+        width: 196
+        height: 270
+      alignment: 9
+      pivot: {x: 0.9369924, y: 0.46866924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54.743256, y: 77.51759}
+        - {x: -61.743256, y: 76.51759}
+        - {x: -97.743256, y: 57.517593}
+        - {x: -97.743256, y: -26.482407}
+        - {x: -88.743256, y: -67.48241}
+        - {x: -54.743256, y: -67.48241}
+        - {x: -25.743256, y: -59.482407}
+        - {x: 7.2567444, y: -15.482407}
+        - {x: 7.2567444, y: 48.517593}
+        - {x: -20.743256, y: 77.51759}
+    - name: sheet_Foot00_3
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 55
+        width: 190
+        height: 254
+      alignment: 9
+      pivot: {x: 0.9229653, y: 0.39592394}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.691223, y: 25.375694}
+        - {x: -13.308777, y: 73.375694}
+        - {x: -20.308777, y: 82.375694}
+        - {x: -50.308777, y: 82.375694}
+        - {x: -93.30878, y: 57.375694}
+        - {x: -93.30878, y: -45.624306}
+        - {x: -82.30878, y: -53.624306}
+        - {x: -66.30878, y: -53.624306}
+        - {x: -48.308777, y: -38.624306}
+        - {x: -4.308777, y: -22.624306}
+        - {x: 8.691223, y: -9.624306}
+    - name: sheet_Foot00_4
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 59
+        width: 209
+        height: 250
+      alignment: 9
+      pivot: {x: 0.95028645, y: 0.39425868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.171692, y: -11.493736}
+        - {x: 6.171692, y: 26.506264}
+        - {x: -14.828308, y: 81.50626}
+        - {x: -78.82831, y: 81.50626}
+        - {x: -105.82831, y: 75.50626}
+        - {x: -105.82831, y: -52.493736}
+        - {x: -78.82831, y: -52.493736}
+        - {x: -67.82831, y: -36.493736}
+        - {x: -66.82831, y: 14.506264}
+        - {x: 0.1716919, y: -17.493736}
+    - name: sheet_Foot00_5
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 68
+        width: 237
+        height: 238
+      alignment: 9
+      pivot: {x: 0.950628, y: 0.3755985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -61.07843, y: 79.48966}
+        - {x: -110.07843, y: 62.489662}
+        - {x: -120.07843, y: -8.510338}
+        - {x: -120.07843, y: -41.510338}
+        - {x: -116.07843, y: -47.510338}
+        - {x: -35.07843, y: -47.510338}
+        - {x: 6.92157, y: -34.510338}
+        - {x: 6.92157, y: 19.489662}
+        - {x: -25.07843, y: 79.48966}
+    - name: sheet_Foot00_6
+      rect:
+        serializedVersion: 2
+        x: 1745
+        y: 85
+        width: 278
+        height: 212
+      alignment: 9
+      pivot: {x: 0.96404505, y: 0.33540264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -142.75641, y: -38.139343}
+        - {x: 6.2435913, y: -38.139343}
+        - {x: 6.2435913, y: 72.86066}
+        - {x: 5.2435913, y: 75.86066}
+        - {x: -106.75641, y: 75.86066}
+        - {x: -125.75641, y: 70.86066}
+        - {x: -142.75641, y: 29.860657}
+    - name: sheet_Foot00_7
+      rect:
+        serializedVersion: 2
+        x: 2044
+        y: 57
+        width: 283
+        height: 221
+      alignment: 9
+      pivot: {x: 0.970792, y: 0.45215333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5.749878, y: -6.5073395}
+        - {x: 5.749878, y: 14.4926605}
+        - {x: 2.749878, y: 21.49266}
+        - {x: -33.250122, y: 65.49266}
+        - {x: -74.25012, y: 65.49266}
+        - {x: -117.25012, y: 58.49266}
+        - {x: -146.25012, y: -27.50734}
+        - {x: -146.25012, y: -46.50734}
+        - {x: -143.25012, y: -51.50734}
+        - {x: -141.25012, y: -53.50734}
+        - {x: -111.25012, y: -53.50734}
+        - {x: -103.25012, y: -44.50734}
+        - {x: -85.25012, y: 0.49266052}
+        - {x: 1.7498779, y: -15.5073395}
+    - name: sheet_Foot00_8
+      rect:
+        serializedVersion: 2
+        x: 2346
+        y: 25
+        width: 283
+        height: 225
+      alignment: 9
+      pivot: {x: 0.9670557, y: 0.58929276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.17041, y: 13.1147995}
+        - {x: -24.82959, y: 50.1148}
+        - {x: -121.82959, y: 50.1148}
+        - {x: -145.82959, y: 1.1147995}
+        - {x: -145.82959, y: -70.8852}
+        - {x: -111.82959, y: -70.8852}
+        - {x: -92.82959, y: -20.8852}
+        - {x: 5.17041, y: -14.8852005}
+        - {x: 6.17041, y: -13.8852005}
+    - name: sheet_Foot00_9
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 8
+        width: 268
+        height: 236
+      alignment: 9
+      pivot: {x: 0.96952343, y: 0.63441706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -81.538086, y: 46.364494}
+        - {x: -135.53809, y: 25.364494}
+        - {x: -138.53809, y: -7.6355057}
+        - {x: -138.53809, y: -79.635506}
+        - {x: -99.538086, y: -79.635506}
+        - {x: -36.538086, y: -55.635506}
+        - {x: 5.461914, y: -34.635506}
+        - {x: 5.461914, y: 33.364494}
+        - {x: -18.538086, y: 46.364494}
+    - name: sheet_Foot00_10
+      rect:
+        serializedVersion: 2
+        x: 2991
+        y: 0
+        width: 248
+        height: 250
+      alignment: 9
+      pivot: {x: 0.96475023, y: 0.6268897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -102.76538, y: 50.10337}
+        - {x: -127.76538, y: 5.1033707}
+        - {x: -127.76538, y: -83.89663}
+        - {x: -43.76538, y: -83.89663}
+        - {x: 5.234619, y: -16.89663}
+        - {x: 5.234619, y: 47.10337}
+        - {x: -0.76538086, y: 50.10337}
+    - name: sheet_Foot00_11
+      rect:
+        serializedVersion: 2
+        x: 3318
+        y: 3
+        width: 224
+        height: 256
+      alignment: 9
+      pivot: {x: 0.9578988, y: 0.5991326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -76.33374, y: 55.580612}
+        - {x: -114.33374, y: 9.580612}
+        - {x: -114.33374, y: -81.41939}
+        - {x: -85.33374, y: -81.41939}
+        - {x: -69.33374, y: -75.41939}
+        - {x: 5.66626, y: -13.419388}
+        - {x: 5.66626, y: 22.580612}
+        - {x: -26.33374, y: 55.580612}
+    - name: sheet_Foot00_12
+      rect:
+        serializedVersion: 2
+        x: 3643
+        y: 2
+        width: 202
+        height: 264
+      alignment: 9
+      pivot: {x: 0.9554214, y: 0.5720964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -75.593506, y: 60.4273}
+        - {x: -102.593506, y: 33.4273}
+        - {x: -102.593506, y: -72.5727}
+        - {x: -98.593506, y: -80.5727}
+        - {x: -37.593506, y: -80.5727}
+        - {x: 5.406494, y: -17.5727}
+        - {x: 5.406494, y: 47.4273}
+        - {x: -23.593506, y: 60.4273}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
