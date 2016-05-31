@@ -128,11 +128,9 @@ public class CreatureMovement : MonoBehaviour {
 
 	private void _SetDirection(){
 		if (col.attachedRigidbody.velocity.x > 0.05f) {
-			Debug.Log ("MOVING RIGHT");
 			direction = RIGHT;
 		}
 		if (col.attachedRigidbody.velocity.x < -0.05f) {
-			Debug.Log ("MOVING LEFT");
 			direction = LEFT;
 		}
 		animator.SetInteger ("walkDirection", direction);

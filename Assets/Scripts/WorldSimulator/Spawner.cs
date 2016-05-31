@@ -12,11 +12,6 @@ public class Spawner : MonoBehaviour {
 	public GameObject spawnedObject;
 	public CreaturesStatistics creaturesStatistics;
 
-	// Use this for initialization
-	void Start () {
-		InvokeNextSpawn ();
-	}
-
 	void InvokeNextSpawn() {
 		Invoke ("Spawn", Random.Range (minSpawnRate, maxSpawnRate));
 	}
@@ -29,6 +24,14 @@ public class Spawner : MonoBehaviour {
 			GameObject spawned = (GameObject)GameObject.Instantiate (spawnedObject, spawnPosition, Quaternion.identity);
 			spawned.transform.SetParent (parent);
 		}
+		InvokeNextSpawn ();
+	}
+
+	void OnDisable() {
+		CancelInvoke ();
+	}
+
+	void OnEnable() {
 		InvokeNextSpawn ();
 	}
 
