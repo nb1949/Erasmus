@@ -15,12 +15,9 @@ public class CreaturesController : MonoBehaviour {
 	}
 
 	public void ControlSplit() {
-		if (splitMode || joinMode) {
-			splitMode = false;	
+		if (joinMode)
 			joinMode = false;
-		} else if(!joinMode)  {
-			splitMode = true;
-		}
+		splitMode = !splitMode;
 	}
 
 	public void Split(GameObject creature) {
@@ -30,18 +27,14 @@ public class CreaturesController : MonoBehaviour {
 	}
 
 	public void ControlJoin() {
-		if (joinMode || splitMode) {
-			joinMode = false;	
+		if (splitMode)
 			splitMode = false;
-		} else if(transform.childCount > 1 && !splitMode) {
-			joinMode = true;
-		}
+		joinMode = !joinMode;
 	}
 
 	public void Unjoin() {
 		firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
 		firstToJoin = null;
-		joinMode = false;
 	}
 
 	public void Join(GameObject creature) {
