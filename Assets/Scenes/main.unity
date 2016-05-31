@@ -3083,8 +3083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d663b64a113acb45bdcef42d5625e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 10
-  dayDeltaNum: 60
+  dayLength: 1
+  dayDeltaNum: 20
 --- !u!1 &1882519592
 GameObject:
   m_ObjectHideFlags: 0

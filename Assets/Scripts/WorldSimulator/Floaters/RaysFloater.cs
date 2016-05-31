@@ -18,7 +18,7 @@ public class RaysFloater : Floater {
 	[Range(1, 20)]
 	public int raysDensity;
 	private HashSet<GameObject> hits;
-	private float spriteXExtent, spriteYExtent, xStep;
+	private float spriteXExtent, xStep;
 	private Affector affector;
 
 	// Use this for initialization
@@ -27,7 +27,6 @@ public class RaysFloater : Floater {
 
 		affector = GetComponent<Affector> ();
 		spriteXExtent = GetComponent<SpriteRenderer> ().bounds.extents.x;
-		spriteYExtent = GetComponent<SpriteRenderer> ().bounds.extents.y;
 		hits = new HashSet<GameObject> ();
 		xStep = 2f * spriteXExtent / raysDensity;
 		InvokeRepeating ("Beam", 1, hitRate);
@@ -39,8 +38,8 @@ public class RaysFloater : Floater {
 		//Debug
 		for (int i = 1; i <= raysDensity; i++) {
 			Vector3 direction = Quaternion.AngleAxis(rayAngle, Vector3.forward) * -transform.up;
-			Vector3 position = new Vector3 (transform.position.x - 1.2f * spriteXExtent + i * xStep, 
-				transform.position.y + spriteYExtent/2, transform.position.z);
+			Vector3 position = new Vector3 (transform.position.x - spriteXExtent + i * xStep, 
+				transform.position.y, transform.position.z);
 			Debug.DrawRay(position, transform.up + direction * rayLength, Color.red);
 		}
 	}
@@ -48,7 +47,8 @@ public class RaysFloater : Floater {
 	private void Beam() {
 		for (int i = 0; i < raysDensity; i++) {
 			Vector3 direction = Quaternion.AngleAxis(rayAngle, Vector3.forward) * -transform.up;
-			Vector3 position = new Vector3 (transform.position.x - 1.2f * spriteXExtent + i * xStep, transform.position.y, transform.position.z);
+			Vector3 position = new Vector3 (transform.position.x - 1.2f * spriteXExtent + i * xStep,
+				transform.position.y, transform.position.z);
 			RaycastHit2D rayHit = Physics2D.Raycast (position, direction, rayLength, 1 << LayerMask.NameToLayer ("Creatures"));
 			if(!RaycastHit2D.Equals (rayHit, default(RaycastHit2D))) {
 				GameObject hit = rayHit.transform.gameObject;
