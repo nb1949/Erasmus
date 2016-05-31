@@ -35,7 +35,7 @@ public class CreatureMovement : MonoBehaviour {
 	void Awake() {
 		col = GetComponent<Collider2D> ();
 		creature = GetComponent<Creature> ();
-		animator = GetComponentInChildren<Animator> ();
+		animator = creature.animator;
 		avoid = new List<string> (2);
 		avoid.Add ("Creature");
 		avoid.Add ("Block");
@@ -56,7 +56,7 @@ public class CreatureMovement : MonoBehaviour {
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 			this._SetDirection ();
-			if (onTheMove && MoveToTarget ()) 
+			if (onTheMove && MoveToTarget ())
 				this._SetOnTheMove (false);
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
 			Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
@@ -80,6 +80,7 @@ public class CreatureMovement : MonoBehaviour {
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < creature.props.Get("moveSpeed"))
 			col.attachedRigidbody.AddForce (transform.up * acceleration);
+		animator.SetFloat ("walkSpeed", col.attachedRigidbody.velocity.magnitude);
 		return (heading.magnitude < epsilon);
 	}
 
@@ -127,17 +128,15 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	private void _SetDirection(){
-		if (col.attachedRigidbody.velocity.x > 0) {
+		if (col.attachedRigidbody.velocity.x > 0.05f) {
 			Debug.Log ("MOVING RIGHT");
 			direction = RIGHT;
 		}
-		if (col.attachedRigidbody.velocity.x < 0) {
+		if (col.attachedRigidbody.velocity.x < -0.05f) {
 			Debug.Log ("MOVING LEFT");
 			direction = LEFT;
 		}
-		if (onTheMove) {
-			animator.SetInteger ("walkDirection", direction);
-		}
+		animator.SetInteger ("walkDirection", direction);
 	}
 
 }
