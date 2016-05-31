@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 
-	public int spawnInvokeRate;
 	public int minSpawnRate;
 	public int maxSpawnRate;
 	public float spawnOffset;
@@ -15,7 +14,7 @@ public class Spawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("InvokeNextSpawn", spawnInvokeRate, spawnInvokeRate);
+		InvokeNextSpawn ();
 	}
 
 	void InvokeNextSpawn() {
@@ -30,6 +29,7 @@ public class Spawner : MonoBehaviour {
 			GameObject spawned = (GameObject)GameObject.Instantiate (spawnedObject, spawnPosition, Quaternion.identity);
 			spawned.transform.SetParent (parent);
 		}
+		InvokeNextSpawn ();
 	}
 
 

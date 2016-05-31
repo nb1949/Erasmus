@@ -2330,7 +2330,7 @@ MonoBehaviour:
   avoidOffset: 10
   avoid:
     serializedVersion: 2
-    m_Bits: 22528
+    m_Bits: 23552
   parent: {fileID: 5275644}
   spawnedObject: {fileID: 187190, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
   creaturesStatistics: {fileID: 1123210384}
