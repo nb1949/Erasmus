@@ -7,6 +7,7 @@ public class GameObjectPool : MonoBehaviour{
 	public GameObject pooledObjectPrefab;
 	public int capacity;
 	public bool increase;
+	public int startingNum;
 	public int activeCount;
 
 	public List<GameObject> pool;
@@ -14,13 +15,22 @@ public class GameObjectPool : MonoBehaviour{
 	void Awake() {
 		pool = new List<GameObject> ();
 		for (int i = 0; i < capacity; i++) {
-			GameObject obj = (GameObject)Instantiate (pooledObjectPrefab);
+			GameObject obj = (GameObject)Instantiate (pooledObjectPrefab, 
+				transform.position + (Vector3)(Random.insideUnitCircle * startingNum), Quaternion.identity);
 			obj.name = pooledObjectPrefab.name + i;
 			obj.transform.SetParent (transform);
 			obj.SetActive (false);
 			pool.Add (obj);
 		}
 		activeCount = 0;
+	}
+
+	// Use this for initialization
+	void Start () {
+		for (int i = 0; i < startingNum; i++) {
+			GameObject obj = this.Borrow ();
+			obj.SetActive (true);
+		}
 	}
 
 	public GameObject Borrow() {

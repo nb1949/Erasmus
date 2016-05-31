@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9733331, y: -2.0473561, z: 0}
+  m_LocalPosition: {x: -3.9, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectible: {fileID: 11491042, guid: 63d1e2a50c5110f4ea897204d285339c, type: 2}
-  spawnRate: 3
+  spawnRate: 10
   capacity: 10
   decayRate: 1
   halfLife: 100
@@ -83,7 +83,7 @@ MonoBehaviour:
   halfLifeMax: 100
   valueMin: 1
   valueMax: 10
-  count: 0
+  crop: []
 --- !u!212 &21268554
 SpriteRenderer:
   m_ObjectHideFlags: 1

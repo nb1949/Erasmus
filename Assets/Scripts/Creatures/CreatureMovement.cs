@@ -37,7 +37,6 @@ public class CreatureMovement : MonoBehaviour {
 		creature = GetComponent<Creature> ();
 		animator = creature.animator;
 		avoid = new List<string> (2);
-		avoid.Add ("Creature");
 		avoid.Add ("Block");
 	}
 

@@ -109,8 +109,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 892583609}
+  m_Children: []
   m_Father: {fileID: 1870287686}
   m_RootOrder: 0
 --- !u!1 &17543814
@@ -1194,52 +1193,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 410114, guid: 261a9615e80f90a46925c23f333f9c0d, type: 2}
   m_PrefabInternal: {fileID: 800571490}
---- !u!1001 &892583608
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5275644}
-    m_Modifications:
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &892583609 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 474272, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-  m_PrefabInternal: {fileID: 892583608}
 --- !u!1001 &989705909
 Prefab:
   m_ObjectHideFlags: 0
@@ -1498,6 +1451,7 @@ MonoBehaviour:
   pooledObjectPrefab: {fileID: 101396, guid: 491a6662993c82249aa167839c40905e, type: 2}
   capacity: 10
   increase: 1
+  startingNum: 3
   activeCount: 0
   pool: []
 --- !u!114 &1123210388
@@ -2272,7 +2226,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1870287686}
-  - 114: {fileID: 1870287685}
+  - 114: {fileID: 1870287689}
+  - 114: {fileID: 1870287687}
+  - 114: {fileID: 1870287688}
+  - 114: {fileID: 1870287690}
   m_Layer: 0
   m_Name: World Simulator
   m_TagString: GameController
@@ -2280,38 +2237,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &1870287685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11401446, guid: 8103af78a4e2c62468bdb2dfed9b6f6e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1870287684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1486e22b0f58fbf498d5d2da84a48ab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatures: {fileID: 1123210386}
-  fields: {fileID: 5275644}
-  floaters: {fileID: 17543815}
-  startingCreatures: 3
-  spawnInvokingRate: 6
-  fieldSpawnOffset: 20
-  floaterSpawnOffset: 20
-  minFieldSpawnInterval: 10
-  maxFieldSpawnInterval: 20
-  minFloaterSpawnInterval: 10
-  maxFloaterSpawnInterval: 20
-  maxFieldNum: 10
-  maxFloaterNum: 10
-  fieldPrefabs:
-  - {fileID: 11419672, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
-  floaterPrefabs:
-  - {fileID: 11445744, guid: 9ffdd5f944a569d4e8e156c8e40ef61e, type: 2}
-  - {fileID: 11496992, guid: e02056434ecf1744aab84ed61965366e, type: 2}
-  dayLength: 1
-  dayDeltaNum: 60
 --- !u!4 &1870287686
 Transform:
   m_ObjectHideFlags: 0
@@ -2330,6 +2255,85 @@ Transform:
   - {fileID: 37399912}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &1870287687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870287684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInvokeRate: 4
+  minSpawnRate: 4
+  maxSpawnRate: 7
+  spawnOffset: 20
+  avoidOffset: 10
+  avoid:
+    serializedVersion: 2
+    m_Bits: 0
+  parent: {fileID: 17543815}
+  spawnedObject: {fileID: 178432, guid: 9ffdd5f944a569d4e8e156c8e40ef61e, type: 2}
+  creaturesStatistics: {fileID: 1123210384}
+--- !u!114 &1870287688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870287684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInvokeRate: 4
+  minSpawnRate: 3
+  maxSpawnRate: 7
+  spawnOffset: 20
+  avoidOffset: 10
+  avoid:
+    serializedVersion: 2
+    m_Bits: 0
+  parent: {fileID: 17543815}
+  spawnedObject: {fileID: 136976, guid: e02056434ecf1744aab84ed61965366e, type: 2}
+  creaturesStatistics: {fileID: 1123210384}
+--- !u!114 &1870287689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870287684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d663b64a113acb45bdcef42d5625e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayLength: 10
+  dayDeltaNum: 60
+--- !u!114 &1870287690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870287684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInvokeRate: 3
+  minSpawnRate: 3
+  maxSpawnRate: 3
+  spawnOffset: 20
+  avoidOffset: 10
+  avoid:
+    serializedVersion: 2
+    m_Bits: 22528
+  parent: {fileID: 5275644}
+  spawnedObject: {fileID: 187190, guid: 83f4eeb3822716e4b8ae785241453c61, type: 2}
+  creaturesStatistics: {fileID: 1123210384}
 --- !u!1 &1882519592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2659,7 +2663,7 @@ Camera:
   far clip plane: 100
   field of view: 179
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

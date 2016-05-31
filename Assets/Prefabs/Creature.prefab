@@ -24,7 +24,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 487214}
   - 50: {fileID: 5026346}
-  - 58: {fileID: 5812696}
   - 114: {fileID: 11490764}
   - 114: {fileID: 11405180}
   - 114: {fileID: 11493912}
@@ -34,6 +33,7 @@ GameObject:
   - 114: {fileID: 11452200}
   - 114: {fileID: 11429894}
   - 114: {fileID: 11464878}
+  - 58: {fileID: 5808746}
   m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
@@ -874,7 +874,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 101396}
   m_UseAutoMass: 0
   m_Mass: 1.5
-  m_LinearDrag: 1.5
+  m_LinearDrag: 2
   m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -882,7 +882,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5812696
+--- !u!58 &5808746
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -895,7 +895,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.66409826
+  m_Radius: 0.28991523
 --- !u!95 &9558508
 Animator:
   serializedVersion: 3
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   epsilon: 1
   breatherProb: 0.3
-  minOffset: 3
-  maxOffset: 5
+  minOffset: 2
+  maxOffset: 4
   delta: 3
   acceleration: 4
   avoidObstacleRotation: 70
@@ -1092,8 +1092,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be55fff9a3c69094883543a4a6f3eeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightAngle: 33
-  sightDistance: 9
+  sightAngle: 32
+  sightDistance: 3
   sightDensity: 13
   sightlayerMask:
     serializedVersion: 2
