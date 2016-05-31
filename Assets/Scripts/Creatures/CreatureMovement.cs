@@ -128,11 +128,9 @@ public class CreatureMovement : MonoBehaviour {
 
 	private void _SetDirection(){
 		if (col.attachedRigidbody.velocity.x > 0) {
-			Debug.Log ("MOVING RIGHT");
 			direction = RIGHT;
 		}
 		if (col.attachedRigidbody.velocity.x < 0) {
-			Debug.Log ("MOVING LEFT");
 			direction = LEFT;
 		}
 		if (onTheMove) {
