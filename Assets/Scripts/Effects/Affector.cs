@@ -10,6 +10,7 @@ public abstract class Affector : MonoBehaviour {
 	public bool fluctuate;
 	[Range(1, 10)]
 	public float valueFluctuationFreq;
+	public Animator animator;
 	public List<Sensitivity> sensitivities;
 	public string affectedProperty;
 	private float flucX = 0;

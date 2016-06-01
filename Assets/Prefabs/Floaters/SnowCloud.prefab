@@ -125,6 +125,7 @@ MonoBehaviour:
   currentValue: 0
   fluctuate: 1
   valueFluctuationFreq: 5
+  animator: {fileID: 0}
   sensitivities:
   - to: 5
     min: -3
