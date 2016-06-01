@@ -12,7 +12,7 @@ public class OnClickPlay : MonoBehaviour {
 	public GameObject menuUI;
 
 	public void PlayGame() {
-		if (firstTime)
+		if (firstTime) 
 			image.overrideSprite = nextSprite;
 		game.SetActive (true);
 		gameUI.SetActive (true);
