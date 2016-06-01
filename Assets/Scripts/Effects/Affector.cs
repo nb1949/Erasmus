@@ -12,7 +12,6 @@ public abstract class Affector : MonoBehaviour {
 	public float valueFluctuationFreq;
 	public List<Sensitivity> sensitivities;
 	public string affectedProperty;
-	public abstract void Affect (GameObject creature);
 	private float flucX = 0;
 
 	void Awake() {
@@ -24,6 +23,19 @@ public abstract class Affector : MonoBehaviour {
 		flucX += 0.01f;
 		this.currentValue = baseValue * Mathf.Abs(Mathf.Sin(0.6f * flucX) + Mathf.Cos (0.4f * flucX)) * 0.5f;
 	}
+
+	protected abstract void _Affect (GameObject creatureObj);
+
+	public void Affect (GameObject creatureObj){
+		this._Affect (creatureObj);
+
+		Creature creature = creatureObj.GetComponent<Creature> ();
+		foreach (Sensitivity sensitive in sensitivities) {
+			Debug.Log ("Activating trigger: " + sensitive.to.ToString () + "Damage");
+			creature.animator.SetTrigger (sensitive.to.ToString () + "Damage");
+		}
+	}
+		
 
 	protected int CalculateEffect(Genome creatureGenome, float value){
 		int sensitivitiesNum = sensitivities.Count;

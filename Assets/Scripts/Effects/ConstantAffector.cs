@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ConstantAffector : Affector {
 
-	public override void Affect(GameObject creature) {
+	protected override void _Affect(GameObject creature) {
 		Genome creatureGenome = creature.GetComponent<CreatureGenome> ().genome;
 		float effect = CalculateEffect (creatureGenome, this.currentValue);
 		if (effect != 0) {

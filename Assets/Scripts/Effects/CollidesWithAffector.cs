@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CollidesWithAffector : ConditionalAffector
 {
-	public override void Affect(GameObject creature) {
+	protected override void _Affect(GameObject creature) {
 		ConditionalEffect creatureEffect = creature.AddComponent<ConditionalEffect> ();
 		creatureEffect.Set (this.affectedProperty, CalculateEffect (creature.GetComponent<CreatureGenome> ().genome,
 			this.currentValue));

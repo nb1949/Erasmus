@@ -7,5 +7,6 @@ public abstract class ConditionalAffector : Affector {
 	public float deltaTime;
 	public float terminationTime;
 
-	public override abstract void Affect(GameObject creature);
+	protected override void _Affect(GameObject creature){
+	}
 }
