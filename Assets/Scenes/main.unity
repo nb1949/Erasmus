@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesStatistics: {fileID: 1123210384}
-  collider: {fileID: 375008689}
+  zoneCollider: {fileID: 375008689}
   spawners: {fileID: 1007955193}
 --- !u!1001 &417464773
 Prefab:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesStatistics: {fileID: 1123210384}
-  collider: {fileID: 538348982}
+  zoneCollider: {fileID: 538348982}
   spawners: {fileID: 1833947434}
 --- !u!61 &538348982
 BoxCollider2D:
