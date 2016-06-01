@@ -22,6 +22,8 @@ public abstract class Affector : MonoBehaviour {
 	private void Fluctuate() {
 		flucX += 0.01f;
 		this.currentValue = baseValue * Mathf.Abs(Mathf.Sin(0.6f * flucX) + Mathf.Cos (0.4f * flucX)) * 0.5f;
+		if (animator != null)
+			animator.SetFloat ("value", this.currentValue / baseValue);
 	}
 
 	protected abstract void _Affect (GameObject creatureObj);

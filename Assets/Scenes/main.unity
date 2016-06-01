@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesStatistics: {fileID: 1123210384}
-  collider: {fileID: 375008689}
+  zoneCollider: {fileID: 375008689}
   spawners: {fileID: 1007955193}
 --- !u!1001 &417464773
 Prefab:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesStatistics: {fileID: 1123210384}
-  collider: {fileID: 538348982}
+  zoneCollider: {fileID: 538348982}
   spawners: {fileID: 1833947434}
 --- !u!61 &538348982
 BoxCollider2D:
@@ -2072,7 +2072,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   parent: {fileID: 17543815}
-  spawnedObject: {fileID: 178432, guid: 9ffdd5f944a569d4e8e156c8e40ef61e, type: 2}
+  spawnedObject: {fileID: 193650, guid: 0ba58f48efa0813438423c5d2a4105d1, type: 2}
   creaturesStatistics: {fileID: 1123210384}
 --- !u!1 &1095346628
 GameObject:
@@ -3001,6 +3001,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1833947435}
   - 114: {fileID: 1833947436}
+  - 114: {fileID: 1833947437}
   m_Layer: 16
   m_Name: Spawners
   m_TagString: Untagged
@@ -3038,8 +3039,29 @@ MonoBehaviour:
   avoid:
     serializedVersion: 2
     m_Bits: 0
-  parent: {fileID: 17543815}
-  spawnedObject: {fileID: 136976, guid: e02056434ecf1744aab84ed61965366e, type: 2}
+  parent: {fileID: 255073989}
+  spawnedObject: {fileID: 128530, guid: 67b294d27bd908e4590c32c9192813e4, type: 2}
+  creaturesStatistics: {fileID: 1123210384}
+--- !u!114 &1833947437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1833947434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpawnRate: 3
+  maxSpawnRate: 7
+  spawnOffset: 20
+  avoidOffset: 10
+  avoid:
+    serializedVersion: 2
+    m_Bits: 0
+  parent: {fileID: 255073989}
+  spawnedObject: {fileID: 142264, guid: c1f38d2ed09f0a44ab11f144193ec421, type: 2}
   creaturesStatistics: {fileID: 1123210384}
 --- !u!1 &1870287684
 GameObject:
@@ -3083,8 +3105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d663b64a113acb45bdcef42d5625e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 10
-  dayDeltaNum: 60
+  dayLength: 1
+  dayDeltaNum: 20
 --- !u!1 &1882519592
 GameObject:
   m_ObjectHideFlags: 0
