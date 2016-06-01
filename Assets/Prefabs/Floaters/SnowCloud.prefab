@@ -152,6 +152,7 @@ MonoBehaviour:
   rayLength: 11
   rayAngle: 10
   raysDensity: 20
+  sprite: {fileID: 21296240}
 --- !u!212 &21230518
 SpriteRenderer:
   m_ObjectHideFlags: 1

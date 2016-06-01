@@ -12,6 +12,7 @@ public abstract class Affector : MonoBehaviour {
 	public float valueFluctuationFreq;
 	public List<Sensitivity> sensitivities;
 	public string affectedProperty;
+	public Animator animator;
 	public abstract void Affect (GameObject creature);
 	private float flucX = 0;
 
@@ -23,6 +24,8 @@ public abstract class Affector : MonoBehaviour {
 	private void Fluctuate() {
 		flucX += 0.01f;
 		this.currentValue = baseValue * Mathf.Abs(Mathf.Sin(0.6f * flucX) + Mathf.Cos (0.4f * flucX)) * 0.5f;
+		if (animator != null)
+			animator.SetFloat ("value", this.currentValue / baseValue);
 	}
 
 	protected int CalculateEffect(Genome creatureGenome, float value){
