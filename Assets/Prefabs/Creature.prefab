@@ -34,6 +34,7 @@ GameObject:
   - 114: {fileID: 11429894}
   - 114: {fileID: 11464878}
   - 58: {fileID: 5808746}
+  - 58: {fileID: 5871776}
   m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
@@ -1010,6 +1011,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28991523
+--- !u!58 &5871776
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!95 &9558508
 Animator:
   serializedVersion: 3
