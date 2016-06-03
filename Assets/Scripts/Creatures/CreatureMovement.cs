@@ -130,7 +130,8 @@ public class CreatureMovement : MonoBehaviour {
 
 	private void _SetOnTheMove(bool val){
 		onTheMove = val;
-		animator.SetBool ("isWalking", val);
+		if(animator.isInitialized)
+			animator.SetBool ("isWalking", val);
 	}
 
 	private void _SetDirection(){
