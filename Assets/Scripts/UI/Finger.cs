@@ -7,13 +7,11 @@ public class Finger : MonoBehaviour {
 	[Range(0,4)]
 	public int fingerID;
 	[Range(1,10)]
-	public int forceMultiplier;
-	[Range(0,10)]
-	public int maxEffect;
-	private HashSet<Collider2D> others;
+	public float forceMultiplier;
+	private HashSet<Creature> others;
 
 	void Awake() {
-		others = new HashSet<Collider2D>();
+		others = new HashSet<Creature>();
 	}
 
 	// Update is called once per frame
@@ -28,24 +26,25 @@ public class Finger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.CompareTag ("Creature")) {
-			others.Add (other);
-			InvokeRepeating ("Push", 0f, 0.3f);
-		}
+			others.Add (other.GetComponent<Creature> ());
+			InvokeRepeating ("Push", 0f, 1f);		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.CompareTag ("Creature")) {
-			others.Remove (other);
+			others.Remove (other.GetComponent<Creature> ());
 			CancelInvoke ();
 		}
 	}
 
+	void OnDisable() {
+		CancelInvoke ();
+	}
+
 	private void Push() {
-		foreach (Collider2D other in others) {
-			if (other.attachedRigidbody.velocity.magnitude < maxEffect) {
-				Vector3 delta = other.transform.position - transform.position;
-				other.attachedRigidbody.AddForce (delta.normalized * forceMultiplier * 100);
-			}
+		foreach (Creature other in others) {
+			other.movement.AffectMovement (((Vector2)(other.transform.position - transform.position)).normalized
+				* forceMultiplier);
 		}
 	}
 }

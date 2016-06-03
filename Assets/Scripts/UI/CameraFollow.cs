@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour {
 	public float zoomSmoothTime = 1f;
 	[Range(0,4)]
 	public int buffer;
-	[Range(6,20)]
+	[Range(6,50)]
 	public int maxSize;
 	private Camera cam;
 	private float minSize;

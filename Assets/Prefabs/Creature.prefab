@@ -1162,9 +1162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  e_life: 100
+  e_life: 20
   agingRate: 2
-  healingRate: 0
+  healingRate: 5
   moveSpeed: 3
   rotateSpeed: 100
 --- !u!114 &11464878

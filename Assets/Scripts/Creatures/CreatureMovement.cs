@@ -25,7 +25,8 @@ public class CreatureMovement : MonoBehaviour {
 	private List<string> avoid;
 	private Vector2 currentTarget;
 	private bool onTheMove;
-	private readonly int RIGHT = 1, LEFT = 2, UP = 3, DOWN = 4;
+	private readonly int RIGHT = 1, LEFT = 2;
+	//private readonly int UP = 3, DOWN = 4;
 	private int direction = 0;
 	public bool pause;
 	private float sightDistanceSquared;
@@ -89,7 +90,7 @@ public class CreatureMovement : MonoBehaviour {
 		if (Random.value > breatherProb) {
 			Vector2 position = (Vector2)transform.position;
 			if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
-				int groupFactor = 1 + statistics.count / 3;
+				int groupFactor = _GetGroupFactor ();
 				ArrayList misses = creature.sight.GetMisses ();
 				if (misses.Count < 1)
 					SetTarget (-(Vector2)transform.up * minOffset);
@@ -108,6 +109,7 @@ public class CreatureMovement : MonoBehaviour {
 		this.currentTarget = target;
 		this._SetOnTheMove (true);
 	}
+		
 
 	public void Pause() {
 		this.pause = true;
@@ -117,9 +119,13 @@ public class CreatureMovement : MonoBehaviour {
 		this.pause = false;
 	}
 
-	void OnCollisionEnter2D() {
-		this._SetOnTheMove (false);
-		SetTarget (transform.position);
+	public void AffectMovement(Vector2 direction) {
+		this.currentTarget += direction;
+		col.attachedRigidbody.AddForce (direction * 100);
+	}
+
+	private int _GetGroupFactor() {
+		return 1 + statistics.count / 3;
 	}
 
 	private void _SetOnTheMove(bool val){

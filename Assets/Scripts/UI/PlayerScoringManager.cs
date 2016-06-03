@@ -5,22 +5,25 @@ using System;
 
 public class PlayerScoringManager : MonoBehaviour {
 
-	public Text UIText;
+	public Text DNAText;
+	public Animator AUIAnimator;
 	public int totalDeaths;
 	public int totalGoodDeaths;
 	public int totalSplits;
 	public int totalJoins;
 	public int totalDNA;
 	public int DNA;
-	public int masterSplitter;
-	public int masterJoiner;
+	public int splitterThresh;
+	public int joinerThresh;
+	public int biologistThresh;
+	public int hearthThresh;
 	public int splitPrice;
 	public int joinPrice;
 
 
 	// Use this for initialization
 	void Awake(){
-		UIText.text = "DNA: " + DNA;
+		DNAText.text = "DNA: " + DNA;
 		CreatureEvents.OnDeath += CalculateDNAOnDeath;
 		CreatureEvents.OnSplit += CalculateDNAOnSplit;
 		CreatureEvents.OnJoin += CalculateDNAOnJoin;
@@ -40,22 +43,35 @@ public class PlayerScoringManager : MonoBehaviour {
 			totalDNA += change;
 			DNA += change;
 		}
-		UIText.text = "DNA: " + DNA;
+		DNAText.text = "DNA: " + DNA;
+		if (totalDNA > biologistThresh) {
+			Debug.Log ("Achievement: Biologist with total of " + totalDNA + " DNA accumulated!!");
+			AUIAnimator.SetTrigger ("Biologist");
+			biologistThresh = int.MaxValue;
+		}
+		if (totalGoodDeaths == hearthThresh) {
+			Debug.Log ("Achievement: Heart with total of " + totalGoodDeaths + " long living creatures!!");
+			AUIAnimator.SetTrigger ("Heart");
+		}
 	}
 
 	private void CalculateDNAOnSplit() {
 		Debug.Log ("Split");
-		if (++totalSplits == masterSplitter) 
+		if (++totalSplits == splitterThresh) {
 			Debug.Log ("Achievement: Master Splitter with total of " + totalSplits + " splits!!");
+			AUIAnimator.SetTrigger ("Splitter");
+		}
 		DNA -= splitPrice;
-		UIText.text = "DNA: " + DNA;
+		DNAText.text = "DNA: " + DNA;
 	}
 
 	private void CalculateDNAOnJoin() {
 		Debug.Log ("Join");
-		if (++totalJoins == masterJoiner)
+		if (++totalJoins == joinerThresh) {
 			Debug.Log ("Achievement: Master Joiner with total of " + totalJoins + " joins!!");
+			AUIAnimator.SetTrigger ("Joiner");	
+		}
 		DNA -= joinPrice;
-		UIText.text = "DNA: " + DNA;
+		DNAText.text = "DNA: " + DNA;
 	}
 }
