@@ -7,6 +7,9 @@ public class ZoneController : MonoBehaviour {
 	public Collider2D zoneCollider;
 	public GameObject spawners;
 
+	void Start() {
+	}
+
 	void OnTriggerEnter2D() {
 		if (zoneCollider.bounds.Contains (creaturesStatistics.meanPosition)) {
 			Debug.Log ("Starting Zone" + gameObject);

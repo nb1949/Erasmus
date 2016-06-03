@@ -150,7 +150,7 @@ MonoBehaviour:
   hitRate: 3
   decayRate: 1
   halfLife: 30
-  rayLength: 11
+  rayLength: 8.8
   rayAngle: 10
   raysDensity: 20
   sprite: {fileID: 21296240}

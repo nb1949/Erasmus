@@ -11,10 +11,12 @@ public class OnClickPlay : MonoBehaviour {
 	public GameObject game;
 	public GameObject gameUI;
 	public GameObject menuUI;
+	public GameObject zoneChanger;
 
 	public void PlayGame() {
 		if (firstTime) {
 			image.overrideSprite = nextSprite;
+			zoneChanger.SetActive (false);
 			restart.SetActive (true);
 		}
 		game.SetActive (true);

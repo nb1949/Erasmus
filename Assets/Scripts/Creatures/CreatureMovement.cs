@@ -38,6 +38,7 @@ public class CreatureMovement : MonoBehaviour {
 		animator = creature.animator;
 		avoid = new List<string> (2);
 		avoid.Add ("Block");
+		avoid.Add ("Zone");
 	}
 
 	void Start() {
