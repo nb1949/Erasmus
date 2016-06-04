@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 485930}
   - 212: {fileID: 21209730}
   - 68: {fileID: 6829692}
-  - 58: {fileID: 5886164}
   m_Layer: 11
   m_Name: PondC2
   m_TagString: Block
@@ -30,20 +29,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5886164
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171814}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.1618586
 --- !u!68 &6829692
 EdgeCollider2D:
   m_ObjectHideFlags: 1

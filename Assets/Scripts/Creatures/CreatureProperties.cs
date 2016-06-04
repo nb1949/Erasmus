@@ -73,10 +73,16 @@ public class CreatureProperties : MonoBehaviour{
 		return this.properties [property];
 	}
 
-	public bool isFertile() {
-		return (properties ["health"] > (0.85f * health) &&
-			properties["age"] < (0.8f * e_life) &&
-			(0.1f * e_life) < properties["age"]);
+	public bool IsHealthy() {
+		return properties ["health"] > (0.85f * health);
+	}
+
+	public bool IsOld() {
+		return (0.8f * e_life) < properties ["age"];
+	}
+
+	public bool IsYoung() {
+		return properties ["age"] < (0.1f * e_life);
 	}
 
 	private void Age (){

@@ -4,7 +4,14 @@ using UnityEngine.EventSystems;
 
 public class CreatureInteraction : MonoBehaviour {
 
-	public bool selected;
+	public bool selected {
+		get{ return _selected;}
+		set{ 
+			_selected = value;
+			creature.animator.SetBool ("Selected", _selected);
+		}
+	}
+	private bool _selected;
 	private CreaturesController controller;
 	private TextMesh stats;
 	private Creature creature;

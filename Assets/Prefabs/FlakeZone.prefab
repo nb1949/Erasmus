@@ -2316,10 +2316,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 486148}
   - 114: {fileID: 11438132}
-  - 61: {fileID: 6179440}
-  - 61: {fileID: 6119440}
-  - 61: {fileID: 6136628}
-  - 61: {fileID: 6195470}
+  - 68: {fileID: 6878866}
   m_Layer: 16
   m_Name: Surface
   m_TagString: Zone
@@ -35131,20 +35128,6 @@ BoxCollider2D:
   m_Offset: {x: 152.1, y: 152.1}
   serializedVersion: 2
   m_Size: {x: 101.4, y: 101.4}
---- !u!61 &6119440
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111138}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 152, y: 304}
-  serializedVersion: 2
-  m_Size: {x: 320, y: 1}
 --- !u!61 &6122160
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -35173,20 +35156,6 @@ BoxCollider2D:
   m_Offset: {x: 50.7, y: 50.7}
   serializedVersion: 2
   m_Size: {x: 101.4, y: 101.4}
---- !u!61 &6136628
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111138}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 152, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 320, y: 1}
 --- !u!61 &6145084
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -35271,20 +35240,6 @@ BoxCollider2D:
   m_Offset: {x: 253.5, y: 50.7}
   serializedVersion: 2
   m_Size: {x: 101.4, y: 101.4}
---- !u!61 &6179440
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111138}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 152}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 320}
 --- !u!61 &6184188
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -35299,8 +35254,8 @@ BoxCollider2D:
   m_Offset: {x: 152.1, y: 50.7}
   serializedVersion: 2
   m_Size: {x: 101.4, y: 101.4}
---- !u!61 &6195470
-BoxCollider2D:
+--- !u!68 &6878866
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -35310,9 +35265,13 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 304, y: 152}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 320}
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: 305.6277, y: -0.7376404}
+  - {x: 305.6847, y: 306.92603}
+  - {x: -2.3529816, y: 306.7775}
+  - {x: -2.3688812, y: -1.3713989}
+  - {x: 304.41473, y: -0.7376404}
 --- !u!114 &11400704
 MonoBehaviour:
   m_ObjectHideFlags: 1

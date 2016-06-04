@@ -93,7 +93,6 @@ public class CreatureMovement : MonoBehaviour {
 				ArrayList misses = creature.sight.GetMisses ();
 				if (misses.Count < 1) {
 					SetTarget (-(Vector2)transform.up * minOffset);
-					Debug.Log ("Turning");
 				}
 				else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
 					SetTarget (statistics.meanPosition + Random.insideUnitCircle * maxOffset * groupFactor);
