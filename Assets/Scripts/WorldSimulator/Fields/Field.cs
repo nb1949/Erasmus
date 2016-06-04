@@ -26,7 +26,7 @@ public abstract class Field : MonoBehaviour
 	// Use this for initialization
 	protected virtual void Awake () {
 		spawning = false;
-		Bounds bounds = GetComponent<SpriteRenderer> ().bounds;
+		Bounds bounds = GetComponent<Collider2D> ().bounds;
 		spread = Mathf.Min (bounds.extents.x, bounds.extents.y);
 		crop = new List<Collectible> ();
 		for (int i = 0; i < capacity; i++) {

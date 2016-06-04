@@ -1363,7 +1363,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11489598, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
+    - target: {fileID: 11492342, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -1371,7 +1371,7 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11492342, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
+    - target: {fileID: 11489598, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -2266,7 +2266,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11423286, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
+    - target: {fileID: 11421326, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -2274,7 +2274,7 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11421326, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
+    - target: {fileID: 11423286, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -4361,7 +4361,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -4369,7 +4369,7 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}

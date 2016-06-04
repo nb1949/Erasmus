@@ -35447,8 +35447,8 @@ MonoBehaviour:
     count: 3
   - go: {fileID: 129048, guid: a9118e29a4ee7d14db7b82055a62c47e, type: 2}
     count: 3
-  minOffset: 3
-  offset: 37
+  minOffset: 5
+  offset: 35
   parent: {fileID: 475110}
   minScale: 0.5
   maxScale: 2
@@ -35510,13 +35510,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnRate: 3
   maxSpawnRate: 3
-  spawnOffset: 20
-  avoidOffset: 10
+  spawnOffset: 5
+  avoidOffset: 3
   avoid:
     serializedVersion: 2
     m_Bits: 23552
   parent: {fileID: 428006}
-  spawnedObject: {fileID: 160554, guid: 3cc6f94035f7dba40a2e87420b5fd597, type: 2}
+  spawnedObject: {fileID: 169024, guid: 33878f9f70f869b4f8c3d712b885356f, type: 2}
   creaturesStatistics: {fileID: 0}
 --- !u!212 &21200032
 SpriteRenderer:
