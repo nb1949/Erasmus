@@ -14,7 +14,7 @@ public class CreatureProperties : MonoBehaviour{
 	[Range(0,10)]
 	public float agingRate;
 	[Range(0,10)]
-	public float healingRate;
+	public float HungerRate;
 	[Range(0,10)]
 	public float moveSpeed;
 	[Range(100, 800)]
@@ -33,7 +33,7 @@ public class CreatureProperties : MonoBehaviour{
 		Reset ();
 		pool = GetComponentInParent<CreaturesPool> ();
 		InvokeRepeating ("Age", 0, agingRate);
-		InvokeRepeating ("Heal", 0, healingRate);
+		InvokeRepeating ("Hunger", 0, HungerRate);
 	}
 	
 	// Update is called once per frame
@@ -42,7 +42,7 @@ public class CreatureProperties : MonoBehaviour{
 			if (properties ["age"] > e_life || properties ["health"] <= 0) {
 					creature.events.CreatureDied (creature);
 				CancelInvoke ("Age");
-				CancelInvoke ("Heal");
+				CancelInvoke ("Hunger");
 				active = false;
 				pool.Return (gameObject);
 			}
@@ -83,9 +83,8 @@ public class CreatureProperties : MonoBehaviour{
 		properties ["age"] += 1f;
 	}
 
-	private void Heal (){
-		if (properties["health"] < health)
-			properties ["health"] += 1f;
+	private void Hunger (){
+		properties ["health"] -= 1f;
 	}
 
 	public string toString() {

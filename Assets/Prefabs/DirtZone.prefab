@@ -18232,7 +18232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &194664
 GameObject:
   m_ObjectHideFlags: 1
@@ -35372,7 +35372,8 @@ MonoBehaviour:
     count: 2
   - go: {fileID: 129048, guid: a9118e29a4ee7d14db7b82055a62c47e, type: 2}
     count: 2
-  offset: 40
+  minOffset: 3
+  offset: 37
   parent: {fileID: 464846}
   minScale: 0.5
   maxScale: 2

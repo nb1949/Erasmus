@@ -6130,7 +6130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &131580
 GameObject:
   m_ObjectHideFlags: 1
@@ -35462,37 +35462,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
-  - go: {fileID: 0}
-    count: 0
+  - go: {fileID: 181262, guid: a1d8f767b0207514eaef28c0e8ce496b, type: 2}
+    count: 20
+  - go: {fileID: 193112, guid: 2c211d29c7165e24896a59471c87a759, type: 2}
+    count: 15
+  - go: {fileID: 121080, guid: aaf69262a5f9f17438dc8cd9ed0e1573, type: 2}
+    count: 20
+  - go: {fileID: 194202, guid: 5def524e0d06b2e42af573d6a4a74479, type: 2}
+    count: 10
+  - go: {fileID: 177752, guid: 10b54b47c5de8544aa95f6467141d8c8, type: 2}
+    count: 10
+  - go: {fileID: 126288, guid: dc7a969da74428045aa89f3d6fae3314, type: 2}
+    count: 10
+  - go: {fileID: 199342, guid: 5729dbb03d0d5314b8cd47d3443c97d6, type: 2}
+    count: 10
+  - go: {fileID: 155670, guid: 9243e05aff8550b449a4fe16686cd356, type: 2}
+    count: 30
+  - go: {fileID: 160556, guid: 69d74eafa88fb5e4cbcd42750933f832, type: 2}
+    count: 20
+  - go: {fileID: 183056, guid: 3ff1591b456669644aa9d418c6c516f7, type: 2}
+    count: 10
   - go: {fileID: 198538, guid: 91e72b189ff369747b8daa4f63275f4d, type: 2}
     count: 2
   - go: {fileID: 171814, guid: b1eda448f8e80e2429e5349bb1997fd0, type: 2}
-    count: 1
+    count: 3
   - go: {fileID: 129048, guid: a9118e29a4ee7d14db7b82055a62c47e, type: 2}
-    count: 2
-  offset: 40
+    count: 3
+  minOffset: 3
+  offset: 37
   parent: {fileID: 475110}
   minScale: 0.5
   maxScale: 2

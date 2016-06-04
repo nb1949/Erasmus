@@ -7,7 +7,6 @@ public class Finger : MonoBehaviour {
 	[Range(0,4)]
 	public int fingerID;
 	[Range(1,10)]
-	public float forceMultiplier;
 	private HashSet<Creature> others;
 
 	void Awake() {
@@ -43,8 +42,7 @@ public class Finger : MonoBehaviour {
 
 	private void Push() {
 		foreach (Creature other in others) {
-			other.movement.AffectMovement (((Vector2)(other.transform.position - transform.position)).normalized
-				* forceMultiplier);
+			other.movement.AffectMovement (((Vector2)(other.transform.position - transform.position)).normalized);
 		}
 	}
 }
