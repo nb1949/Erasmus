@@ -119,7 +119,7 @@ public class CreatureMovement : MonoBehaviour {
 
 	public void AffectMovement(Vector2 direction) {
 		this.currentTarget += direction * this.currentTarget.magnitude/2;
-		col.attachedRigidbody.AddForce (direction * 200);
+		col.attachedRigidbody.AddForce (direction * 100);
 	}
 
 	private int _GetGroupFactor() {

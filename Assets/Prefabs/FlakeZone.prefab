@@ -35508,8 +35508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 3
-  maxSpawnRate: 3
+  minSpawnRate: 20
+  maxSpawnRate: 40
   spawnOffset: 5
   avoidOffset: 3
   avoid:

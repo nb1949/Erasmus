@@ -22,6 +22,8 @@ public class CreaturesController : MonoBehaviour {
 	public void ClearModes() {
 		splitMode = false;
 		joinMode = false;
+		CreatureInteraction interact = firstToJoin.GetComponent<CreatureInteraction> ();
+		interact.selected = false;
 		firstToJoin = null;
 	}
 

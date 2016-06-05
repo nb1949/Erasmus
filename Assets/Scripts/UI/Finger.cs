@@ -26,7 +26,8 @@ public class Finger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.CompareTag ("Creature")) {
 			others.Add (other.GetComponent<Creature> ());
-			InvokeRepeating ("Push", 0f, 1f);		}
+			InvokeRepeating ("Push", 0f, 1f);
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
