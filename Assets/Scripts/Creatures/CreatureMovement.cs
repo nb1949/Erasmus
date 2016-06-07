@@ -80,7 +80,8 @@ public class CreatureMovement : MonoBehaviour {
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < creature.props.Get("moveSpeed"))
 			col.attachedRigidbody.AddForce (transform.up * acceleration);
-		animator.SetFloat ("walkSpeed", col.attachedRigidbody.velocity.magnitude);
+		if(animator.isInitialized)
+			animator.SetFloat ("walkSpeed", col.attachedRigidbody.velocity.magnitude);
 		return (heading.magnitude < epsilon);
 	}
 
