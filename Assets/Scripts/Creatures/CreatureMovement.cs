@@ -102,7 +102,8 @@ public class CreatureMovement : MonoBehaviour {
 				}
 			}
 		} else {
-			StartCoroutine ("Breath");
+			if(gameObject.activeInHierarchy)
+				StartCoroutine ("Breath");
 		}
 	}
 

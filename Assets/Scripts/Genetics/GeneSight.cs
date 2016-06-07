@@ -12,8 +12,7 @@ public class GeneSight : Gene
 		Light selfLight = this.creature.body.GetComponentInChildren<Light> ();
 		selfLight.intensity = Utils.Remap (newVal, minVal, maxVal, 0f, 1f);
 
-		Animator animator = this.creature.GetComponentInChildren<Animator> ();
-		animator.SetFloat ("sight", newVal);
+		this.creature.animator.SetFloat ("sight", newVal);
 	}
 }
 

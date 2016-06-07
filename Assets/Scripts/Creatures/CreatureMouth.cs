@@ -5,6 +5,8 @@ using System;
 public class CreatureMouth : MonoBehaviour {
 
 	private Creature creature;
+	[Range(0,5)]
+	public float eatingTime;
 
 	// Use this for initialization
 	void Awake () {
@@ -27,7 +29,7 @@ public class CreatureMouth : MonoBehaviour {
 
 	private IEnumerator Eating() {
 		creature.movement.Pause ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (eatingTime);
 		creature.movement.Play ();
 	}
 

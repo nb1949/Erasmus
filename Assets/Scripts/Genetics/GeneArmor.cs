@@ -9,8 +9,7 @@ public class GeneArmor : Gene
 	}
 
 	override protected void OnValChange(float oldVal, float newVal){
-		Animator animator = this.creature.GetComponentInChildren<Animator> ();
-		animator.SetFloat ("armor", newVal);
+		this.creature.animator.SetFloat ("armor", newVal);
 	}
 }
 
