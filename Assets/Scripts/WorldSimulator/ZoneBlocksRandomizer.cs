@@ -11,6 +11,8 @@ public class GameObjectCount {
 public class ZoneBlocksRandomizer : MonoBehaviour {
 
 	public List<GameObjectCount> prefabs;
+	public LayerMask avoid;
+	public int avoidOffset;
 	public float minOffset;
 	public float offset;
 	public Transform parent;
@@ -22,14 +24,18 @@ public class ZoneBlocksRandomizer : MonoBehaviour {
 		foreach (GameObjectCount prefab in prefabs) {
 			for (int i = 0; i < prefab.count; i++) {
 				Vector2 randomDirection = Random.insideUnitCircle;
-				GameObject iGo = (GameObject)Instantiate (
-					prefab.go, 
-					randomDirection.normalized * minOffset + randomDirection * offset,
-					Quaternion.identity);
-				iGo.transform.localScale *= Random.Range (minScale, maxScale);
-				iGo.transform.SetParent (parent, true);
+				Vector2 spawnPosition = randomDirection.normalized * minOffset + randomDirection * offset;
+				if (!Physics2D.OverlapCircle (spawnPosition, avoidOffset, avoid)) {
+					GameObject iGo = (GameObject)Instantiate (
+						                prefab.go, 
+						                spawnPosition,
+						                Quaternion.identity);
+					iGo.transform.localScale *= Random.Range (minScale, maxScale);
+					iGo.transform.SetParent (parent, true);
+				}
+				else 
+					i--;
 			}
-			
 		}
 	}
 }

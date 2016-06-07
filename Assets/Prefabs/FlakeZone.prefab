@@ -36661,6 +36661,10 @@ MonoBehaviour:
     count: 3
   - go: {fileID: 129048, guid: a9118e29a4ee7d14db7b82055a62c47e, type: 2}
     count: 3
+  avoid:
+    serializedVersion: 2
+    m_Bits: 18432
+  avoidOffset: 2
   minOffset: 5
   offset: 35
   parent: {fileID: 475110}
