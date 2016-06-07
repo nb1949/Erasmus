@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class CreatureMovement : MonoBehaviour {
 
-	[Range(0,1)]
+	[Range(0,3)]
 	public float epsilon;
 	[Range(0,1)]
 	public float breatherProb;
@@ -94,15 +94,22 @@ public class CreatureMovement : MonoBehaviour {
 				ArrayList misses = creature.sight.GetMisses ();
 				if (misses.Count < 1) {
 					SetTarget (-(Vector2)transform.up * minOffset);
-				}
-				else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
+				} else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
 					SetTarget (statistics.meanPosition + Random.insideUnitCircle * maxOffset * groupFactor);
 				} else {
 					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
 					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
 				}
 			}
+		} else {
+			StartCoroutine ("Breath");
 		}
+	}
+
+	private IEnumerator Breath() {
+		creature.movement.Pause ();
+		yield return new WaitForSeconds (2);
+		creature.movement.Play ();
 	}
 
 	public void SetTarget(Vector2 target) {
@@ -119,8 +126,8 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	public void AffectMovement(Vector2 direction) {
-		this.currentTarget += direction * this.currentTarget.magnitude/2;
-		col.attachedRigidbody.AddForce (direction * 100);
+		this.currentTarget += direction * this.currentTarget.magnitude;
+		col.attachedRigidbody.AddForce (direction * 150);
 	}
 
 	private int _GetGroupFactor() {

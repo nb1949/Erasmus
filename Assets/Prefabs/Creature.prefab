@@ -1514,11 +1514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca1fe33c090be94eab170bcbd4e40e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  epsilon: 1
-  breatherProb: 0.4
+  epsilon: 2
+  breatherProb: 0.25
   minOffset: 2
   maxOffset: 4
-  delta: 6
+  delta: 3
   acceleration: 4
   avoidObstacleRotation: 70
   pause: 0
