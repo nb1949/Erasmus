@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System.Runtime.ConstrainedExecution;
 
 public class CreatureInteraction : MonoBehaviour {
 
@@ -11,12 +12,18 @@ public class CreatureInteraction : MonoBehaviour {
 			creature.animator.SetBool ("Selected", _selected);
 		}
 	}
+	private const float LONG_TIME = 0.2f;
 	private bool _selected;
+	private bool mouseDown;
+	private float lastClickTime;
+	private CameraFollow follow;
 	private CreaturesController controller;
 	private TextMesh stats;
 	private Creature creature;
 
 	void Awake() {
+		mouseDown = false;
+		follow = Camera.main.GetComponent<CameraFollow> ();
 		creature = GetComponent <Creature> ();
 		stats = creature.body.FindChild ("Stats").GetComponent<TextMesh> ();
 		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
@@ -40,19 +47,37 @@ public class CreatureInteraction : MonoBehaviour {
 		stats.text = "";
 	}
 
+	void OnSingleClick() {
+		if(controller.ModeIsOn ())
+			if (follow.AmIOnZoom (transform))
+				follow.ZoomOff ();
+			else
+				follow.ZoomOn (transform);
+	}
+
+	void OnLongClick() {
+		if (mouseDown && controller.ModeIsOn () && !follow.IsZoomOn ()) {
+			if (controller.splitMode)
+				controller.Split (gameObject);
+			else if (controller.joinMode)
+				if (selected)
+					controller.Unjoin ();
+				else
+					controller.Join (gameObject);
+			follow.ZoomOff ();
+		}
+	}
 
 	void OnMouseDown() {
+		mouseDown = true;
+		lastClickTime = Time.time;
+		Invoke ("OnLongClick", LONG_TIME);
 	}
 
 	void OnMouseUp(){
-		if (controller.splitMode)
-			controller.Split (gameObject);
-		else if (controller.joinMode) {
-			if (selected) {
-				controller.Unjoin ();
-			} else {
-				controller.Join (gameObject);
-			}
-		}
+		mouseDown = false;
+		CancelInvoke ("OnLongClick");
+		if (Time.time - lastClickTime < LONG_TIME)
+			OnSingleClick ();
 	}
 }

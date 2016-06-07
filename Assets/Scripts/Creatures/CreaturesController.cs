@@ -11,6 +11,7 @@ public class CreaturesController : MonoBehaviour {
 	public bool joinMode;
 	public PlayerScoringManager psm;
 	public Text infoPanelText;
+	public AudioSource audioS;
 	private GameObject firstToJoin;
 
 	// Use this for initialization
@@ -19,28 +20,34 @@ public class CreaturesController : MonoBehaviour {
 		joinMode = false;
 	}
 
+	public bool ModeIsOn() {
+		return splitMode || joinMode;
+	}
+
 	public void ClearModes() {
 		splitMode = false;
 		joinMode = false;
-		CreatureInteraction interact = firstToJoin.GetComponent<CreatureInteraction> ();
-		interact.selected = false;
-		firstToJoin = null;
+		if (firstToJoin != null) {
+			CreatureInteraction interact = firstToJoin.GetComponent<CreatureInteraction> ();
+			interact.selected = false;
+			firstToJoin = null;
+		}
 	}
 
 	public void EnterSplitMode() {
 		splitMode = true;
 	}
 
-	public void Split(GameObject creature) {
+	public bool Split(GameObject creature) {
 		if (psm.DNA < psm.splitPrice) {
-			infoPanelText.text = "Not Enough DNA";
-			return;
+			Inform ("Not Enough DNA");
+			return false;
 		}
 		ReproductionCode rc = creature.GetComponent<CreatureReproduction> ().Split ();
 		switch (rc) {
 			case ReproductionCode.OK:
 				Inform ("Split Succeeded!");
-				break;
+				return true;
 			case ReproductionCode.HEALTH:
 				Inform ("Creature is too weak to split..");
 				break;
@@ -51,6 +58,7 @@ public class CreaturesController : MonoBehaviour {
 				Inform ("Creature is too old to split..");
 				break;
 		}
+		return false;
 	}
 
 	public void EnterJoinMode() {
@@ -62,37 +70,51 @@ public class CreaturesController : MonoBehaviour {
 		firstToJoin = null;
 	}
 
-	public void Join(GameObject creature) {
+	public bool Join(GameObject creature) {
 		if (psm.DNA < psm.joinPrice) {
-			infoPanelText.text = "Not Enough DNA";
-			return;
+			Inform ("Not Enough DNA");
+			return false;
 		}
 		if (firstToJoin == null) {
 			firstToJoin = creature;
 			firstToJoin.GetComponent<CreatureInteraction> ().selected = true;
-	} else {
-			ReproductionCode rc = firstToJoin.GetComponent<CreatureReproduction> ().Mate (creature.GetComponent<Creature> ());
-			firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
-			creature.GetComponent<CreatureInteraction> ().selected = false;
-			firstToJoin = null;
-			switch (rc) {
-				case ReproductionCode.OK:
-					Inform ("Join Succeeded!");
-					break;
-				case ReproductionCode.HEALTH:
-					Inform ("One or both creatures are too weak to join..");
-					break;
-				case ReproductionCode.YOUNG:
-					Inform ("One or both creatures are too young to join..");
-					break;
-				case ReproductionCode.OLD:
-					Inform ("One or both creatures are too old to join..");
-					break;
+		} else {
+				ReproductionCode rc = firstToJoin.GetComponent<CreatureReproduction> ().Mate (creature.GetComponent<Creature> ());
+				firstToJoin.GetComponent<CreatureInteraction> ().selected = false;
+				creature.GetComponent<CreatureInteraction> ().selected = false;
+				firstToJoin = null;
+				switch (rc) {
+					case ReproductionCode.OK:
+						Inform ("Join Succeeded!");
+						return true;
+					case ReproductionCode.HEALTH:
+						Inform ("One or both creatures are too weak to join..");
+						break;
+					case ReproductionCode.YOUNG:
+						Inform ("One or both creatures are too young to join..");
+						break;
+					case ReproductionCode.OLD:
+						Inform ("One or both creatures are too old to join..");
+						break;
+				}
 			}
-		}
+		return false;
 	}
 
 	private void Inform(string msg) {
+		audioS.Play ();
+		StartCoroutine ("DisplayMsg", msg);		
+		StartCoroutine ("RemoveMsg");
+	}
+
+	private IEnumerator DisplayMsg(string msg) {
+		infoPanelText.text = "";
+		yield return new WaitForSeconds (0.7f);
 		infoPanelText.text = msg;
+	}
+
+	private IEnumerator RemoveMsg() {
+		yield return new WaitForSeconds (5);
+		infoPanelText.text = "";
 	}
 }
