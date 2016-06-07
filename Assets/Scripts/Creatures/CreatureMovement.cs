@@ -24,7 +24,6 @@ public class CreatureMovement : MonoBehaviour {
 	private CreaturesStatistics statistics;
 	private List<string> avoid;
 	private Vector2 currentTarget;
-	private bool onTheMove;
 	private readonly int RIGHT = 1, LEFT = 2;
 	//private readonly int UP = 3, DOWN = 4;
 	private int direction = 0;
@@ -39,13 +38,13 @@ public class CreatureMovement : MonoBehaviour {
 		animator = creature.animator;
 		avoid = new List<string> (2);
 		avoid.Add ("Block");
+		avoid.Add ("Creature");
 		avoid.Add ("Zone");
 	}
 
 	void Start() {
 		statistics = GetComponentInParent<Creatures> ().statistics;
 		pause = false;
-		this._SetOnTheMove (false);
 		InvokeRepeating ("RandomizeTarget", delta, delta);
 	}
 
@@ -57,8 +56,8 @@ public class CreatureMovement : MonoBehaviour {
 					(transform.forward, seen.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 			this._SetDirection ();
-			if (onTheMove && MoveToTarget ())
-				this._SetOnTheMove (false);
+			if (MoveToTarget ())
+				RandomizeTarget ();
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
 			Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
 		}
@@ -89,25 +88,24 @@ public class CreatureMovement : MonoBehaviour {
 	void RandomizeTarget() {
 		if (Random.value > breatherProb) {
 			Vector2 position = (Vector2)transform.position;
-			if (!onTheMove || (currentTarget - position).magnitude > creature.sight.sightDistance) {
+			if ((currentTarget - position).magnitude > creature.sight.sightDistance) {
 				int groupFactor = _GetGroupFactor ();
 				ArrayList misses = creature.sight.GetMisses ();
-				if (misses.Count < 1)
+				if (misses.Count < 1) {
 					SetTarget (-(Vector2)transform.up * minOffset);
+				}
 				else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
 					SetTarget (statistics.meanPosition + Random.insideUnitCircle * maxOffset * groupFactor);
 				} else {
 					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
 					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
 				}
-				this._SetOnTheMove (true);
 			}
 		}
 	}
 
 	public void SetTarget(Vector2 target) {
 		this.currentTarget = target;
-		this._SetOnTheMove (true);
 	}
 		
 
@@ -120,18 +118,12 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	public void AffectMovement(Vector2 direction) {
-		this.currentTarget += direction;
+		this.currentTarget += direction * this.currentTarget.magnitude/2;
 		col.attachedRigidbody.AddForce (direction * 100);
 	}
 
 	private int _GetGroupFactor() {
 		return 1 + statistics.count / 3;
-	}
-
-	private void _SetOnTheMove(bool val){
-		onTheMove = val;
-		if(animator.isInitialized)
-			animator.SetBool ("isWalking", val);
 	}
 
 	private void _SetDirection(){

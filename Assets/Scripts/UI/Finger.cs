@@ -7,7 +7,6 @@ public class Finger : MonoBehaviour {
 	[Range(0,4)]
 	public int fingerID;
 	[Range(1,10)]
-	public float forceMultiplier;
 	private HashSet<Creature> others;
 
 	void Awake() {
@@ -27,7 +26,8 @@ public class Finger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.CompareTag ("Creature")) {
 			others.Add (other.GetComponent<Creature> ());
-			InvokeRepeating ("Push", 0f, 1f);		}
+			InvokeRepeating ("Push", 0f, 1f);
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
@@ -43,8 +43,7 @@ public class Finger : MonoBehaviour {
 
 	private void Push() {
 		foreach (Creature other in others) {
-			other.movement.AffectMovement (((Vector2)(other.transform.position - transform.position)).normalized
-				* forceMultiplier);
+			other.movement.AffectMovement (((Vector2)(other.transform.position - transform.position)).normalized);
 		}
 	}
 }
