@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CreatureProperties : MonoBehaviour{
 
@@ -8,6 +9,7 @@ public class CreatureProperties : MonoBehaviour{
 	private Creature creature;
 	private CreaturesPool pool;
 
+	public Image healthBar;
 	[Range(0,100)]
 	public float health;
 	public float e_life;
@@ -25,41 +27,44 @@ public class CreatureProperties : MonoBehaviour{
 	void Awake() {
 		properties = new SortedList<string, float> ();
 		creature = GetComponent<Creature> ();
-		Reset ();
+		Reset (0);
 	}
 
 	// Use this for initialization
 	void Start () {
-		Reset ();
 		pool = GetComponentInParent<CreaturesPool> ();
-		InvokeRepeating ("Age", 0, agingRate);
-		InvokeRepeating ("Hunger", 0, HungerRate);
 	}
+		
 	
 	// Update is called once per frame
 	void Update (){
 		if (active) {
+			healthBar.transform.localScale = new Vector3 (properties ["health"] / health,
+				healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 			if (properties ["age"] > e_life || properties ["health"] <= 0) {
 					creature.events.CreatureDied (creature);
-				CancelInvoke ("Age");
-				CancelInvoke ("Hunger");
 				active = false;
 				pool.Return (gameObject);
 			}
 		}
 	}
 
-	public void Reset() {
-		active = true;
-		Set("health", health);
-		Set("age", 0f);
-		Set("moveSpeed", moveSpeed);
-		Set("rotateSpeed", rotateSpeed);
+	void OnEnable() {
+		InvokeRepeating ("Age", 0, agingRate);
+		InvokeRepeating ("Hunger", 0, HungerRate);
 	}
 
-	public void Copy(CreatureProperties other) {
-		foreach (KeyValuePair<string, float> kvp in other.properties)
-			this.properties.Add (kvp.Key, kvp.Value);
+	void OnDisable() {
+		CancelInvoke ("Age");
+		CancelInvoke ("Hunger");
+	}
+
+	public void Reset(float age) {
+		active = true;
+		Set("health", health);
+		Set("age", age);
+		Set("moveSpeed", moveSpeed);
+		Set("rotateSpeed", rotateSpeed);
 	}
 
 	public void Set(string property, float value) {
@@ -74,15 +79,15 @@ public class CreatureProperties : MonoBehaviour{
 	}
 
 	public bool IsHealthy() {
-		return properties ["health"] > (0.85f * health);
+		return properties ["health"] > (0.5f * health);
 	}
 
 	public bool IsOld() {
-		return (0.8f * e_life) < properties ["age"];
+		return (0.9f * e_life) < properties ["age"];
 	}
 
 	public bool IsYoung() {
-		return properties ["age"] < (0.1f * e_life);
+		return properties ["age"] < (0.0001f * e_life);
 	}
 
 	private void Age (){

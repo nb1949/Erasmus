@@ -36,11 +36,11 @@ public class CreatureInteraction : MonoBehaviour {
 
 	void OnMouseEnter() {
 		stats.text = "Health: " + creature.props.Get("health");
-		stats.text += "\nAge: " + creature.props.Get("age");
+		stats.text += "\tAge: " + creature.props.Get("age");
 
-		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
-			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);
-		}
+//		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
+//			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);
+//		}
 	}
 
 	void OnMouseExit() {

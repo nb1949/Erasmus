@@ -7064,7 +7064,7 @@ GameObject:
   - 114: {fileID: 11499730}
   m_Layer: 16
   m_Name: Spawners
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8911,7 +8911,7 @@ GameObject:
   - 4: {fileID: 441596}
   m_Layer: 0
   m_Name: Stationaries
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36665,7 +36665,7 @@ MonoBehaviour:
   offset: 35
   parent: {fileID: 475110}
   minScale: 0.5
-  maxScale: 2
+  maxScale: 3
 --- !u!114 &11472458
 MonoBehaviour:
   m_ObjectHideFlags: 1

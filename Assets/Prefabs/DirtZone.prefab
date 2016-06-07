@@ -36549,7 +36549,7 @@ MonoBehaviour:
   offset: 35
   parent: {fileID: 464846}
   minScale: 0.5
-  maxScale: 2
+  maxScale: 3
 --- !u!114 &11449470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -36737,7 +36737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e39152f0fa8c743be1165777ac9919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 52a7a2a0d86a59243a9c9484d5f29a0f, type: 3}
+  sprite: {fileID: 21300000, guid: 0781852ea18cdb44bbd2bfb6fa890dd2, type: 3}
 --- !u!212 &21200026
 SpriteRenderer:
   m_ObjectHideFlags: 1

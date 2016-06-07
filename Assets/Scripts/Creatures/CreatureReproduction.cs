@@ -25,6 +25,7 @@ public class CreatureReproduction : MonoBehaviour {
 			return ReproductionCode.YOUNG;
 		else if (creature.props.IsOld ())
 			return ReproductionCode.OLD;
+		float currentAge = creature.props.Get ("age");
 		pool.Return (gameObject);
 		GameObject copyObj1 = pool.Borrow ();
 		GameObject copyObj2 = pool.Borrow ();
@@ -32,8 +33,8 @@ public class CreatureReproduction : MonoBehaviour {
 		copyObj2.transform.position = _GetRandomPosition ();
 		Creature copy1 = copyObj1.GetComponent<Creature> ();
 		Creature copy2 = copyObj2.GetComponent<Creature> ();
-		copy1.props.Reset ();
-		copy2.props.Reset ();
+		copy1.props.Reset (Mathf.FloorToInt(currentAge * 0.5f));
+		copy2.props.Reset (Mathf.FloorToInt(currentAge * 0.5f));
 		copy1.genome.Copy (creature.genome);
 		copy2.genome.Copy (creature.genome);
 		Genetics.Mutate (copy1.GetComponent<CreatureGenome> ().genome);
@@ -54,6 +55,7 @@ public class CreatureReproduction : MonoBehaviour {
 		GameObject childObj = pool.Borrow ();
 		childObj.transform.position = _GetRandomPosition ();
 		Genetics.Join (firstGenome, secondGenome, childObj.GetComponent<CreatureGenome> ());
+		childObj.GetComponent<Creature> ().props.Reset (0);
 		creature.events.CreatureJoin ();
 		return ReproductionCode.OK;
 	}

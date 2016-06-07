@@ -34,7 +34,6 @@ public abstract class Affector : MonoBehaviour {
 
 		Creature creature = creatureObj.GetComponent<Creature> ();
 		foreach (Sensitivity sensitive in sensitivities) {
-			Debug.Log ("Activating trigger: " + sensitive.to.ToString () + "Damage");
 			creature.animator.SetTrigger (sensitive.to.ToString () + "Damage");
 		}
 	}

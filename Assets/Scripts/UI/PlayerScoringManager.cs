@@ -66,10 +66,10 @@ public class PlayerScoringManager : MonoBehaviour {
 	}
 
 	private void CalculateDNAOnJoin() {
-		Debug.Log ("Join");
+		Debug.Log ("Mate");
 		if (++totalJoins == joinerThresh) {
-			Debug.Log ("Achievement: Master Joiner with total of " + totalJoins + " joins!!");
-			AUIAnimator.SetTrigger ("Joiner");	
+			Debug.Log ("Achievement: Master Mater with total of " + totalJoins + " matings!!");
+			AUIAnimator.SetTrigger ("Mater");	
 		}
 		DNA -= joinPrice;
 		DNAText.text = "DNA: " + DNA;

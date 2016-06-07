@@ -32,9 +32,9 @@ public static class Genetics {
 	public static readonly float MIN = -1f;
 	public static readonly float MAX_MUTATION = 0.15f;
 	public static readonly float MAX_TTL_ABS = 2f;
-	public static readonly float JOIN_VARIANCE = 0.01f;
-	public static readonly float SPLIT_VARIANCE = 0.03f; //for mutation
-	public static readonly int DNA_PROPS_TO_MUTATE = 2;
+	public static readonly float JOIN_VARIANCE = 0.1f;
+	public static readonly float SPLIT_VARIANCE = 0.5f; //for mutation
+	public static readonly int DNA_PROPS_TO_MUTATE = 6;
 
 
 	public static void Mutate(Genome genome){
@@ -143,7 +143,6 @@ public static class Genetics {
 		{
 			int randomIndex = indices[i];
 			dnaProps[i] = Genetics.DNA_GENES[randomIndex];
-			Debug.Log ("Mutation in " + dnaProps [i] + "!");
 		}
 		return dnaProps;
 	}

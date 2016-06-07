@@ -20,12 +20,13 @@ public class CreatureGenome : MonoBehaviour {
 	public void Copy (CreatureGenome other){
 		foreach (KeyValuePair<Genetics.GeneType, Gene> kvp in other.genome)
 			this.genome [kvp.Key].Val = kvp.Value.Val;
+		Debug.Log (this.toString ());
 	}
 
 	public string toString(){
 		string txt = "Genome:\n";
 		foreach (KeyValuePair<Genetics.GeneType, Gene> kvp in this.genome) {
-			txt += (kvp.Key.ToString () + ": " + kvp.Value.Val.ToString ());
+			txt += (kvp.Key.ToString () + ": " + kvp.Value.Val.ToString () + "\t");
 		}
 		return txt;
 	}
