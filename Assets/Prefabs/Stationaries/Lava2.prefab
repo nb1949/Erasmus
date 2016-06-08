@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce28fd1998e15449b5443b58ff65682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 5
+  baseValue: 8
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0

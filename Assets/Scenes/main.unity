@@ -4495,7 +4495,7 @@ MonoBehaviour:
   smoothTime: 0.5
   zoomSmoothTime: 0.5
   zoomSize: 2
-  buffer: 2
+  buffer: 0.1
   maxSize: 10
 --- !u!81 &1996299092
 AudioListener:

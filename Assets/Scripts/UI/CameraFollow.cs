@@ -10,11 +10,11 @@ public class CameraFollow : MonoBehaviour {
 	public float smoothTime = 0.5f;
 	public float zoomSmoothTime = 1f;
 	[Range(1,6)]
-	public int zoomSize;
+	public float zoomSize;
 	[Range(0,4)]
-	public int buffer;
+	public float buffer;
 	[Range(6,50)]
-	public int maxSize;
+	public float maxSize;
 	private bool zoomMode;
 	private Transform zoomInCreature;
 	private Camera cam;
