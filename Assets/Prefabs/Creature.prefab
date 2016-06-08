@@ -361,7 +361,7 @@ GameObject:
   - 222: {fileID: 22242236}
   - 114: {fileID: 11416790}
   - 114: {fileID: 11448158}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - 223: {fileID: 22369726}
   - 114: {fileID: 11481086}
   - 114: {fileID: 11413456}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: CanvasHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - 4: {fileID: 401558}
   - 23: {fileID: 2370982}
   - 102: {fileID: 10251654}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
