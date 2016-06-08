@@ -13,6 +13,7 @@ public class PlayerScoringManager : MonoBehaviour {
 	public int totalJoins;
 	public int totalDNA;
 	public int DNA;
+	public int achievmentAward;
 	public int splitterThresh;
 	public int joinerThresh;
 	public int biologistThresh;
@@ -43,16 +44,21 @@ public class PlayerScoringManager : MonoBehaviour {
 			totalDNA += change;
 			DNA += change;
 		}
-		DNAText.text = DNA.ToString ();
 		if (totalDNA > biologistThresh) {
 			Debug.Log ("Achievement: Biologist with total of " + totalDNA + " DNA accumulated!!");
 			AUIAnimator.SetTrigger ("Biologist");
+			totalDNA += achievmentAward;
+			DNA += achievmentAward;
 			biologistThresh = int.MaxValue;
 		}
 		if (totalGoodDeaths == hearthThresh) {
 			Debug.Log ("Achievement: Heart with total of " + totalGoodDeaths + " long living creatures!!");
 			AUIAnimator.SetTrigger ("Heart");
+			totalDNA += achievmentAward;
+			DNA += achievmentAward;
 		}
+		DNAText.text = DNA.ToString ();
+
 	}
 
 	private void CalculateDNAOnSplit() {
@@ -60,6 +66,8 @@ public class PlayerScoringManager : MonoBehaviour {
 		if (++totalSplits == splitterThresh) {
 			Debug.Log ("Achievement: Master Splitter with total of " + totalSplits + " splits!!");
 			AUIAnimator.SetTrigger ("Splitter");
+			totalDNA += achievmentAward;
+			DNA += achievmentAward;
 		}
 		DNA -= splitPrice;
 		DNAText.text = DNA.ToString ();
@@ -69,7 +77,9 @@ public class PlayerScoringManager : MonoBehaviour {
 		Debug.Log ("Mate");
 		if (++totalJoins == joinerThresh) {
 			Debug.Log ("Achievement: Master Mater with total of " + totalJoins + " matings!!");
-			AUIAnimator.SetTrigger ("Mater");	
+			AUIAnimator.SetTrigger ("Mater");
+			totalDNA += achievmentAward;
+			DNA += achievmentAward;
 		}
 		DNA -= joinPrice;
 		DNAText.text = DNA.ToString ();

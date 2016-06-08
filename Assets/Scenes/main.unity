@@ -2133,13 +2133,14 @@ MonoBehaviour:
   totalSplits: 0
   totalJoins: 0
   totalDNA: 0
-  DNA: 100000
+  DNA: 10000
+  achievmentAward: 200
   splitterThresh: 7
   joinerThresh: 6
   biologistThresh: 300
   hearthThresh: 5
-  splitPrice: 35
-  joinPrice: 15
+  splitPrice: 40
+  joinPrice: 20
 --- !u!82 &1123210389
 AudioSource:
   m_ObjectHideFlags: 0
