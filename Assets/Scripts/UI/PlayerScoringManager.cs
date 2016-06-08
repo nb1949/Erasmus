@@ -23,7 +23,7 @@ public class PlayerScoringManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake(){
-		DNAText.text = "DNA: " + DNA;
+		DNAText.text = DNA.ToString ();
 		CreatureEvents.OnDeath += CalculateDNAOnDeath;
 		CreatureEvents.OnSplit += CalculateDNAOnSplit;
 		CreatureEvents.OnJoin += CalculateDNAOnJoin;
@@ -43,7 +43,7 @@ public class PlayerScoringManager : MonoBehaviour {
 			totalDNA += change;
 			DNA += change;
 		}
-		DNAText.text = "DNA: " + DNA;
+		DNAText.text = DNA.ToString ();
 		if (totalDNA > biologistThresh) {
 			Debug.Log ("Achievement: Biologist with total of " + totalDNA + " DNA accumulated!!");
 			AUIAnimator.SetTrigger ("Biologist");
@@ -62,7 +62,7 @@ public class PlayerScoringManager : MonoBehaviour {
 			AUIAnimator.SetTrigger ("Splitter");
 		}
 		DNA -= splitPrice;
-		DNAText.text = "DNA: " + DNA;
+		DNAText.text = DNA.ToString ();
 	}
 
 	private void CalculateDNAOnJoin() {
@@ -72,6 +72,6 @@ public class PlayerScoringManager : MonoBehaviour {
 			AUIAnimator.SetTrigger ("Mater");	
 		}
 		DNA -= joinPrice;
-		DNAText.text = "DNA: " + DNA;
+		DNAText.text = DNA.ToString ();
 	}
 }
