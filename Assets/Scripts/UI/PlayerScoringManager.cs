@@ -7,6 +7,7 @@ public class PlayerScoringManager : MonoBehaviour {
 
 	public Text DNAText;
 	public Animator AUIAnimator;
+	public Animator DUIAnimator;
 	public int totalDeaths;
 	public int totalGoodDeaths;
 	public int totalSplits;
@@ -57,8 +58,7 @@ public class PlayerScoringManager : MonoBehaviour {
 			totalDNA += achievmentAward;
 			DNA += achievmentAward;
 		}
-		DNAText.text = DNA.ToString ();
-
+		UpdateDNAGUI ();
 	}
 
 	private void CalculateDNAOnSplit() {
@@ -70,7 +70,7 @@ public class PlayerScoringManager : MonoBehaviour {
 			DNA += achievmentAward;
 		}
 		DNA -= splitPrice;
-		DNAText.text = DNA.ToString ();
+		UpdateDNAGUI ();
 	}
 
 	private void CalculateDNAOnJoin() {
@@ -82,6 +82,12 @@ public class PlayerScoringManager : MonoBehaviour {
 			DNA += achievmentAward;
 		}
 		DNA -= joinPrice;
+		UpdateDNAGUI ();
+	}
+
+	private void UpdateDNAGUI() {
 		DNAText.text = DNA.ToString ();
+		DUIAnimator.SetTrigger ("OnChange");
+
 	}
 }

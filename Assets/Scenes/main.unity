@@ -2128,6 +2128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DNAText: {fileID: 1944831961}
   AUIAnimator: {fileID: 620074811}
+  DUIAnimator: {fileID: 1616665882}
   totalDeaths: 0
   totalGoodDeaths: 0
   totalSplits: 0
@@ -3369,6 +3370,7 @@ GameObject:
   - 224: {fileID: 1616665879}
   - 222: {fileID: 1616665881}
   - 114: {fileID: 1616665880}
+  - 95: {fileID: 1616665882}
   m_Layer: 5
   m_Name: DNA
   m_TagString: Untagged
@@ -3429,6 +3431,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1616665878}
+--- !u!95 &1616665882
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616665878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c11e0400f966294da974d57311be3e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1633272512
 GameObject:
   m_ObjectHideFlags: 0
