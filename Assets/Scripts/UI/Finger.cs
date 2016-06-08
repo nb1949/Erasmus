@@ -38,6 +38,7 @@ public class Finger : MonoBehaviour {
 	}
 
 	void OnDisable() {
+		others.Clear ();
 		CancelInvoke ();
 	}
 
