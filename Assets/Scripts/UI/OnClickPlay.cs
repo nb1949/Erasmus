@@ -17,7 +17,7 @@ public class OnClickPlay : MonoBehaviour {
 		if (firstTime) {
 			image.overrideSprite = nextSprite;
 			zoneChanger.SetActive (false);
-			restart.SetActive (true);
+			//restart.SetActive (true);
 		}
 		game.SetActive (true);
 		gameUI.SetActive (true);
