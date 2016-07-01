@@ -16,12 +16,13 @@ public class CreatureMouth : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Transform food = creature.sight.Seen ("Food", creature.sight.sightDistance);
-		if (food != null && creature.props.Get ("health") < creature.props.health)
+		if (food != null && creature.props.Get ("health") < creature.props.health) {
 			creature.movement.SetTarget ((Vector2)food.position);
+		}
 	}
 		
 	void OnCollisionEnter2D(Collision2D other) {
-		if (other.transform.CompareTag ("Food")) {
+		if (other.transform.CompareTag ("Food") && creature.props.Get ("health") < creature.props.health) {
 			other.gameObject.GetComponent<FoodItem> ().Consume (gameObject);
 			StartCoroutine (Eating ());
 		}
