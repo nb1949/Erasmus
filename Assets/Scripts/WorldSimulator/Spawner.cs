@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour {
 	public int maxSpawnRate;
 	public float spawnOffset;
 	public float avoidOffset;
+	public bool inScreen;
 	public LayerMask avoid;
 	public Transform parent;
 	public GameObject spawnedObject;
@@ -17,8 +18,8 @@ public class Spawner : MonoBehaviour {
 	}
 
 	public void Spawn() {
-		Vector2 spawnPosition = creaturesStatistics.meanPosition + 
-			Random.insideUnitCircle.normalized * Camera.main.orthographicSize * 2
+		Vector2 spawnPosition = creaturesStatistics.meanPosition + (inScreen ? Vector2.zero :
+			Random.insideUnitCircle.normalized * Camera.main.orthographicSize * 2)
 			+ Random.insideUnitCircle * spawnOffset;
 		if (!Physics2D.OverlapCircle (spawnPosition, avoidOffset, avoid)) {
 			GameObject spawned = (GameObject)GameObject.Instantiate (spawnedObject, spawnPosition, Quaternion.identity);

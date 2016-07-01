@@ -667,7 +667,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &191939995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -707,7 +707,7 @@ Transform:
   m_GameObject: {fileID: 191939990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1095346630}
@@ -1075,7 +1075,7 @@ Transform:
   m_GameObject: {fileID: 515600432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1095346630}
@@ -2749,7 +2749,7 @@ Transform:
   m_GameObject: {fileID: 1295202444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1095346630}
@@ -3077,7 +3077,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11489598, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
+    - target: {fileID: 11492342, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -3085,14 +3085,10 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11492342, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
+    - target: {fileID: 11489598, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11420836, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
-      propertyPath: offset
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58fa1917ba15a9c44a8b294075d2ad8b, type: 2}
   m_IsPrefabParent: 0
@@ -3135,7 +3131,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11499730, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
+    - target: {fileID: 11421326, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -3143,14 +3139,10 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11421326, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
+    - target: {fileID: 11499730, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11472090, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
-      propertyPath: offset
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34c84fd98f6822f489684ec8dee81d41, type: 2}
   m_IsPrefabParent: 0
@@ -3474,7 +3466,7 @@ Transform:
   m_GameObject: {fileID: 1633272512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1095346630}
@@ -3712,7 +3704,7 @@ Transform:
   m_GameObject: {fileID: 1680759600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1095346630}
@@ -3913,7 +3905,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -3921,14 +3913,10 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11464288, guid: f867cf31af863a0489744f21876b7669, type: 2}
-      propertyPath: offset
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f867cf31af863a0489744f21876b7669, type: 2}
   m_IsPrefabParent: 0

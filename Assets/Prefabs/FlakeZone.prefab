@@ -36516,6 +36516,7 @@ MonoBehaviour:
   maxSpawnRate: 7
   spawnOffset: 20
   avoidOffset: 10
+  inScreen: 0
   avoid:
     serializedVersion: 2
     m_Bits: 0
@@ -36666,7 +36667,7 @@ MonoBehaviour:
     m_Bits: 18432
   avoidOffset: 2
   minOffset: 5
-  offset: 35
+  offset: 50
   parent: {fileID: 475110}
   minScale: 0.5
   maxScale: 3
@@ -36730,6 +36731,7 @@ MonoBehaviour:
   maxSpawnRate: 40
   spawnOffset: 5
   avoidOffset: 3
+  inScreen: 1
   avoid:
     serializedVersion: 2
     m_Bits: 23552
