@@ -17,6 +17,8 @@ public class CreatureProperties : MonoBehaviour{
 	public float agingRate;
 	[Range(0,10)]
 	public float HungerRate;
+	[Range(1,360)]
+	public float CriticalHunger;
 	[Range(0,10)]
 	public float moveSpeed;
 	[Range(100, 800)]
@@ -62,6 +64,7 @@ public class CreatureProperties : MonoBehaviour{
 	public void Reset(float age) {
 		active = true;
 		Set("health", health);
+		Set("hunger", 0);
 		Set("age", age);
 		Set("moveSpeed", moveSpeed);
 		Set("rotateSpeed", rotateSpeed);
@@ -95,7 +98,9 @@ public class CreatureProperties : MonoBehaviour{
 	}
 
 	private void Hunger (){
-		properties ["health"] -= 1f;
+		properties ["hunger"] += 1f;
+		if(properties ["hunger"] > CriticalHunger)
+			properties ["health"] -= 1f;
 	}
 
 	public string toString() {
