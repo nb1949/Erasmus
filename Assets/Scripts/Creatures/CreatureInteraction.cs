@@ -18,34 +18,18 @@ public class CreatureInteraction : MonoBehaviour {
 	private float lastClickTime;
 	private CameraFollow follow;
 	private CreaturesSplitJoinController controller;
-	private TextMesh stats;
 	private Creature creature;
 
 	void Awake() {
 		mouseDown = false;
 		follow = Camera.main.GetComponent<CameraFollow> ();
 		creature = GetComponent <Creature> ();
-		stats = creature.body.FindChild ("Stats").GetComponent<TextMesh> ();
-		stats.gameObject.GetComponent <MeshRenderer> ().sortingLayerName = "Text";
+
 	}
 
 	void Start () {
 		selected = false;
 		controller = GetComponentInParent <Creatures> ().controller;
-	}
-
-	void OnMouseEnter() {
-		if (Time.timeScale > 0) 
-			stats.text = "Health: " + creature.props.Get ("health") +
-				"\tAge: " + creature.props.Get ("age");
-
-//		foreach (Genetics.GeneType gene in Genetics.DNA_GENES){
-//			stats.text += ("\n" + gene.ToString () + ": " + creature.genome.genome [gene].Val);
-//		}
-	}
-
-	void OnMouseExit() {
-		stats.text = "";
 	}
 
 	void OnSingleClick() {
