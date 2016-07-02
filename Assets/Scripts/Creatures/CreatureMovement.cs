@@ -21,6 +21,7 @@ public class CreatureMovement : MonoBehaviour {
 	public int avoidObstacleRotation;
 	public float avoidObstacleDistance;
 	public bool pause;
+	private bool overrrideRandomizer;
 	private Collider2D col;
 	private Creature creature;
 	private CreaturesStatistics statistics;
@@ -51,8 +52,11 @@ public class CreatureMovement : MonoBehaviour {
 					(transform.up, seenObstacle.position - transform.position) - 180) * avoidObstacleRotation,
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 			this._SetDirection ();
-			if (MoveToTarget ())
+			if (MoveToTarget ()) { //Arrived destination
+				if (overrrideRandomizer) 
+					overrrideRandomizer = false;
 				RandomizeTarget ();
+			}
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
 			Debug.DrawLine (currentTarget - Vector2.right * 0.1f, currentTarget + Vector2.right * 0.1f, Color.blue);
 		}
@@ -84,21 +88,23 @@ public class CreatureMovement : MonoBehaviour {
 
 
 	void RandomizeTarget() {
-		if (Random.value > breatherProb) {
-			Vector2 position = (Vector2)transform.position;
-			int groupFactor = _GetGroupFactor ();
-			ArrayList misses = creature.sight.GetMisses ();
-			if (misses.Count < 1) {
-				SetTarget (-(Vector2)transform.up * minOffset);
-			} else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
-				SetTarget (statistics.meanPosition + Random.insideUnitCircle * maxOffset * groupFactor);
+		if (!this.overrrideRandomizer) {
+			if (Random.value > breatherProb) {
+				Vector2 position = (Vector2)transform.position;
+				int groupFactor = _GetGroupFactor ();
+				ArrayList misses = creature.sight.GetMisses ();
+				if (misses.Count < 1) {
+					SetTarget (-(Vector2)transform.up * minOffset);
+				} else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
+					SetTarget (statistics.meanPosition + Random.insideUnitCircle * minOffset * groupFactor);
+				} else {
+					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
+					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
+				}
 			} else {
-				Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
-				SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
+				if (gameObject.activeInHierarchy)
+					StartCoroutine ("Breath");
 			}
-		} else {
-			if(gameObject.activeInHierarchy)
-				StartCoroutine ("Breath");
 		}
 	}
 
@@ -108,8 +114,16 @@ public class CreatureMovement : MonoBehaviour {
 		creature.movement.Play ();
 	}
 
-	public void SetTarget(Vector2 target) {
+	public void AddDirectionalVector(Vector2 direction) {
+		SetTarget ((Vector2)transform.position + direction, true);
+	}
+
+	public void SetTarget(Vector2 target, bool overrideRandom = false) {
 		this.currentTarget = target;
+		if (overrideRandom) {
+			overrrideRandomizer = true;
+			CancelInvoke ("RandomizeTarget");
+		}
 	}
 		
 
@@ -122,7 +136,7 @@ public class CreatureMovement : MonoBehaviour {
 	}
 
 	public void AffectMovement(Vector2 direction) {
-		this.currentTarget += direction * this.currentTarget.magnitude;
+		this.currentTarget += direction;
 		col.attachedRigidbody.AddForce (direction * 10);
 	}
 

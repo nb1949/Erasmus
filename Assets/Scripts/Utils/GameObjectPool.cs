@@ -33,6 +33,14 @@ public class GameObjectPool : MonoBehaviour{
 		}
 	}
 
+	public List<GameObject> GetActive() {
+		List<GameObject> activeObjs = new List<GameObject> ();
+		foreach (GameObject obj in pool) 
+			if (obj.activeInHierarchy) 
+				activeObjs.Add (obj);
+			return activeObjs;
+	}
+
 	public GameObject Borrow() {
 		foreach (GameObject obj in pool) {
 			if (!obj.activeInHierarchy) {

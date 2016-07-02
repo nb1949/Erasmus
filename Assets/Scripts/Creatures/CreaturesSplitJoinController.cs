@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Net.Sockets;
 using System.IO.IsolatedStorage;
 
-public class CreaturesController : MonoBehaviour {
+public class CreaturesSplitJoinController : MonoBehaviour {
 
 	public bool splitMode;
 	public bool joinMode;

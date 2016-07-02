@@ -11,6 +11,7 @@ public class OnClickPlay : MonoBehaviour {
 	public GameObject game;
 	public GameObject gameUI;
 	public GameObject menuUI;
+	public GameObject directionManager;
 	public GameObject zoneChanger;
 
 	public void PlayGame() {
@@ -21,6 +22,7 @@ public class OnClickPlay : MonoBehaviour {
 		}
 		game.SetActive (true);
 		gameUI.SetActive (true);
+		directionManager.SetActive (true);
 		menuUI.SetActive (false);
 		Time.timeScale = 1;
 	}

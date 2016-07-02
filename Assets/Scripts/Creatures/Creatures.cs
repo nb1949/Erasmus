@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Creatures : MonoBehaviour {
 
-	public CreaturesController controller;
+	public CreaturesSplitJoinController controller;
 	public CreaturesStatistics statistics;
 	public CreaturesPool pool;
 

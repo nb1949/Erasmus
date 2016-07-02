@@ -17,7 +17,7 @@ public class CreatureInteraction : MonoBehaviour {
 	private bool mouseDown;
 	private float lastClickTime;
 	private CameraFollow follow;
-	private CreaturesController controller;
+	private CreaturesSplitJoinController controller;
 	private TextMesh stats;
 	private Creature creature;
 

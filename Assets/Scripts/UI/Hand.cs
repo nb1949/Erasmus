@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class Hand : MonoBehaviour {
 
 	public bool mouseOn;
-	public CreaturesController creatureController;
+	public CreaturesSplitJoinController creatureController;
 	public GameObject[] fingers;
 	public int[] activeFingers;
 
