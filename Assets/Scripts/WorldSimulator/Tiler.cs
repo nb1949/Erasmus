@@ -10,9 +10,11 @@ public class Tiler : MonoBehaviour {
 	public bool addBorder;
 	public float borderBuffer;
 	public Vector3 offset;
+	public GameObject[,] tileMap;
 
 	// Use this for initialization
 	void Awake () {
+		tileMap = new GameObject[rows, cols];
 		SpriteRenderer tileSpriteRenderer = tilePrefab.GetComponent<SpriteRenderer> ();
 		if (tileSpriteRenderer != null && tileSpriteRenderer.sprite != null)
 			tileSize = tileSpriteRenderer.sprite.bounds.size;
@@ -23,10 +25,13 @@ public class Tiler : MonoBehaviour {
 		}
 		float maxX = rows * tileSize.x / 2;
 		float maxY = rows * tileSize.y / 2;
-		for (float i = -maxX; i < maxX; i += tileSize.x)
-			for (float j = -maxY; j < maxY; j += tileSize.y) {
-				GameObject tile = (GameObject)Instantiate (tilePrefab, new Vector3 (i, j, 0), Quaternion.identity);
+		float x, y;
+		int i, j;
+		for (i = 0, x = -maxX; i < rows; i++, x += tileSize.x)
+			for (j = 0, y = -maxY; j < cols; j++, y += tileSize.y) {
+				GameObject tile = (GameObject)Instantiate (tilePrefab, new Vector3 (x, y, 0), Quaternion.identity);
 				tile.transform.SetParent (parent);
+				tileMap [i, j] = tile;
 			}
 		if (addBorder) {
 			EdgeCollider2D border = parent.gameObject.AddComponent<EdgeCollider2D> ();
