@@ -39,10 +39,8 @@ public class PlayerScoringManager : MonoBehaviour {
 			totalGoodDeaths++;
 			totalDNA += healthAtTimeOfDeath;
 			DNA += healthAtTimeOfDeath;
-		} else {
-			int penalty = Mathf.CeilToInt ((float)(creature.props.health - healthAtTimeOfDeath)/creature.props.health * 10);
-			DNA = penalty > DNA ? 0 : DNA - penalty;
 		}
+
 		if (totalDNA > biologistThresh) {
 			Debug.Log ("Achievement: Biologist with total of " + totalDNA + " DNA accumulated!!");
 			AUIAnimator.SetTrigger ("Biologist");
