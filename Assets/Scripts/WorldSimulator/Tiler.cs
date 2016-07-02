@@ -10,7 +10,7 @@ public class Tiler : MonoBehaviour {
 	public bool addBorder;
 	public float borderBuffer;
 	public Vector3 offset;
-	public GameObject[,] tileMap;
+	private GameObject[,] tileMap;
 
 	// Use this for initialization
 	void Awake () {
@@ -43,9 +43,8 @@ public class Tiler : MonoBehaviour {
 		}
 		transform.localPosition += offset;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public GameObject[,] GetTileMap() {
+		return this.tileMap;
 	}
 }
