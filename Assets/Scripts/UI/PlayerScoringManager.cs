@@ -83,7 +83,7 @@ public class PlayerScoringManager : MonoBehaviour {
 
 	private void UpdateDNAGUI() {
 		DNAText.text = DNA.ToString ();
-		DUIAnimator.SetTrigger ("OnChange");
-
+		if(DUIAnimator.isInitialized)
+			DUIAnimator.SetTrigger ("OnChange");
 	}
 }

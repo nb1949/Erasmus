@@ -6,8 +6,9 @@ public abstract class Affector : MonoBehaviour {
 
 	[Range(0, 100)]
 	public float baseValue;
+	[Range(0, 1)]
+	public float minPrecentageForHit;
 	[Range(0, 100)]
-	public float minValueForHit;
 	public float currentValue;
 	public bool fluctuate;
 	[Range(1, 10)]
@@ -42,7 +43,7 @@ public abstract class Affector : MonoBehaviour {
 	}
 
 	public bool ValidValueForHit() {
-		return this.currentValue > this.minValueForHit;
+		return this.currentValue / this.baseValue > this.minPrecentageForHit;
 	}
 		
 
@@ -63,7 +64,7 @@ public abstract class Affector : MonoBehaviour {
 				creatureVal = currGene.maxVal - currGene.Val;
 			effect += Utils.Remap (creatureVal, currGene.minVal, currGene.maxVal, sens.min, sens.max);
 		}
-		effect /= sensitivitiesNum + value;
-		return Mathf.FloorToInt (effect);
+		effect = effect / sensitivitiesNum + value;
+		return Mathf.RoundToInt (effect);
 	}
 }

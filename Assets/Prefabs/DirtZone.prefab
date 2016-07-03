@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -687,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -726,6 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -753,8 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 10
-  maxSpawnRate: 25
+  minSpawnRate: 6
+  maxSpawnRate: 16
   spawnOffset: 5
   avoidOffset: 3
   inScreen: 1
@@ -836,6 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -860,6 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -901,8 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 4
-  maxSpawnRate: 7
+  minSpawnRate: 8
+  maxSpawnRate: 20
   spawnOffset: 20
   avoidOffset: 10
   inScreen: 0
@@ -924,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0

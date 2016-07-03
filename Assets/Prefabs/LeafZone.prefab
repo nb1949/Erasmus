@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -414,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minPrecentageForHit: 0
   currentValue: 0
   fluctuate: 0
   valueFluctuationFreq: 0
@@ -437,10 +439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 4
-  maxSpawnRate: 7
+  minSpawnRate: 5
+  maxSpawnRate: 15
   spawnOffset: 20
-  avoidOffset: 10
+  avoidOffset: 15
   inScreen: 0
   avoid:
     serializedVersion: 2
@@ -551,8 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 5
-  maxSpawnRate: 20
+  minSpawnRate: 3
+  maxSpawnRate: 13
   spawnOffset: 5
   avoidOffset: 3
   inScreen: 1

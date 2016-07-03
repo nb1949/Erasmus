@@ -199,16 +199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdc0ad953249fc4996aa79e4b345f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 5
-  minValueForHit: 2.2
+  baseValue: 3
+  minPrecentageForHit: 0.4
   currentValue: 0
   fluctuate: 1
   valueFluctuationFreq: 8
   animator: {fileID: 9507248}
   sensitivities:
   - to: 0
-    min: -3
-    max: 4
+    min: 1
+    max: 5
     hitHigh: 1
   affectedProperty: health
 --- !u!212 &21202658
