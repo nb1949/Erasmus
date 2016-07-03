@@ -16,7 +16,7 @@ public static class Genetics {
 		,WISDOM
 		,ARMOR
 		,SPEED
-		,CRAZINESS
+		,OBEDIENCE
 		,LIFE
 	}
 

@@ -77,7 +77,7 @@ public abstract class Gene
 		case Genetics.GeneType.SPEED:
 			gene = new GeneSpeed ();
 			break;
-		case Genetics.GeneType.CRAZINESS:
+		case Genetics.GeneType.OBEDIENCE:
 			gene = new GeneCraziness ();
 			break;
 		default:

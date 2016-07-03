@@ -6,6 +6,8 @@ public abstract class Affector : MonoBehaviour {
 
 	[Range(0, 100)]
 	public float baseValue;
+	[Range(0, 100)]
+	public float minValueForHit;
 	public float currentValue;
 	public bool fluctuate;
 	[Range(1, 10)]
@@ -30,12 +32,17 @@ public abstract class Affector : MonoBehaviour {
 	protected abstract void _Affect (GameObject creatureObj);
 
 	public void Affect (GameObject creatureObj){
-		this._Affect (creatureObj);
-
-		Creature creature = creatureObj.GetComponent<Creature> ();
-		foreach (Sensitivity sensitive in sensitivities) {
-			creature.animator.SetTrigger (sensitive.to.ToString () + "Damage");
+		if (ValidValueForHit ()) {
+			this._Affect (creatureObj);
+			Creature creature = creatureObj.GetComponent<Creature> ();
+			foreach (Sensitivity sensitive in sensitivities) {
+				creature.animator.SetTrigger (sensitive.to.ToString () + "Damage");
+			}
 		}
+	}
+
+	public bool ValidValueForHit() {
+		return this.currentValue > this.minValueForHit;
 	}
 		
 

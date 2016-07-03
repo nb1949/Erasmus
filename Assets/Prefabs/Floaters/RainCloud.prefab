@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 5
+  minValueForHit: 2.2
   currentValue: 0
   fluctuate: 1
   valueFluctuationFreq: 8

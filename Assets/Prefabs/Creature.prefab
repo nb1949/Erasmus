@@ -1535,6 +1535,8 @@ MonoBehaviour:
   avoidObstacleRotation: 70
   avoidObstacleDistance: 1.5
   pause: 0
+  externalVectorDecayDelta: 0.1
+  externalVectorDecayRate: 2
   avoid:
   - Block
   - Creature
@@ -1746,9 +1748,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be55fff9a3c69094883543a4a6f3eeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightAngle: 40
-  sightDistance: 4
-  sightDensity: 8
+  sightAngle: 60
+  sightDistance: 3
+  sightDensity: 15
   sightlayerMask:
     serializedVersion: 2
     m_Bits: 23808

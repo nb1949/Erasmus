@@ -21,7 +21,10 @@ public class CreatureMovement : MonoBehaviour {
 	public int avoidObstacleRotation;
 	public float avoidObstacleDistance;
 	public bool pause;
-	private bool overrrideRandomizer;
+	public float externalVectorDecayDelta;
+	public float externalVectorDecayRate;
+	private Vector2 externalVector;
+	private float vectorDecayFactor = 1;
 	private Collider2D col;
 	private Creature creature;
 	private CreaturesStatistics statistics;
@@ -53,8 +56,6 @@ public class CreatureMovement : MonoBehaviour {
 					Vector3.forward) * transform.up * Random.Range (minOffset, maxOffset));
 			this._SetDirection ();
 			if (MoveToTarget ()) { //Arrived destination
-				if (overrrideRandomizer) 
-					overrrideRandomizer = false;
 				RandomizeTarget ();
 			}
 			Debug.DrawLine (currentTarget - Vector2.up * 0.1f, currentTarget + Vector2.up * 0.1f, Color.blue);
@@ -76,7 +77,7 @@ public class CreatureMovement : MonoBehaviour {
 
 	bool MoveToTarget() {
 		Vector2 position = transform.position;
-		Vector2 heading = currentTarget - position;
+		Vector2 heading = (currentTarget + externalVector) - position;
 		Debug.DrawLine (position, (Vector2)transform.position + heading, Color.green);
 		RotateToTarget (heading);
 		if(col.attachedRigidbody.velocity.magnitude < creature.props.Get("moveSpeed"))
@@ -88,23 +89,21 @@ public class CreatureMovement : MonoBehaviour {
 
 
 	void RandomizeTarget() {
-		if (!this.overrrideRandomizer) {
-			if (Random.value > breatherProb) {
-				Vector2 position = (Vector2)transform.position;
-				int groupFactor = _GetGroupFactor ();
-				ArrayList misses = creature.sight.GetMisses ();
-				if (misses.Count < 1) {
-					SetTarget (-(Vector2)transform.up * minOffset);
-				} else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
-					SetTarget (statistics.meanPosition + Random.insideUnitCircle * minOffset * groupFactor);
-				} else {
-					Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
-					SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
-				}
+		if (Random.value > breatherProb) {
+			Vector2 position = (Vector2)transform.position;
+			int groupFactor = _GetGroupFactor ();
+			ArrayList misses = creature.sight.GetMisses ();
+			if (misses.Count < 1) {
+				SetTarget (-(Vector2)transform.up * minOffset);
+			} else if (Vector2.Distance (position, statistics.meanPosition) > maxOffset * groupFactor) {
+				SetTarget (statistics.meanPosition + Random.insideUnitCircle * minOffset * groupFactor);
 			} else {
-				if (gameObject.activeInHierarchy)
-					StartCoroutine ("Breath");
+				Vector2 randomDirection = (Vector2)(Vector3)misses [Random.Range (0, misses.Count)];
+				SetTarget (position + randomDirection * Random.Range (minOffset, maxOffset) * groupFactor);
 			}
+		} else {
+			if (gameObject.activeInHierarchy)
+				StartCoroutine ("Breath");
 		}
 	}
 
@@ -114,16 +113,29 @@ public class CreatureMovement : MonoBehaviour {
 		creature.movement.Play ();
 	}
 
-	public void AddDirectionalVector(Vector2 direction) {
-		SetTarget ((Vector2)transform.position + direction, true);
+	public void AffectMovement(Vector2 direction) {
+		AddDirectionalVector (direction);
+		col.attachedRigidbody.AddForce (direction * 10);
 	}
 
-	public void SetTarget(Vector2 target, bool overrideRandom = false) {
-		this.currentTarget = target;
-		if (overrideRandom) {
-			overrrideRandomizer = true;
-			CancelInvoke ("RandomizeTarget");
+	public void AddDirectionalVector(Vector2 direction) {
+		externalVector = direction * maxOffset * 
+			(1 + creature.genome.genome [Genetics.GeneType.OBEDIENCE].Val);
+		InvokeRepeating ("DecayExternalVector", 0, externalVectorDecayRate);
+	}
+
+	private void DecayExternalVector (){
+		if (vectorDecayFactor > 0) {
+			vectorDecayFactor -= externalVectorDecayDelta;
+			externalVector *= vectorDecayFactor;
+		} else {
+			vectorDecayFactor = 1;
+			CancelInvoke ("DecayExternalVector");
 		}
+	}
+
+	public void SetTarget(Vector2 target) {
+		this.currentTarget = target;
 	}
 		
 
@@ -133,11 +145,6 @@ public class CreatureMovement : MonoBehaviour {
 
 	public void Play() {
 		this.pause = false;
-	}
-
-	public void AffectMovement(Vector2 direction) {
-		this.currentTarget += direction;
-		col.attachedRigidbody.AddForce (direction * 10);
 	}
 
 	private int _GetGroupFactor() {

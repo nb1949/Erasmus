@@ -39,7 +39,13 @@ public class Hand : MonoBehaviour {
 	}
 
 	private void ClearHand() {
-		for (int i= 0; i < activeFingers.Length; i++)
-			activeFingers[i] = -1;
+		for (int i = 0; i < activeFingers.Length; i++) {
+			fingers [i].SetActive (false);
+			activeFingers [i] = -1;
+		}
+	}
+
+	void OnDisable() {
+		ClearHand ();
 	}
 }
