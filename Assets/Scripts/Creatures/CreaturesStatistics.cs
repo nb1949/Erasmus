@@ -43,6 +43,8 @@ public class CreaturesStatistics : MonoBehaviour {
 				Mathf.Abs (meanPosition.y - minYpos),
 				Mathf.Abs (meanPosition.y - maxYpos)
 			});
+		} else {
+			gameObject.SetActive (false);
 		}
 	}
 

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 [RequireComponent(typeof(Renderer))]
 public class DepthSortByY : MonoBehaviour
 {

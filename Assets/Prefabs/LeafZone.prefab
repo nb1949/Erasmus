@@ -60,6 +60,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 493150}
   - 114: {fileID: 11470420}
+  - 114: {fileID: 11411690}
   m_Layer: 13
   m_Name: Winds
   m_TagString: EditorOnly
@@ -360,6 +361,22 @@ EdgeCollider2D:
   - {x: 1.7800908, y: 1.5314009}
   - {x: 1.7581724, y: -1.7420641}
   - {x: -0.4439745, y: -2.162861}
+--- !u!114 &11411690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b00fc65e990b24793cccd7404fd82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaTime: 10
+  forceMinValue: 0
+  forceMaxValue: 5
+  maxDeltaForce: 0.3
+  burstForce: 0.4
 --- !u!114 &11423520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -525,12 +542,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 146882, guid: 2894ad91c91b45948a20a2b3ae91549d, type: 2}
   parent: {fileID: 493150}
-  rows: 4
-  cols: 4
-  tileSize: {x: 51.2, y: 51.2}
+  rows: 7
+  cols: 7
+  tileSize: {x: 10.24, y: 10.24}
   addBorder: 0
   borderBuffer: 0
-  offset: {x: 25.7, y: 25.7, z: 0}
+  offset: {x: 10, y: 10, z: 0}
 --- !u!114 &11487502
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -33,22 +33,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &133638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 496680}
-  - 114: {fileID: 11489412}
-  m_Layer: 13
-  m_Name: Winds
-  m_TagString: EditorOnly
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &134898
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +45,23 @@ GameObject:
   - 114: {fileID: 11499730}
   m_Layer: 16
   m_Name: Spawners
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &142872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 407056}
+  - 114: {fileID: 11466796}
+  - 114: {fileID: 11427828}
+  m_Layer: 13
+  m_Name: Winds
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +128,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!4 &407056
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 476598}
+  m_RootOrder: 1
 --- !u!4 &428006
 Transform:
   m_ObjectHideFlags: 1
@@ -204,7 +218,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 444454}
-  - {fileID: 496680}
+  - {fileID: 407056}
   - {fileID: 430906}
   - {fileID: 428006}
   - {fileID: 490962}
@@ -225,19 +239,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 476598}
   m_RootOrder: 4
---- !u!4 &496680
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 476598}
-  m_RootOrder: 1
 --- !u!61 &6122160
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -288,6 +289,41 @@ MonoBehaviour:
   creaturesStatistics: {fileID: 0}
   zoneCollider: {fileID: 6122160}
   spawners: {fileID: 134898}
+--- !u!114 &11427828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b00fc65e990b24793cccd7404fd82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaTime: 10
+  forceMinValue: 0
+  forceMaxValue: 5
+  maxDeltaForce: 0.3
+  burstForce: 0.4
+--- !u!114 &11466796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b4816d300f62443945f2c8817b86ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 146882, guid: 2894ad91c91b45948a20a2b3ae91549d, type: 2}
+  parent: {fileID: 407056}
+  rows: 7
+  cols: 7
+  tileSize: {x: 10.24, y: 10.24}
+  addBorder: 0
+  borderBuffer: 0
+  offset: {x: 10, y: 10, z: 0}
 --- !u!114 &11472090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,25 +390,6 @@ MonoBehaviour:
   addBorder: 1
   borderBuffer: 5
   offset: {x: 0, y: 0, z: 0}
---- !u!114 &11489412
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b4816d300f62443945f2c8817b86ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 146882, guid: 2894ad91c91b45948a20a2b3ae91549d, type: 2}
-  parent: {fileID: 496680}
-  rows: 4
-  cols: 4
-  tileSize: {x: 51.2, y: 51.2}
-  addBorder: 0
-  borderBuffer: 0
-  offset: {x: 25.7, y: 25.7, z: 0}
 --- !u!114 &11499730
 MonoBehaviour:
   m_ObjectHideFlags: 1
