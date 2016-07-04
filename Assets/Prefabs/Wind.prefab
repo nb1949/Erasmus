@@ -56,10 +56,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85ce1ae136789449aff0402ed82e70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMinValue: 0.2
-  forceMaxValue: 1
-  changeIntervalMin: 60
-  changeIntervalMax: 300
+  af: {fileID: 0}
+  tempMagnitude: 0
+  tempAngle: 0
 --- !u!249 &24911454
 AreaEffector2D:
   serializedVersion: 2
@@ -71,7 +70,7 @@ AreaEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 131584
   m_UseGlobalAngle: 1
   m_ForceAngle: 0
   m_ForceMagnitude: 10

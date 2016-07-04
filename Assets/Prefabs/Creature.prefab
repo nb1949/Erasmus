@@ -1527,16 +1527,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epsilon: 1
-  breatherProb: 0.01
+  breatherProb: 0.1
   minOffset: 2
   maxOffset: 4
-  delta: 5
+  deltaRandomizeDirection: 5
   acceleration: 4
   avoidObstacleRotation: 70
   avoidObstacleDistance: 1.5
   pause: 0
-  externalVectorDecayDelta: 0.1
-  externalVectorDecayRate: 2
+  externalVectorDecayFactor: 0.7
+  externalVectorDecayRate: 1
   avoid:
   - Block
   - Creature
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5642c748a75b449b849038e2914675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatingTime: 2
+  eatingTime: 1
 --- !u!114 &11478676
 MonoBehaviour:
   m_ObjectHideFlags: 1
