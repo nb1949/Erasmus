@@ -21,6 +21,8 @@ public abstract class Affector : MonoBehaviour {
 	void Awake() {
 		if (fluctuate)
 			InvokeRepeating ("Fluctuate", valueFluctuationFreq, valueFluctuationFreq);
+		else
+			currentValue = baseValue;
 	}
 
 	private void Fluctuate() {
@@ -49,22 +51,21 @@ public abstract class Affector : MonoBehaviour {
 
 	protected int CalculateEffect(Genome creatureGenome, float value){
 		int sensitivitiesNum = sensitivities.Count;
-		if (sensitivitiesNum < 1) {
-			Debug.LogError ("This Affector has no sensitivities! it cannot hurt anyone.");
-			return 0;
-		}
 		float effect = 0;
-		foreach (Sensitivity sens in sensitivities) {
-			Genetics.GeneType gene = sens.to;
-			Gene currGene = creatureGenome [gene];
-			float creatureVal;
-			if (sens.hitHigh) 
-				creatureVal = currGene.Val;
-			 else 
-				creatureVal = currGene.maxVal - currGene.Val;
-			effect += Utils.Remap (creatureVal, currGene.minVal, currGene.maxVal, sens.min, sens.max);
+		if (sensitivitiesNum > 0) {
+			foreach (Sensitivity sens in sensitivities) {
+				Genetics.GeneType gene = sens.to;
+				Gene currGene = creatureGenome [gene];
+				float creatureVal;
+				if (sens.hitHigh)
+					creatureVal = currGene.Val;
+				else
+					creatureVal = currGene.maxVal - currGene.Val;
+				effect += Utils.Remap (creatureVal, currGene.minVal, currGene.maxVal, sens.min, sens.max);
+			}
+			effect /= sensitivitiesNum;
 		}
-		effect = effect / sensitivitiesNum + value;
+		effect += value;
 		return Mathf.RoundToInt (effect);
 	}
 }

@@ -27,7 +27,7 @@ public class LightManager : MonoBehaviour
 		else if (lightCount == 0)
 			day = true;
 		else 
-			RenderSettings.ambientIntensity = day ? (0.5f - lightCount / dayDeltaNum)+minLight : (lightCount / dayDeltaNum - 0.5f)+minLight;
+			RenderSettings.ambientIntensity = day ? (0.5f - lightCount / dayDeltaNum)+minLight : (lightCount / dayDeltaNum - 0.5f) + minLight;
 	}
 }
 

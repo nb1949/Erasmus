@@ -13,7 +13,7 @@ public class UpdateStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		stats.text = "Health: " + creature.props.Get ("health") +
+		stats.text = "Health: " + Mathf.Clamp (creature.props.Get ("health"),0, creature.props.health) +
 			"\tAge: " + creature.props.Get ("age");
 	}
 }

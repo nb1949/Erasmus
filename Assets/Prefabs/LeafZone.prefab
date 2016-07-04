@@ -44,6 +44,7 @@ GameObject:
   - 4: {fileID: 420764}
   - 114: {fileID: 11454770}
   - 114: {fileID: 11487882}
+  - 114: {fileID: 11404580}
   m_Layer: 16
   m_Name: Spawners
   m_TagString: EditorOnly
@@ -361,6 +362,28 @@ EdgeCollider2D:
   - {x: 1.7800908, y: 1.5314009}
   - {x: 1.7581724, y: -1.7420641}
   - {x: -0.4439745, y: -2.162861}
+--- !u!114 &11404580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e238970871da7d442bfe1f80e30e0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpawnRate: 3
+  maxSpawnRate: 13
+  spawnOffset: 10
+  avoidOffset: 15
+  inScreen: 0
+  avoid:
+    serializedVersion: 2
+    m_Bits: 5120
+  parent: {fileID: 413186}
+  spawnedObject: {fileID: 107476, guid: 1310b061165fbd546b8bdd93b28f419c, type: 2}
+  creaturesStatistics: {fileID: 0}
 --- !u!114 &11411690
 MonoBehaviour:
   m_ObjectHideFlags: 1

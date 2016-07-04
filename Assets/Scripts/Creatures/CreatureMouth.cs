@@ -17,7 +17,7 @@ public class CreatureMouth : MonoBehaviour {
 	void FixedUpdate () {
 		Transform food = creature.sight.Seen ("Food", creature.sight.sightDistance);
 		if (food != null && creature.props.Get ("health") < creature.props.health) {
-			creature.movement.SetTarget ((Vector2)food.position);
+			creature.movement.SetTarget ((Vector2)food.position, true);
 		}
 	}
 		

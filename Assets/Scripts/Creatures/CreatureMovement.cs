@@ -14,14 +14,14 @@ public class CreatureMovement : MonoBehaviour {
 	[Range(1,20)]
 	public float maxOffset;
 	[Range(0.1f,10)]
-	public float delta;
+	public float deltaRandomizeDirection;
 	[Range(1,10)]
 	public float acceleration;
 	[Range(0, 180)]
 	public int avoidObstacleRotation;
 	public float avoidObstacleDistance;
 	public bool pause;
-	public float externalVectorDecayDelta;
+	public float externalVectorDecayFactor;
 	public float externalVectorDecayRate;
 	private Vector2 externalVector;
 	private float vectorDecayFactor = 1;
@@ -44,7 +44,8 @@ public class CreatureMovement : MonoBehaviour {
 	void Start() {
 		statistics = GetComponentInParent<Creatures> ().statistics;
 		pause = false;
-		InvokeRepeating ("RandomizeTarget", delta, delta);
+		InvokeRepeating ("RandomizeTarget", deltaRandomizeDirection, deltaRandomizeDirection);
+		InvokeRepeating ("DecayExternalVector", 0, externalVectorDecayRate);
 	}
 
 	void FixedUpdate () {
@@ -115,27 +116,23 @@ public class CreatureMovement : MonoBehaviour {
 
 	public void AffectMovement(Vector2 direction) {
 		AddDirectionalVector (direction);
+		SetTarget ((Vector2)transform.position);
 		col.attachedRigidbody.AddForce (direction * 10);
 	}
 
 	public void AddDirectionalVector(Vector2 direction) {
-		externalVector = direction * maxOffset * 
-			(1 + creature.genome.genome [Genetics.GeneType.OBEDIENCE].Val);
-		InvokeRepeating ("DecayExternalVector", 0, externalVectorDecayRate);
+		externalVector = direction * ((direction.magnitude == 1) ? maxOffset : 1) * 
+			(1.5f + creature.genome.genome [Genetics.GeneType.OBEDIENCE].Val);
 	}
 
 	private void DecayExternalVector (){
-		if (vectorDecayFactor > 0) {
-			vectorDecayFactor -= externalVectorDecayDelta;
 			externalVector *= vectorDecayFactor;
-		} else {
-			vectorDecayFactor = 1;
-			CancelInvoke ("DecayExternalVector");
-		}
 	}
 
-	public void SetTarget(Vector2 target) {
+	public void SetTarget(Vector2 target, bool cancelExternalVec = false) {
 		this.currentTarget = target;
+		if (cancelExternalVec)
+			externalVector = Vector2.zero;
 	}
 		
 

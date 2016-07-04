@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.07352942, g: 0.07352942, b: 0.07352942, a: 0.1}
   m_AmbientEquatorColor: {r: 0.0114, g: 0.0125, b: 0.013300001, a: 0.1}
   m_AmbientGroundColor: {r: 0.0047, g: 0.0043, b: 0.0035, a: 0.1}
-  m_AmbientIntensity: 8
+  m_AmbientIntensity: 0.67
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1226,6 +1226,48 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 468350, guid: f867cf31af863a0489744f21876b7669, type: 2}
   m_PrefabInternal: {fileID: 1677567997}
+--- !u!1001 &511416079
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 913319128}
+    m_Modifications:
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 479690, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d0c2a4b269327574498b20a3fc417d8b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &515600432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1326,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &515600436
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1914,6 +1956,10 @@ RectTransform:
   m_AnchoredPosition: {x: -120, y: -13}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &913319128 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 472038, guid: f867cf31af863a0489744f21876b7669, type: 2}
+  m_PrefabInternal: {fileID: 1677567997}
 --- !u!1 &987631087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2249,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11482972, guid: e9c280438e1a70b4496b6b95521e5123, type: 2}
+    - target: {fileID: 11401952, guid: e9c280438e1a70b4496b6b95521e5123, type: 2}
+      propertyPath: creaturesStatistics
+      value: 
+      objectReference: {fileID: 1123210384}
+    - target: {fileID: 11402278, guid: e9c280438e1a70b4496b6b95521e5123, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -2211,7 +2261,7 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11402278, guid: e9c280438e1a70b4496b6b95521e5123, type: 2}
+    - target: {fileID: 11482972, guid: e9c280438e1a70b4496b6b95521e5123, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -3229,7 +3279,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &1295202448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3906,7 +3956,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &1633272516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4125,7 +4175,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11404580, guid: f867cf31af863a0489744f21876b7669, type: 2}
+      propertyPath: creaturesStatistics
+      value: 
+      objectReference: {fileID: 1123210384}
+    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -4133,7 +4187,7 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
-    - target: {fileID: 11429276, guid: f867cf31af863a0489744f21876b7669, type: 2}
+    - target: {fileID: 11454770, guid: f867cf31af863a0489744f21876b7669, type: 2}
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
@@ -4198,7 +4252,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!212 &1680759604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4892,8 +4946,8 @@ MonoBehaviour:
   smoothTime: 0.5
   zoomSmoothTime: 0.5
   zoomSize: 2
-  buffer: 1
-  maxSize: 16
+  buffer: 3
+  maxSize: 12
 --- !u!81 &1996299092
 AudioListener:
   m_ObjectHideFlags: 0
