@@ -1585,7 +1585,7 @@ MonoBehaviour:
   e_life: 60
   agingRate: 2
   HungerRate: 1
-  CriticalHunger: 20
+  CriticalHunger: 60
   moveSpeed: 3
   rotateSpeed: 100
 --- !u!114 &11457074

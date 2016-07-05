@@ -38,13 +38,13 @@ public class SwarmSingle : MonoBehaviour {
 		CancelInvoke ();
 	}
 
-	void OnCollisionEnter2D(Collision2D col) {
+	void OnTriggerEnter2D(Collider2D col) {
 		if (Random.value < hitChance) {
-			if (col.collider.CompareTag ("Creature")) {
-				affector.Affect (col.collider.gameObject);
+			if (col.CompareTag ("Creature")) {
+				affector.Affect (col.gameObject);
 				Destroy (this.gameObject);
-			} else if (col.collider.CompareTag ("Food")) {
-				col.collider.gameObject.SetActive (false);
+			} else if (col.CompareTag ("Food")) {
+				col.gameObject.SetActive (false);
 			}
 		}
 	}
