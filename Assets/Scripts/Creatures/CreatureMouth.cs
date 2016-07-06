@@ -21,8 +21,8 @@ public class CreatureMouth : MonoBehaviour {
 		}
 	}
 		
-	void OnCollisionEnter2D(Collision2D other) {
-		if (other.transform.CompareTag ("Food") && creature.props.Get ("health") < creature.props.health) {
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag ("Food") && creature.props.Get ("health") < creature.props.health) {
 			other.gameObject.GetComponent<FoodItem> ().Consume (gameObject);
 			creature.props.Set ("hunger", 0);
 			StartCoroutine (Eating ());
