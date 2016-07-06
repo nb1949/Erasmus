@@ -9,9 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 470104}
   - 212: {fileID: 21213200}
-  - 50: {fileID: 5042504}
   - 58: {fileID: 5877866}
   - 114: {fileID: 11476702}
+  - 114: {fileID: 11478766}
+  - 50: {fileID: 5056842}
   m_Layer: 8
   m_Name: DirtFoodTall
   m_TagString: Food
@@ -32,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5042504
+--- !u!50 &5056842
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -48,7 +49,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!58 &5877866
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -58,7 +59,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -78,6 +79,18 @@ MonoBehaviour:
   currentLife: 0
   value: 0
   property: health
+--- !u!114 &11478766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32fdcce6eeef1e4ca6180cf0a3af563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 0
 --- !u!212 &21213200
 SpriteRenderer:
   m_ObjectHideFlags: 1
