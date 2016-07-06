@@ -34,12 +34,18 @@ public abstract class Affector : MonoBehaviour {
 
 	protected abstract void _Affect (GameObject creatureObj);
 
+
 	public void Affect (GameObject creatureObj){
 		if (ValidValueForHit ()) {
 			this._Affect (creatureObj);
 			Creature creature = creatureObj.GetComponent<Creature> ();
 			foreach (Sensitivity sensitive in sensitivities) {
-				creature.animator.SetTrigger (sensitive.to.ToString () + "Damage");
+				float currVal = creature.genome.genome[sensitive.to].Val;
+				string DamageOrProtection = "Damage";
+				if ((sensitive.hitHigh && currVal < 0f) || (!sensitive.hitHigh && currVal > 0f)) {
+					DamageOrProtection = "Protection";
+				}
+				creature.animator.SetTrigger (sensitive.to.ToString () + DamageOrProtection);
 			}
 		}
 	}
