@@ -7,12 +7,6 @@ public class Game : MonoBehaviour {
 	public GameObject[] activeGame;
 	public GameObject[] GameOverObjects;
 	public bool gameStatred = false;
-		
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 
 	public void gameStarted(){
 		Invoke ("_gameStarted", 3f);
@@ -27,7 +21,7 @@ public class Game : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (gameStatred && stats.count == 0) {
+		if (gameStatred && stats.count < 1) {
 			foreach (GameObject g in activeGame) {
 				g.SetActive (false);
 			}
