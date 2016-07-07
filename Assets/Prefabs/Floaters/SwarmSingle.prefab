@@ -128,7 +128,7 @@ MonoBehaviour:
   decayRate: 1
   halfLife: 100
   hitChance: 0.5
-  lightThresh: 0.5
+  lightThresh: 0.85
 --- !u!212 &21253654
 SpriteRenderer:
   m_ObjectHideFlags: 1
