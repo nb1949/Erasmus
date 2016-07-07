@@ -31,7 +31,7 @@ public class CreatureMouth : MonoBehaviour {
 
 	private IEnumerator Eating() {
 		creature.movement.Pause ();
-		creature.audio.Play ();
+		creature.audioS.Play ();
 		yield return new WaitForSeconds (eatingTime);
 		creature.movement.Play ();
 	}
