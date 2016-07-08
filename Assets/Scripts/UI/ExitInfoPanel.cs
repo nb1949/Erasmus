@@ -12,4 +12,9 @@ public class ExitInfoPanel : MonoBehaviour {
 		infoPanelText.text = "";
 		ExitTo.SetActive (true);
 	}
+
+	void Update() {
+		if (Input.GetKey (KeyCode.Escape))
+			gameObject.GetComponent<Button> ().onClick.Invoke ();
+	}
 }
