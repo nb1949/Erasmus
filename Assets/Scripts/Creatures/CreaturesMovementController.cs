@@ -10,6 +10,7 @@ public class CreaturesMovementController : MonoBehaviour {
 	public GameObject arrow;
 	public GameObject xIcon;
 	public List<GameObject> toDisable;
+	public CreaturesSplitJoinController creatureController;
 	public CreaturesPool pool;
 
 	public void ActivateArrowMode() {
@@ -42,6 +43,7 @@ public class CreaturesMovementController : MonoBehaviour {
 
 	// Update is called once per frame
 	void ArrowUpdate () {
+		if (!creatureController.ModeIsOn ()) {
 			Vector3 currentMousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			if (Input.GetMouseButtonDown (0)) {
 				mouseDown = true;
@@ -57,11 +59,12 @@ public class CreaturesMovementController : MonoBehaviour {
 				arrow.transform.position = Vector3.zero;
 			} else if (mouseDown) {
 				Vector3 v3 = currentMousePos - mouseStartPos;
-				arrow.transform.position = new Vector3(mouseStartPos.x + v3.x / 2.0f,
-				mouseStartPos.y + v3.y / 2.0f, 0);
+				arrow.transform.position = new Vector3 (mouseStartPos.x + v3.x / 2.0f,
+					mouseStartPos.y + v3.y / 2.0f, 0);
 				arrow.transform.localScale = new Vector3 (v3.magnitude / 4.0f, v3.magnitude / 2.0f, transform.localScale.z);
 				arrow.transform.localRotation = Quaternion.FromToRotation (Vector3.up, v3);
 			}
+		}
 	}
 
 

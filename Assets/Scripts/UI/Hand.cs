@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!creatureController.joinMode && !creatureController.splitMode) {
+		if (!creatureController.ModeIsOn ()) {
 			if (mouseOn) {
 				if (Input.GetMouseButtonDown (0))
 					fingers [0].SetActive (true);

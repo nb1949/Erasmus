@@ -3900,11 +3900,9 @@ MonoBehaviour:
   arrow: {fileID: 1420709119}
   xIcon: {fileID: 589463054}
   toDisable:
-  - {fileID: 620074808}
-  - {fileID: 1616665878}
-  - {fileID: 129449928}
   - {fileID: 150824319}
   - {fileID: 1095346628}
+  creatureController: {fileID: 1123210385}
   pool: {fileID: 1123210387}
 --- !u!1 &1163826369
 GameObject:
@@ -4449,6 +4447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPanel: {fileID: 1876133584}
+  directionalManager: {fileID: 2095106279}
   infoPanelText: {fileID: 1671060557}
 --- !u!1 &1270679190
 GameObject:
@@ -4936,6 +4935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExitTo: {fileID: 796012664}
+  directionalManager: {fileID: 2095106279}
   infoPanelText: {fileID: 1671060557}
 --- !u!1 &1327607456
 GameObject:
