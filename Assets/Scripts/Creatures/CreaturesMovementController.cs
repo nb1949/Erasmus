@@ -53,11 +53,14 @@ public class CreaturesMovementController : MonoBehaviour {
 				mouseDown = false;
 				arrow.SetActive (false);
 				arrow.transform.localScale = Vector3.zero;
+				arrow.transform.localPosition = Vector3.zero;
+				arrow.transform.position = Vector3.zero;
 			} else if (mouseDown) {
 				Vector3 v3 = currentMousePos - mouseStartPos;
-				arrow.transform.position = mouseStartPos + (v3) / 2.0f;
-				arrow.transform.localScale = new Vector3 (v3.magnitude / 4.0f, v3.magnitude / 2.0f, arrow.transform.localScale.z);
-				arrow.transform.rotation = Quaternion.FromToRotation (Vector3.up, v3);
+				arrow.transform.position = new Vector3(mouseStartPos.x + v3.x / 2.0f,
+				mouseStartPos.y + v3.y / 2.0f, 0);
+				arrow.transform.localScale = new Vector3 (v3.magnitude / 4.0f, v3.magnitude / 2.0f, transform.localScale.z);
+				arrow.transform.localRotation = Quaternion.FromToRotation (Vector3.up, v3);
 			}
 	}
 
