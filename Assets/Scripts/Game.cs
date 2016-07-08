@@ -26,12 +26,20 @@ public class Game : MonoBehaviour {
 	// Update is called once per frame
 	void CheckStatus () {
 		if (gameStatred && stats.count < 1) {
-			foreach (GameObject g in activeGame) {
-				g.SetActive (false);
-			}
-			foreach (GameObject g in GameOverObjects) {
-				g.SetActive (true);
-			}
+			Invoke ("DisableGuis", 5);
+			Invoke ("EnableGuis", 0);
+		}
+	}
+
+	private void  DisableGuis() {
+		foreach (GameObject g in activeGame) {
+			g.SetActive (false);
+		}
+	}
+
+	private void EnableGuis() {
+		foreach (GameObject g in GameOverObjects) {
+			g.SetActive (true);
 		}
 	}
 }

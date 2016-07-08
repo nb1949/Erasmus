@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UpdateStats : MonoBehaviour {
 
-	private TextMesh stats;
+	private Text stats;
 	private Creature creature;
 
 	void Start() {
-		stats = GetComponent<TextMesh> ();
-		creature = transform.parent.parent.gameObject.GetComponent<Creature> ();
+		stats = GetComponent<Text> ();
+		creature = transform.parent.parent.parent.gameObject.GetComponent<Creature> ();
 	}
 	
 	// Update is called once per frame
