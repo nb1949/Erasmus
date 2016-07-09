@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class CreaturesMovementController : MonoBehaviour {
 
@@ -45,12 +46,12 @@ public class CreaturesMovementController : MonoBehaviour {
 	void ArrowUpdate () {
 		if (!creatureController.ModeIsOn ()) {
 			Vector3 currentMousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			if (Input.GetMouseButtonDown (0)) {
+			if (!mouseDown && Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject ()) {
 				mouseDown = true;
 				arrow.SetActive (true);
 				mouseStartPos = currentMousePos;
 				arrow.transform.position = mouseStartPos;
-			} else if (Input.GetMouseButtonUp (0)) {
+			} else if (Input.GetMouseButtonUp (0) && mouseDown) {
 				UpdateCreaturesTarget (currentMousePos - mouseStartPos);
 				mouseDown = false;
 				arrow.SetActive (false);
