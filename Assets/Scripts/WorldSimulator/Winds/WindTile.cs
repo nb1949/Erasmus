@@ -28,7 +28,7 @@ public class WindTile : MonoBehaviour {
 	}
 
 	private void UpdateWindGraphics() {
-		graphics.transform.localRotation = Quaternion.AngleAxis(-af.forceAngle, transform.forward);
+		graphics.transform.localRotation = Quaternion.AngleAxis(af.forceAngle - 90, transform.forward);
 			graphics.GetComponent<SpriteRenderer> ().color = 
 				new Color(0,0,255, 0.25f + af.forceMagnitude * 0.15f);
 	}
