@@ -15,9 +15,20 @@ public class UpdateStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.timeScale > 0)
-			stats.text = "Health: " + Mathf.Clamp (creature.props.Get ("health"), 0, creature.props.health) +
-			"\tAge: " + creature.props.Get ("age");
+			stats.text = "HP: " + Mathf.Clamp (creature.props.Get ("health"), 0, creature.props.health) +
+				"  | " + _GetStageStr(creature.props);
 		else
 			stats.text = "";
+	}
+
+	private string _GetStageStr(CreatureProperties props) {
+		if(props.IsDying ())
+			return "Withering";
+		else if(props.IsYoung ())
+			return "Child";
+		else if(props.IsOld ())
+			return "Elder";
+		else
+			return "Adult";
 	}
 }

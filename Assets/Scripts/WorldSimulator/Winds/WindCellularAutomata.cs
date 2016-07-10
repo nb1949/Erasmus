@@ -37,7 +37,7 @@ public class WindCellularAutomata : MonoBehaviour {
 		for (int i = 0; i < tileMap.GetLength (0); i++)
 			for (int j = 1; j < tileMap.GetLength (1); j++) {
 				int offset = (i > 0) ? Mathf.RoundToInt (Random.value) : 0;
-				tileMap [i, j].af.forceAngle = (tileMap [i - offset, j - 1].af.forceAngle + Random.Range(-60, 60)) % 360;
+				tileMap [i, j].af.forceAngle = (tileMap [i - offset, j - 1].af.forceAngle + Random.Range(-30, 30)) % 360;
 			}
 	}
 
@@ -46,12 +46,12 @@ public class WindCellularAutomata : MonoBehaviour {
 		for (int i = 0; i < tileMap.GetLength (0); i++)
 			for (int j = 0; j < tileMap.GetLength (1); j++) {
 				tileMap [i, j].af.forceMagnitude += Random.Range (0, maxDeltaForce);
-				tileMap [i, j].af.forceAngle += Random.Range (-30, 30);
+				tileMap [i, j].af.forceAngle += Random.Range (-10, 10);
 			}
 		//Step 2 - Update Neighbors
 		for (int i = 0; i < tileMap.GetLength (0); i++)
 			for (int j = 0; j < tileMap.GetLength (1); j++) {
-				tileMap [i, j].tempAngle = (GetAveraged8Angle (i,j) + Random.Range (-15, 15));
+				tileMap [i, j].tempAngle = (GetAveraged8Angle (i,j) + Random.Range (-5, 5));
 				if (tileMap [i, j].af.forceMagnitude > forceMaxValue) {
 					tileMap [i, j].tempMagnitude = tileMap [i, j].tempMagnitude - forceMaxValue;
 					Update8NeighborsForce (i, j);
