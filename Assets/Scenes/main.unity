@@ -7198,6 +7198,10 @@ Prefab:
       propertyPath: creaturesStatistics
       value: 
       objectReference: {fileID: 1123210384}
+    - target: {fileID: 11411690, guid: f867cf31af863a0489744f21876b7669, type: 2}
+      propertyPath: deltaTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 21261160, guid: f867cf31af863a0489744f21876b7669, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f867cf31af863a0489744f21876b7669, type: 2}
