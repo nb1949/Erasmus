@@ -26,7 +26,12 @@ public class Game : MonoBehaviour {
 	// Update is called once per frame
 	void CheckStatus () {
 		if (gameStatred && stats.count < 1) {
-			Invoke ("DisableGuis", 5);
+			foreach (GameObject g in activeGame) {
+				FadeOut fo = g.GetComponent<FadeOut> ();
+				if (fo != null)
+					fo.StartFading (6);
+			}
+			Invoke ("DisableGuis", 10);
 			Invoke ("EnableGuis", 0);
 		}
 	}

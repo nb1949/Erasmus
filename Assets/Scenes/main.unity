@@ -4722,6 +4722,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 1176935348}
   - 82: {fileID: 1176935349}
+  - 114: {fileID: 1176935350}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -4825,6 +4826,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1176935350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176935347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c64dbc2a24be6b47ae31692ecd524e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTime: 0
 --- !u!1 &1230643038
 GameObject:
   m_ObjectHideFlags: 0
