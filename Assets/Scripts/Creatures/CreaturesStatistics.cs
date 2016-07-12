@@ -44,7 +44,6 @@ public class CreaturesStatistics : MonoBehaviour {
 				Mathf.Abs (meanPosition.y - maxYpos)
 			});
 		} else {
-			Debug.Log ("All creatures are dead.");
 			gameObject.SetActive (false);
 		}
 	}
