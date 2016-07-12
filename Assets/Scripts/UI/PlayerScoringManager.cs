@@ -21,6 +21,8 @@ public class PlayerScoringManager : MonoBehaviour {
 	public int hearthThresh;
 	public int splitPrice;
 	public int joinPrice;
+	public bool showDemoAchievements = false; 
+	private int achievementsShown = 0;
 
 
 	// Use this for initialization
@@ -29,12 +31,33 @@ public class PlayerScoringManager : MonoBehaviour {
 		CreatureEvents.OnDeath += CalculateDNAOnDeath;
 		CreatureEvents.OnSplit += CalculateDNAOnSplit;
 		CreatureEvents.OnJoin += CalculateDNAOnJoin;
+		if (showDemoAchievements) {
+			Invoke ("_demoAchievement", 9f);
+		}
+
 	}
 
 	void Update() {
 		if (Input.GetKeyDown (KeyCode.E)) {
 			DNA += 100;
 			UpdateDNAGUI ();
+		}
+	}
+
+	private void _demoAchievement(){
+		achievementsShown++; 
+		if (achievementsShown == 1) {
+			AUIAnimator.SetTrigger ("Splitter");
+			Invoke ("_demoAchievement", 3f);
+		} else if (achievementsShown == 2) {
+			AUIAnimator.SetTrigger ("Biologist");
+			Invoke ("_demoAchievement", 3f);
+		} else if (achievementsShown == 3) {
+			AUIAnimator.SetTrigger ("Heart");
+			Invoke ("_demoAchievement", 3f);
+		} else if (achievementsShown == 4) {
+			AUIAnimator.SetTrigger ("Mater");
+			Invoke ("_demoAchievement", 3f);
 		}
 	}
 
