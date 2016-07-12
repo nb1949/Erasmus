@@ -29,9 +29,9 @@ public class Game : MonoBehaviour {
 			foreach (GameObject g in activeGame) {
 				FadeOut fo = g.GetComponent<FadeOut> ();
 				if (fo != null)
-					fo.StartFading (6);
+					fo.StartFading (5);
 			}
-			Invoke ("DisableGuis", 10);
+			Invoke ("DisableGuis", 12);
 			Invoke ("EnableGuis", 0);
 		}
 	}
