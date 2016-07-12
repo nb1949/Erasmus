@@ -31,6 +31,13 @@ public class PlayerScoringManager : MonoBehaviour {
 		CreatureEvents.OnJoin += CalculateDNAOnJoin;
 	}
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.E)) {
+			DNA += 100;
+			UpdateDNAGUI ();
+		}
+	}
+
 	private void CalculateDNAOnDeath(Creature creature) {
 		Debug.Log ("Death");
 		totalDeaths++;

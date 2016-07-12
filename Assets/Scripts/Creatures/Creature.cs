@@ -12,6 +12,7 @@ public class Creature : MonoBehaviour {
 	public CreatureGenome genome;
 	public CreatureEvents events;
 	public Animator animator;
+	public AudioSource audioS;
 	public Transform body;
 
 }

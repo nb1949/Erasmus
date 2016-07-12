@@ -155,7 +155,8 @@ public class CreatureMovement : MonoBehaviour {
 		if (col.attachedRigidbody.velocity.x < -0.05f) {
 			direction = LEFT;
 		}
-		animator.SetInteger ("walkDirection", direction);
+		if(animator.isInitialized)
+			animator.SetInteger ("walkDirection", direction);
 	}
 
 }

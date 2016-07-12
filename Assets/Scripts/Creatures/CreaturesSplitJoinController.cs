@@ -12,6 +12,7 @@ public class CreaturesSplitJoinController : MonoBehaviour {
 	public PlayerScoringManager psm;
 	public Text infoPanelText;
 	public AudioSource audioS;
+	public string defaultSplitText, defaultJoinText;
 	private GameObject firstToJoin;
 
 	// Use this for initialization
@@ -19,7 +20,7 @@ public class CreaturesSplitJoinController : MonoBehaviour {
 		splitMode = false;
 		joinMode = false;
 	}
-
+		
 	public bool ModeIsOn() {
 		return splitMode || joinMode;
 	}
@@ -72,7 +73,7 @@ public class CreaturesSplitJoinController : MonoBehaviour {
 
 	public bool Join(GameObject creature) {
 		if (psm.DNA < psm.joinPrice) {
-			Inform ("Not Enough DNA");
+				Inform ("Not Enough DNA");
 			return false;
 		}
 		if (firstToJoin == null) {
@@ -101,9 +102,9 @@ public class CreaturesSplitJoinController : MonoBehaviour {
 		return false;
 	}
 
-	private void Inform(string msg) {
+	private void Inform(string inMsg) {
 		audioS.Play ();
-		StartCoroutine ("DisplayMsg", msg);		
+		StartCoroutine ("DisplayMsg", inMsg);		
 		StartCoroutine ("RemoveMsg");
 	}
 
@@ -115,6 +116,9 @@ public class CreaturesSplitJoinController : MonoBehaviour {
 
 	private IEnumerator RemoveMsg() {
 		yield return new WaitForSeconds (5);
-		infoPanelText.text = "";
+		if(splitMode)
+			infoPanelText.text = defaultSplitText;
+		else if(joinMode)
+			infoPanelText.text = defaultJoinText;
 	}
 }

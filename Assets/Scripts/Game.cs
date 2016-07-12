@@ -7,11 +7,9 @@ public class Game : MonoBehaviour {
 	public GameObject[] activeGame;
 	public GameObject[] GameOverObjects;
 	public bool gameStatred = false;
-		
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start() {
+		InvokeRepeating ("CheckStatus", 3, 3);
 	}
 
 	public void gameStarted(){
@@ -26,14 +24,27 @@ public class Game : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
-		if (gameStatred && stats.count == 0) {
+	void CheckStatus () {
+		if (gameStatred && stats.count < 1) {
 			foreach (GameObject g in activeGame) {
-				g.SetActive (false);
+				FadeOut fo = g.GetComponent<FadeOut> ();
+				if (fo != null)
+					fo.StartFading (6);
 			}
-			foreach (GameObject g in GameOverObjects) {
-				g.SetActive (true);
-			}
+			Invoke ("DisableGuis", 10);
+			Invoke ("EnableGuis", 0);
+		}
+	}
+
+	private void  DisableGuis() {
+		foreach (GameObject g in activeGame) {
+			g.SetActive (false);
+		}
+	}
+
+	private void EnableGuis() {
+		foreach (GameObject g in GameOverObjects) {
+			g.SetActive (true);
 		}
 	}
 }

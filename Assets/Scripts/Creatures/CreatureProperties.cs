@@ -41,7 +41,7 @@ public class CreatureProperties : MonoBehaviour{
 	// Update is called once per frame
 	void Update (){
 		if (active) {
-			healthBar.transform.localScale = new Vector3 (properties ["health"] / health,
+			healthBar.transform.localScale = new Vector3 ((IsDying() ? Mathf.Min(Get("health"), 20) : Get("health")) / health,
 				healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 			if (properties ["age"] > e_life || properties ["health"] <= 0) {
 					creature.events.CreatureDied (creature);
@@ -90,7 +90,11 @@ public class CreatureProperties : MonoBehaviour{
 	}
 
 	public bool IsYoung() {
-		return properties ["age"] < (0.0001f * e_life);
+		return properties ["age"] < (0.1f * e_life);
+	}
+
+	public bool IsDying() {
+		return e_life < properties ["age"] + 10;
 	}
 
 	private void Age (){
@@ -99,8 +103,14 @@ public class CreatureProperties : MonoBehaviour{
 
 	private void Hunger (){
 		properties ["hunger"] += 1f;
-		if(properties ["hunger"] > CriticalHunger)
+		if (properties ["hunger"] > CriticalHunger) {
+			if(creature.animator.isInitialized)
+				creature.animator.SetBool ("Hungry", true);
 			properties ["health"] -= 1f;
+		} else {
+			if(creature.animator.isInitialized)
+				creature.animator.SetBool ("Hungry", false);
+		}
 	}
 
 	public string toString() {
