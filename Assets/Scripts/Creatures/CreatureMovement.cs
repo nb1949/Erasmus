@@ -117,12 +117,12 @@ public class CreatureMovement : MonoBehaviour {
 	public void AffectMovement(Vector2 direction) {
 		AddDirectionalVector (direction);
 		SetTarget ((Vector2)transform.position);
-		col.attachedRigidbody.AddForce (direction * 10);
+		col.attachedRigidbody.AddForce (direction * 15);
 	}
 
 	public void AddDirectionalVector(Vector2 direction) {
-		externalVector = direction * ((direction.magnitude == 1) ? maxOffset : 1) * 
-			(1.5f + creature.genome.genome [Genetics.GeneType.OBEDIENCE].Val);
+		externalVector = direction * ((direction.magnitude == 1) ? 2 * maxOffset : 1) * 
+			(1.2f + creature.genome.genome [Genetics.GeneType.OBEDIENCE].Val);
 	}
 
 	private void DecayExternalVector (){
